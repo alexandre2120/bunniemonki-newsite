@@ -36,13 +36,13 @@ export function SiteHeader({ locale }: { locale: Locale }) {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:px-8">
         <Link href={getLocalizedPath(locale, "home")} className="flex items-center gap-3">
           <Image
-            src="/brand/bunniemonki-logo-cropped.png"
-            width={430}
-            height={90}
+            src="/brand/bunniemonki-logo.svg"
+            width={526}
+            height={100}
             alt="Bunniemonki"
             priority
             loading="eager"
-            className="h-8 w-auto mix-blend-multiply"
+            className="h-8 w-auto"
           />
           <span className="hidden border-l border-border pl-3 font-mono text-[11px] uppercase text-muted-foreground lg:inline">
             {copy.tagline}
