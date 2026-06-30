@@ -180,23 +180,23 @@ export function ArchitectureDiagram({ locale }: { locale: Locale }) {
 
   return (
     <div className="border border-foreground bg-background p-4 md:p-6" aria-label={copy.label}>
-      <div className="grid gap-3">
+      <ol className="grid gap-3">
         {copy.nodes.map((node, index) => {
           const Icon = node.icon;
           return (
-            <div key={node.label} className="flex items-center gap-3">
+            <li key={node.label}>
               <div className="flex min-h-14 flex-1 items-center gap-3 border border-border bg-surface px-4">
+                <span className="font-mono text-xs text-muted-foreground">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
                 <Icon className="size-4" aria-hidden="true" />
                 <span className="font-heading text-lg font-semibold">{node.label}</span>
                 {node.active ? <Badge className="ml-auto bg-brand text-brand-ink">{copy.core}</Badge> : null}
               </div>
-              {index < copy.nodes.length - 1 ? (
-                <ArrowRight className="hidden size-5 text-muted-foreground sm:block" aria-hidden="true" />
-              ) : null}
-            </div>
+            </li>
           );
         })}
-      </div>
+      </ol>
       <p className="mt-4 text-sm leading-6 text-muted-foreground">
         {copy.equivalent}
       </p>
