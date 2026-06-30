@@ -18,30 +18,30 @@ const stageTableCopy = {
 
 const architectureCopy = {
   en: {
-    label: "Governed automation diagram",
+    label: "Governed AI implementation diagram",
     core: "Core",
     nodes: [
-      { label: "Tools & Data", icon: CircleDot },
-      { label: "Managed Orchestration", icon: ShieldCheck, active: true },
+      { label: "Existing Tools & Data", icon: CircleDot },
+      { label: "Mapped Process", icon: GitBranch },
+      { label: "AI-Assisted Workflow", icon: ShieldCheck, active: true },
       { label: "Human Approval", icon: CheckCircle2 },
-      { label: "Monitoring", icon: CircleDot },
-      { label: "Business Outcomes", icon: CheckCircle2 },
+      { label: "Managed Run", icon: CircleDot },
     ],
     equivalent:
-      "Text equivalent: tools and data feed a managed orchestration layer; human approvals remain explicit; monitoring surfaces exceptions; business outcomes stay measurable.",
+      "Text equivalent: existing tools and data are mapped into a process; AI assists the workflow; human approvals remain explicit; managed operations surface exceptions and improvements.",
   },
   pt: {
-    label: "Diagrama de automação governada",
+    label: "Diagrama de implantação de IA governada",
     core: "Núcleo",
     nodes: [
-      { label: "Ferramentas & dados", icon: CircleDot },
-      { label: "Orquestração gerida", icon: ShieldCheck, active: true },
+      { label: "Ferramentas & dados atuais", icon: CircleDot },
+      { label: "Processo mapeado", icon: GitBranch },
+      { label: "Workflow assistido por IA", icon: ShieldCheck, active: true },
       { label: "Aprovação humana", icon: CheckCircle2 },
-      { label: "Monitorização", icon: CircleDot },
-      { label: "Resultados de negócio", icon: CheckCircle2 },
+      { label: "Operação gerida", icon: CircleDot },
     ],
     equivalent:
-      "Equivalente textual: ferramentas e dados alimentam uma camada de orquestração gerida; aprovações humanas continuam explícitas; a monitorização expõe exceções; os resultados de negócio permanecem mensuráveis.",
+      "Equivalente textual: ferramentas e dados atuais são mapeados num processo; a IA assiste o workflow; aprovações humanas continuam explícitas; a operação gerida expõe exceções e melhorias.",
   },
 } satisfies Record<
   Locale,

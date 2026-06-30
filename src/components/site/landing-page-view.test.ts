@@ -15,6 +15,9 @@ describe("LandingPageView source", () => {
     expect(source).toContain("Reference blueprint");
     expect(source).toContain("Human-governed automation");
     expect(source).toContain("landingPage.finalCta");
+    expect(source).toContain("landingPage.solutionId");
+    expect(source).toContain("Primary solution");
+    expect(source).toContain("Solução principal");
     expect(source).toContain("Painel de sinais operacionais");
     expect(source).toContain("Onde o trabalho quebra");
     expect(source).toContain("GATE HUMANO");

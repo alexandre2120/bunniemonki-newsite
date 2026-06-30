@@ -1,6 +1,7 @@
 import { getLocalizedPath, type Locale, type RouteKey } from "./i18n";
 
 export type SolutionId =
+  | "ai-process-implementation"
   | "lead-to-revenue"
   | "customer-operations"
   | "quote-to-cash"
@@ -236,7 +237,7 @@ export const legalEntity = {
 export const siteCopy: Record<Locale, SiteCopy> = {
   en: {
     localeName: "English",
-    category: "Business Automation & AI Operations",
+    category: "Intelligent AI Implementation in Company Processes",
     tagline: "Move fast. Operate smart.",
     ui: {
       skipToContent: "Skip to content",
@@ -262,7 +263,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
     },
     footer: {
       statement:
-        "We design, build and run automation systems that connect tools, people and operations.",
+        "We design, build and run AI implementation inside real company processes, connected to tools, people and operations.",
       explore: "Explore",
       company: "Company",
       policies: "Policies",
@@ -270,17 +271,17 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         "Bunniemonki is a commercial brand operated by DÍNAMOXIGENADO - UNIPESSOAL LDA, NIPC 518435067, registered in Portugal.",
     },
     home: {
-      eyebrow: "Business Automation & AI Operations",
-      h1: "Connect the systems. Accelerate the business.",
+      eyebrow: "AI Operations & Business Automation",
+      h1: "Intelligent AI implementation inside company processes.",
       body:
-        "We redesign critical business journeys, integrate the tools behind them and manage the automations that keep work moving.",
+        "We design and operate AI inside real business operations: integrated with the tools already in use, governed by human approval where decisions matter and managed after launch.",
       problemHeading:
-        "Your business does not need more disconnected tools. It needs a system that works together.",
+        "The expensive gap is rarely another missing tool. It lives between tools.",
       problemClose:
-        "The expensive gap is usually the journey between tools, not the absence of another tool.",
-      journeysHeading: "Organized around business journeys, not tools.",
+        "Handoffs, copied data, invisible owners, exceptions and AI demos that never reach daily operations are where the work slows down.",
+      journeysHeading: "A primary solution for AI in the process, then journeys by outcome.",
       journeysBody:
-        "Each journey connects the systems, people and handoffs behind a measurable operational outcome.",
+        "Implementation starts with one real process: scan, blueprint, connect systems, build the AI-assisted workflow and keep it running.",
       blueprintHeading: "A concrete reference architecture, not a case-study claim.",
       methodHeading: "From an executive conversation to operations you can rely on.",
       managedHeading: "Built for reliability. Run with confidence.",
@@ -293,9 +294,9 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         "Requests are reviewed within one business day. Suitable businesses receive an invitation for a focused 30–45 minute conversation.",
     },
     index: {
-      solutionsTitle: "Automation designed around the journey.",
+      solutionsTitle: "AI applied to real processes, not around them.",
       solutionsBody:
-        "Start with how work and data move across teams and tools, then define the integrations, human gates and managed operations required.",
+        "The main solution is intelligent AI implementation in company processes. Specific journeys then show where to start: revenue, service, finance or people operations.",
       departmentsTitle: "Start with the team. Design for the whole journey.",
       departmentsBody:
         "Each team view connects tools, responsibilities and handoffs to broader business outcomes.",
@@ -348,7 +349,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
   },
   pt: {
     localeName: "Português",
-    category: "Automação de Negócios & Operações com IA",
+    category: "Implantação inteligente de IA nos processos da empresa",
     tagline: "Move fast. Operate smart.",
     ui: {
       skipToContent: "Saltar para o conteúdo",
@@ -374,7 +375,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
     },
     footer: {
       statement:
-        "Desenhamos, implementamos e operamos sistemas de automação que conectam ferramentas, pessoas e operações.",
+        "Desenhamos, implementamos e operamos IA dentro dos processos reais da empresa, conectada a ferramentas, pessoas e operações.",
       explore: "Explorar",
       company: "Empresa",
       policies: "Políticas",
@@ -382,17 +383,17 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         "Bunniemonki é uma marca comercial operada por DÍNAMOXIGENADO - UNIPESSOAL LDA, NIPC 518435067, registada em Portugal.",
     },
     home: {
-      eyebrow: "Automação de Negócios & Operações com IA",
-      h1: "Conecte os sistemas. Acelere o negócio.",
+      eyebrow: "AI Operations & Business Automation",
+      h1: "Implantação inteligente de IA nos processos da empresa.",
       body:
-        "Redesenhamos jornadas críticas do negócio, integramos as ferramentas por trás delas e gerimos as automações que mantêm o trabalho em movimento.",
+        "Desenhamos e operamos IA dentro da operação real: integrada às ferramentas que já existem, com aprovação humana onde a decisão importa e gestão depois da entrada em produção.",
       problemHeading:
-        "O seu negócio não precisa de mais ferramentas desconectadas. Precisa de um sistema que funcione em conjunto.",
+        "A lacuna cara raramente é a falta de mais uma ferramenta. Ela vive entre ferramentas.",
       problemClose:
-        "A lacuna cara costuma estar na jornada entre ferramentas, não na ausência de mais uma ferramenta.",
-      journeysHeading: "Organizadas por jornadas de negócio, não por ferramentas.",
+        "Handoffs, dados copiados, donos invisíveis, exceções e provas de conceito de IA que não chegam à operação diária travam o trabalho.",
+      journeysHeading: "Uma solução principal para IA no processo, depois jornadas por resultado.",
       journeysBody:
-        "Cada jornada conecta sistemas, pessoas e handoffs por trás de um resultado operacional mensurável.",
+        "A implementação começa por um processo real: scan, blueprint, integração aos sistemas, workflow com IA assistida e operação contínua.",
       blueprintHeading: "Uma arquitetura concreta de referência, não uma promessa de caso.",
       methodHeading: "De uma conversa executiva a operações em que pode confiar.",
       managedHeading: "Construído para fiabilidade. Operado com confiança.",
@@ -405,9 +406,9 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         "Os pedidos são revistos num dia útil. Empresas com provável alinhamento recebem um convite para uma conversa focada de 30–45 minutos.",
     },
     index: {
-      solutionsTitle: "Automação desenhada em torno da jornada.",
+      solutionsTitle: "IA aplicada aos processos reais, não à volta deles.",
       solutionsBody:
-        "Comece por como o trabalho e os dados se movem entre equipas e ferramentas, depois defina integrações, aprovações humanas e operação gerida.",
+        "A solução principal é a implantação inteligente de IA nos processos da empresa. As jornadas específicas mostram onde começar: receita, serviço, finanças ou pessoas.",
       departmentsTitle: "Comece pela equipa. Desenhe para a jornada inteira.",
       departmentsBody:
         "Cada visão por equipa conecta ferramentas, responsabilidades e handoffs a resultados de negócio mais amplos.",
@@ -462,6 +463,78 @@ export const siteCopy: Record<Locale, SiteCopy> = {
 
 const baseSolutions: Record<Locale, Solution[]> = {
   en: [
+    {
+      id: "ai-process-implementation",
+      slug: "ai-process-implementation",
+      title: "AI Process Implementation",
+      promise:
+        "AI implemented inside real company processes, connected to existing systems and governed by human approval.",
+      friction:
+        "AI pilots stay outside operations while handoffs, copied data and invisible exceptions keep slowing the company down.",
+      outcome:
+        "One critical process becomes mapped, integrated, AI-assisted, monitored and owned after launch.",
+      teams: ["Leadership", "Operations", "IT", "Process owners"],
+      systems: ["CRM", "WhatsApp/API channels", "Email", "ERP/accounting", "Documents", "Automation environment"],
+      departmentIds: ["operations-it", "marketing-sales", "customer-success-service", "finance", "hr"],
+      fit: [
+        "A repeated process crosses three or more disconnected tools.",
+        "There is an accountable owner for the process, budget and change decisions.",
+        "AI should classify, draft, summarise or route work without taking sensitive decisions alone.",
+      ],
+      notFit: [
+        "You only want a standalone chatbot or prompt demo.",
+        "The process has no repeated volume, owner or willingness to change.",
+        "The goal is autonomous fiscal, clinical, legal, financial or employment decisions.",
+      ],
+      modules: [
+        "Automation Scan",
+        "Solution Blueprint",
+        "Existing-system integrations",
+        "AI automations",
+        "Managed automation",
+      ],
+      metrics: [
+        "Manual touches",
+        "Exception volume",
+        "Approval delay",
+        "Time to recovery",
+        "Workflow adoption",
+      ],
+      stages: [
+        {
+          label: "Scan",
+          owner: "Leadership and operations",
+          input: "Operational friction and current tools",
+          output: "Fit decision and first process candidate",
+          gate: "Human confirms owner, urgency and risk",
+          exception: "Pain is vague or no accountable owner",
+        },
+        {
+          label: "Blueprint",
+          owner: "Bunniemonki and process owner",
+          input: "Process map, systems, data and risks",
+          output: "Modular AI architecture and roadmap",
+          gate: "Scope and human approvals signed off",
+          exception: "Data source, permission or compliance gap",
+        },
+        {
+          label: "Build",
+          owner: "Implementation team",
+          input: "Approved blueprint and access plan",
+          output: "Integrated AI-assisted workflow",
+          gate: "Human approval before sensitive actions",
+          exception: "Integration failure or low-confidence AI output",
+        },
+        {
+          label: "Run",
+          owner: "Operations and Bunniemonki",
+          input: "Live executions, logs and exceptions",
+          output: "Monitored workflow and improvement backlog",
+          gate: "Incident and change review",
+          exception: "Credential, model or process drift",
+        },
+      ],
+    },
     {
       id: "lead-to-revenue",
       slug: "lead-to-revenue",
@@ -633,6 +706,76 @@ const baseSolutions: Record<Locale, Solution[]> = {
 baseSolutions.pt = [
   {
     ...baseSolutions.en[0],
+    title: "Implantação inteligente de IA nos processos da empresa",
+    promise:
+      "IA implementada dentro dos processos reais da empresa, conectada aos sistemas existentes e governada por aprovação humana.",
+    friction:
+      "Pilotos de IA ficam fora da operação enquanto handoffs, dados copiados e exceções invisíveis continuam a travar a empresa.",
+    outcome:
+      "Um processo crítico fica mapeado, integrado, assistido por IA, monitorizado e com dono depois do lançamento.",
+    teams: ["Liderança", "Operações", "IT", "Donos de processo"],
+    systems: ["CRM", "WhatsApp/canais API", "Email", "ERP/contabilidade", "Documentos", "Ambiente de automação"],
+    fit: [
+      "Um processo repetido atravessa três ou mais ferramentas desconectadas.",
+      "Existe dono responsável pelo processo, budget e decisões de mudança.",
+      "A IA deve classificar, rascunhar, resumir ou encaminhar trabalho sem tomar decisões sensíveis sozinha.",
+    ],
+    notFit: [
+      "Só quer um chatbot solto ou demonstração de prompts.",
+      "O processo não tem volume repetido, dono ou vontade de mudança.",
+      "O objetivo é automatizar decisões fiscais, clínicas, legais, financeiras ou laborais sem validação humana.",
+    ],
+    modules: [
+      "Automation Scan",
+      "Solution Blueprint",
+      "Integrações aos sistemas existentes",
+      "Automações com IA",
+      "Automação gerida",
+    ],
+    metrics: [
+      "Toques manuais",
+      "Volume de exceções",
+      "Atraso de aprovação",
+      "Tempo de recuperação",
+      "Adoção do workflow",
+    ],
+    stages: [
+      {
+        label: "Scan",
+        owner: "Liderança e operações",
+        input: "Fricção operacional e ferramentas atuais",
+        output: "Decisão de fit e primeiro processo candidato",
+        gate: "Humano confirma dono, urgência e risco",
+        exception: "Dor vaga ou sem dono responsável",
+      },
+      {
+        label: "Blueprint",
+        owner: "Bunniemonki e dono do processo",
+        input: "Mapa do processo, sistemas, dados e riscos",
+        output: "Arquitetura modular de IA e roadmap",
+        gate: "Escopo e aprovações humanas validados",
+        exception: "Falha de fonte de dados, permissão ou compliance",
+      },
+      {
+        label: "Build",
+        owner: "Equipa de implementação",
+        input: "Blueprint aprovado e plano de acessos",
+        output: "Workflow integrado e assistido por IA",
+        gate: "Aprovação humana antes de ações sensíveis",
+        exception: "Falha de integração ou saída de IA com baixa confiança",
+      },
+      {
+        label: "Run",
+        owner: "Operações e Bunniemonki",
+        input: "Execuções, logs e exceções em produção",
+        output: "Workflow monitorizado e backlog de melhoria",
+        gate: "Revisão de incidentes e mudanças",
+        exception: "Desvio de credencial, modelo ou processo",
+      },
+    ],
+  },
+  {
+    ...baseSolutions.en[1],
     promise: "Da procura qualificada a um handoff comercial fiável.",
     friction: "Leads dispersos por formulários, caixas de entrada e folhas de cálculo.",
     outcome: "Cada lead qualificado é capturado, encaminhado, acompanhado e visível.",
@@ -670,7 +813,7 @@ baseSolutions.pt = [
     ],
   },
   {
-    ...baseSolutions.en[1],
+    ...baseSolutions.en[2],
     promise: "Do pedido recebido ao serviço resolvido e visível.",
     friction: "Onboarding e serviço tratados de forma ad hoc entre canais.",
     outcome: "Pedidos de clientes avançam com propriedade, atualizações e fecho claros.",
@@ -708,7 +851,7 @@ baseSolutions.pt = [
     ],
   },
   {
-    ...baseSolutions.en[2],
+    ...baseSolutions.en[3],
     promise: "Do acordo comercial ao pagamento correto e rastreável.",
     friction: "Propostas, aprovações e faturas presas em passos manuais.",
     outcome: "Intenção comercial transforma-se em documentos aprovados, faturas e estado de pagamento.",
@@ -746,7 +889,7 @@ baseSolutions.pt = [
     ],
   },
   {
-    ...baseSolutions.en[3],
+    ...baseSolutions.en[4],
     promise: "Da função aprovada a uma pessoa produtiva.",
     friction: "Novos colaboradores esperam por acessos, equipamento e formação.",
     outcome: "Pessoas chegam a um marco de produtividade definido com decisões humanas sob controlo.",
@@ -798,7 +941,7 @@ export const departments: Record<Locale, Department[]> = {
       signals: ["Duplicate lead entry", "Slow response", "Unknown lead owner", "Manual campaign-to-CRM reconciliation"],
       systems: ["Forms", "Ads", "CRM", "Email", "Analytics"],
       metrics: ["Response time", "Handoff delay", "Lead data completeness", "Follow-up completion"],
-      solutionIds: ["lead-to-revenue", "quote-to-cash"],
+      solutionIds: ["ai-process-implementation", "lead-to-revenue", "quote-to-cash"],
     },
     {
       id: "customer-success-service",
@@ -809,7 +952,7 @@ export const departments: Record<Locale, Department[]> = {
       signals: ["Requests split across channels", "Reopened cases", "Unclear escalation owner", "Manual status updates"],
       systems: ["Helpdesk", "CRM", "Messaging", "Knowledge base"],
       metrics: ["Time to ownership", "Reopen rate", "Unresolved exceptions", "Update delay"],
-      solutionIds: ["customer-operations"],
+      solutionIds: ["ai-process-implementation", "customer-operations"],
     },
     {
       id: "finance",
@@ -820,7 +963,7 @@ export const departments: Record<Locale, Department[]> = {
       signals: ["Manual approval chasing", "Invoice exceptions", "Payment-state reconciliation", "Unclear billing data source"],
       systems: ["ERP", "Accounting", "Payments", "Contracts", "CRM"],
       metrics: ["Approval cycle", "Reconciliation effort", "Invoice exception rate", "Payment state delay"],
-      solutionIds: ["quote-to-cash", "hire-to-productivity"],
+      solutionIds: ["ai-process-implementation", "quote-to-cash", "hire-to-productivity"],
     },
     {
       id: "hr",
@@ -831,7 +974,7 @@ export const departments: Record<Locale, Department[]> = {
       signals: ["Offer/document loops", "Delayed onboarding tasks", "HRIS updates copied by hand", "Unclear manager/IT handoff"],
       systems: ["ATS", "HRIS", "Identity", "Learning", "Documents"],
       metrics: ["Ready start rate", "Onboarding completeness", "Manual touches", "Document cycle time"],
-      solutionIds: ["hire-to-productivity"],
+      solutionIds: ["ai-process-implementation", "hire-to-productivity"],
     },
     {
       id: "operations-it",
@@ -842,7 +985,13 @@ export const departments: Record<Locale, Department[]> = {
       signals: ["Silent automation failures", "Unowned integrations", "Credential sprawl", "No exception queue"],
       systems: ["Automation platform", "Identity", "Monitoring", "Data stores", "Ticketing"],
       metrics: ["Automation failures", "Mean time to recovery", "Unowned workflows", "Exception volume"],
-      solutionIds: ["lead-to-revenue", "customer-operations", "quote-to-cash", "hire-to-productivity"],
+      solutionIds: [
+        "ai-process-implementation",
+        "lead-to-revenue",
+        "customer-operations",
+        "quote-to-cash",
+        "hire-to-productivity",
+      ],
     },
   ],
   pt: [],
@@ -911,7 +1060,7 @@ export const blueprints: Record<Locale, Blueprint[]> = {
       currentFlow: ["Role approved", "Candidate data copied", "Offer chased", "Access requested manually", "Onboarding status unclear"],
       solutionId: "hire-to-productivity",
       departmentIds: ["hr", "operations-it", "finance"],
-      targetFlow: baseSolutions.en[3].stages,
+      targetFlow: baseSolutions.en[4].stages,
       layers: [
         {
           title: "Channels and intake",
@@ -959,7 +1108,7 @@ blueprints.pt = [
     scope: ["Tracks de recrutamento", "Oferta e documentação", "Transição para HRIS", "Provisioning", "Check-ins de onboarding"],
     exclusions: ["Substituir ATS/HRIS", "Decisões autónomas de emprego", "Reconhecimento emocional", "Inferência de atributos sensíveis"],
     currentFlow: ["Função aprovada", "Dados do candidato copiados", "Oferta perseguida", "Acesso pedido manualmente", "Estado do onboarding incerto"],
-    targetFlow: baseSolutions.pt[3].stages,
+    targetFlow: baseSolutions.pt[4].stages,
     layers: [
       {
         title: "Canais e intake",
@@ -1086,7 +1235,7 @@ export const landingPages: Record<Locale, LandingPage[]> = {
         },
       ],
       finalCta: "Map the accounting workflow that costs your team the most attention.",
-      solutionId: "quote-to-cash",
+      solutionId: "ai-process-implementation",
     },
     {
       id: "tourism-operations",
@@ -1177,7 +1326,7 @@ export const landingPages: Record<Locale, LandingPage[]> = {
         },
       ],
       finalCta: "Map the guest operation before the next busy season exposes the gaps.",
-      solutionId: "customer-operations",
+      solutionId: "ai-process-implementation",
     },
     {
       id: "private-clinics",
@@ -1268,7 +1417,7 @@ export const landingPages: Record<Locale, LandingPage[]> = {
         },
       ],
       finalCta: "Map the clinic workflow your reception team repeats every day.",
-      solutionId: "customer-operations",
+      solutionId: "ai-process-implementation",
     },
     {
       id: "real-estate-rentals",
@@ -1359,7 +1508,7 @@ export const landingPages: Record<Locale, LandingPage[]> = {
         },
       ],
       finalCta: "Map the real estate workflow where leads and rental tasks go quiet.",
-      solutionId: "lead-to-revenue",
+      solutionId: "ai-process-implementation",
     },
   ],
   pt: [
@@ -1452,7 +1601,7 @@ export const landingPages: Record<Locale, LandingPage[]> = {
         },
       ],
       finalCta: "Mapeie o workflow contabilístico que mais consome atenção da equipa.",
-      solutionId: "quote-to-cash",
+      solutionId: "ai-process-implementation",
     },
     {
       id: "tourism-operations",
@@ -1543,7 +1692,7 @@ export const landingPages: Record<Locale, LandingPage[]> = {
         },
       ],
       finalCta: "Mapeie a operação de hóspedes antes de a próxima época alta expor as falhas.",
-      solutionId: "customer-operations",
+      solutionId: "ai-process-implementation",
     },
     {
       id: "private-clinics",
@@ -1634,7 +1783,7 @@ export const landingPages: Record<Locale, LandingPage[]> = {
         },
       ],
       finalCta: "Mapeie o workflow clínico que a receção repete todos os dias.",
-      solutionId: "customer-operations",
+      solutionId: "ai-process-implementation",
     },
     {
       id: "real-estate-rentals",
@@ -1725,7 +1874,7 @@ export const landingPages: Record<Locale, LandingPage[]> = {
         },
       ],
       finalCta: "Mapeie o workflow imobiliário onde leads e tarefas de arrendamento ficam em silêncio.",
-      solutionId: "lead-to-revenue",
+      solutionId: "ai-process-implementation",
     },
   ],
 };

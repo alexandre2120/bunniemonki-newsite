@@ -24,11 +24,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Bunniemonki | Business Automation & AI Operations",
+    default: "Bunniemonki | Intelligent AI Implementation in Company Processes",
     template: "%s",
   },
   description:
-    "Bunniemonki connects systems, redesigns operational journeys and manages automations that keep business moving.",
+    "Bunniemonki implements AI inside real company processes, integrated with existing systems, human approvals and managed operations.",
   metadataBase: new URL("https://bunniemonki.com"),
 };
 

@@ -45,6 +45,7 @@ import { getLocalizedPath, type Locale } from "@/lib/i18n";
 export function HomeView({ locale }: { locale: Locale }) {
   const copy = siteCopy[locale];
   const featuredBlueprint = blueprints[locale][0];
+  const primarySolution = solutions[locale][0];
 
   return (
     <>
@@ -76,16 +77,16 @@ export function HomeView({ locale }: { locale: Locale }) {
               </Button>
               <Button asChild variant="outline" className="h-11 px-5">
                 <Link
-                  href={getLocalizedPath(locale, "solutions")}
+                  href={primarySolution ? getLocalizedPath(locale, "solution", primarySolution.slug) : getLocalizedPath(locale, "solutions")}
                   {...analyticsClickAttributes({
                     name: "cta_click",
                     location: "home_hero",
-                    target: "solutions_index",
+                    target: "primary_solution",
                     locale,
                     pageKind: "home",
                   })}
                 >
-                  {copy.cta.exploreSolutions}
+                  {locale === "en" ? "View primary solution" : "Ver solução principal"}
                 </Link>
               </Button>
             </div>
@@ -98,6 +99,8 @@ export function HomeView({ locale }: { locale: Locale }) {
           <div className="h-px w-full bg-foreground" />
         </div>
       </section>
+
+      {primarySolution ? <PrimarySolutionHighlight locale={locale} solution={primarySolution} /> : null}
 
       <PageBand>
         <div className="grid gap-10 md:grid-cols-[0.85fr_1.15fr]">
@@ -216,6 +219,7 @@ export function HomeView({ locale }: { locale: Locale }) {
 
 export function SolutionsIndexView({ locale }: { locale: Locale }) {
   const copy = siteCopy[locale];
+  const primarySolution = solutions[locale][0];
   return (
     <>
       <IndexHero
@@ -224,6 +228,7 @@ export function SolutionsIndexView({ locale }: { locale: Locale }) {
         title={copy.index.solutionsTitle}
         body={copy.index.solutionsBody}
       />
+      {primarySolution ? <PrimarySolutionHighlight locale={locale} solution={primarySolution} /> : null}
       <JourneyAutomationMap locale={locale} />
       <PageBand className="bg-surface">
         <div className="grid gap-5 md:grid-cols-2">
@@ -262,6 +267,7 @@ export function LandingPageView({
   landingPage: LandingPage;
 }) {
   const copy = siteCopy[locale];
+  const primarySolution = relatedSolutions(locale, [landingPage.solutionId])[0];
   const sourceLabels = {
     cockpit: "Operational signal cockpit",
     breaks: "Where work breaks",
@@ -472,6 +478,8 @@ export function LandingPageView({
           </div>
         </div>
       </PageBand>
+
+      {primarySolution ? <PrimarySolutionHighlight locale={locale} solution={primarySolution} /> : null}
 
       <PageBand id="blueprint" className="bg-ink py-12 text-white md:py-16">
         <div data-section={sourceLabels.blueprint} className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
@@ -1077,6 +1085,78 @@ function FeaturedBlueprint({ locale, blueprint }: { locale: Locale; blueprint: B
               <ArrowUpRight aria-hidden="true" />
             </Link>
           </Button>
+        </div>
+      </div>
+    </PageBand>
+  );
+}
+
+function PrimarySolutionHighlight({ locale, solution }: { locale: Locale; solution: Solution }) {
+  const labels =
+    locale === "en"
+      ? {
+          eyebrow: "Primary solution",
+          modules: "Implementation modules",
+          detail: "Open solution page",
+          note:
+            "The niche is specific, but the operating pattern is the same: map the process, connect the systems, add governed AI and keep the workflow running.",
+        }
+      : {
+          eyebrow: "Solução principal",
+          modules: "Módulos de implementação",
+          detail: "Abrir página da solução",
+          note:
+            "O nicho é específico, mas o padrão operacional é o mesmo: mapear o processo, ligar os sistemas, adicionar IA governada e manter o workflow em produção.",
+        };
+
+  return (
+    <PageBand className="bg-surface py-12 md:py-16">
+      <div className="grid gap-8 lg:grid-cols-[0.76fr_1.24fr]">
+        <div>
+          <SectionIntro eyebrow={labels.eyebrow} title={solution.title} body={solution.promise} />
+          <p className="mt-5 max-w-2xl text-sm leading-6 text-muted-foreground">
+            {labels.note}
+          </p>
+          <Button asChild className="mt-6 bg-foreground text-background hover:bg-foreground/85">
+            <Link
+              href={getLocalizedPath(locale, "solution", solution.slug)}
+              {...analyticsClickAttributes({
+                name: "cta_click",
+                location: "primary_solution_highlight",
+                target: "solution_detail",
+                locale,
+                pageKind: "solutions",
+                itemId: solution.id,
+                itemSlug: solution.slug,
+              })}
+            >
+              {labels.detail}
+              <ArrowUpRight aria-hidden="true" />
+            </Link>
+          </Button>
+        </div>
+        <div className="border border-foreground bg-background p-5">
+          <div className="flex flex-col justify-between gap-3 border-b border-border pb-4 sm:flex-row sm:items-end">
+            <div>
+              <p className="font-mono text-xs uppercase text-muted-foreground">
+                {labels.modules}
+              </p>
+              <h3 className="mt-2 font-heading text-3xl font-semibold">{solution.outcome}</h3>
+            </div>
+            <Badge className="w-fit rounded-none bg-brand text-brand-ink hover:bg-brand">
+              AI Ops
+            </Badge>
+          </div>
+          <ol className="mt-5 grid gap-3 md:grid-cols-2">
+            {solution.modules.map((module, index) => (
+              <li key={module} className="border border-border bg-surface p-4">
+                <span className="font-mono text-xs text-muted-foreground">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <p className="mt-3 font-heading text-lg font-semibold leading-tight">{module}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     </PageBand>
