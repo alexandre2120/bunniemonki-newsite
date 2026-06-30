@@ -28,6 +28,9 @@ import {
   type ScanStep,
 } from "@/lib/scan-validation";
 
+const WEBHOOK_URL = "https://hook.eu1.make.com/9app4texz5sl06nv2jphniyhjdlicw7i";
+const WEBHOOK_API_KEY = "cYV_dv6eC5ZYM-T";
+
 const companySizes = ["1-9", "10-29", "30-49", "50-99", "100-199", "200-499", "500+"];
 
 export function ScanForm({ locale }: { locale: Locale }) {
@@ -37,6 +40,8 @@ export function ScanForm({ locale }: { locale: Locale }) {
   const [errors, setErrors] = useState<Partial<Record<keyof ScanDraft, string>>>({});
   const [submitted, setSubmitted] = useState(false);
   const [reference, setReference] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   function update<K extends keyof ScanDraft>(key: K, value: ScanDraft[K]) {
     setDraft((current) => ({ ...current, [key]: value }));
@@ -68,16 +73,60 @@ export function ScanForm({ locale }: { locale: Locale }) {
       requestAnimationFrame(() => document.getElementById("scan-step-heading")?.focus());
       return;
     }
+    // Step 3 — submit to webhook
+    void submitToWebhook();
+  }
+
+  async function submitToWebhook() {
+    setIsSubmitting(true);
+    setSubmitError(null);
+    const ref = `BM-${Date.now().toString(36).toUpperCase()}`;
+    setReference(ref);
+
     track("scan_form_submit", safeAnalyticsProperties({
       locale,
       location: "scan_form",
       marketingConsent: draft.marketingConsent,
       pageKind: "scan",
       step,
-      target: "request_submitted_local",
+      target: "request_submitted",
     }));
-    setReference(`BM-${Date.now().toString(36).toUpperCase()}`);
-    setSubmitted(true);
+
+    try {
+      const payload = {
+        ...draft,
+        reference: ref,
+        submittedAt: new Date().toISOString(),
+      };
+
+      const response = await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-make-apikey": WEBHOOK_API_KEY,
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      setSubmitted(true);
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "Unknown error";
+      setSubmitError(errorMessage);
+      track("scan_form_submit_error", safeAnalyticsProperties({
+        locale,
+        location: "scan_form",
+        pageKind: "scan",
+        step,
+        target: "submit_error",
+        error: errorMessage,
+      }));
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   function goBack() {
@@ -133,13 +182,17 @@ export function ScanForm({ locale }: { locale: Locale }) {
           <StepThree draft={draft} errors={errors} update={update} locale={locale} />
         ) : null}
 
-        {Object.values(errors).some(Boolean) ? (
+        {Object.values(errors).some(Boolean) || submitError ? (
           <Alert variant="destructive" className="rounded-none">
             <AlertTitle>{locale === "en" ? "Check these fields" : "Revise estes campos"}</AlertTitle>
             <AlertDescription>
-              {locale === "en"
-                ? "Fix the highlighted fields before continuing."
-                : "Corrija os campos assinalados antes de continuar."}
+              {submitError
+                ? (locale === "en"
+                  ? `Submission failed: ${submitError}. Please try again.`
+                  : `Envio falhou: ${submitError}. Por favor tente novamente.`)
+                : (locale === "en"
+                  ? "Fix the highlighted fields before continuing."
+                  : "Corrija os campos assinalados antes de continuar.")}
             </AlertDescription>
           </Alert>
         ) : null}
@@ -149,7 +202,7 @@ export function ScanForm({ locale }: { locale: Locale }) {
             type="button"
             variant="outline"
             onClick={goBack}
-            disabled={step === 1}
+            disabled={step === 1 || isSubmitting}
             {...analyticsClickAttributes({
               name: "scan_form_button_click",
               location: "scan_form",
@@ -165,6 +218,7 @@ export function ScanForm({ locale }: { locale: Locale }) {
           <Button
             type="submit"
             className="bg-brand text-brand-ink hover:bg-brand/85"
+            disabled={isSubmitting}
             {...analyticsClickAttributes({
               name: "scan_form_button_click",
               location: "scan_form",
@@ -174,7 +228,11 @@ export function ScanForm({ locale }: { locale: Locale }) {
               step,
             })}
           >
-            {step === 3 ? (locale === "en" ? "Submit request" : "Submeter pedido") : locale === "en" ? "Continue" : "Continuar"}
+            {isSubmitting
+              ? (locale === "en" ? "Submitting..." : "A enviar...")
+              : step === 3
+                ? (locale === "en" ? "Submit request" : "Submeter pedido")
+                : (locale === "en" ? "Continue" : "Continuar")}
             <ArrowRight aria-hidden="true" />
           </Button>
         </div>
