@@ -1,0 +1,1450 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bunniemonki - Plano de aquisicao de clientes Portugal e Brasil</title>
+    <meta
+      name="description"
+      content="Plano Portugal + Brasil para captar clientes Bunniemonki nos quatro nichos iniciais com marketing barato, ABM manual, conteudo e parcerias."
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #121410;
+        --muted: #596057;
+        --paper: #f5f7f1;
+        --panel: #ffffff;
+        --line: #d9dfd2;
+        --brand: #ffc50d;
+        --green: #2f6f4e;
+        --rust: #b85c38;
+        --blue: #44546a;
+        --coal: #23251f;
+        --wash: #e8eee2;
+        --focus: #0d6efd;
+        --shadow: 0 24px 80px rgba(18, 20, 16, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background:
+          linear-gradient(90deg, rgba(18, 20, 16, 0.04) 1px, transparent 1px),
+          linear-gradient(180deg, rgba(18, 20, 16, 0.035) 1px, transparent 1px),
+          var(--paper);
+        background-size: 44px 44px;
+        color: var(--ink);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        line-height: 1.5;
+      }
+
+      a {
+        color: inherit;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.22em;
+      }
+
+      a:focus-visible,
+      button:focus-visible {
+        outline: 3px solid var(--focus);
+        outline-offset: 3px;
+      }
+
+      .shell {
+        display: grid;
+        grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
+        min-height: 100vh;
+      }
+
+      .rail {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow: auto;
+        border-right: 1px solid var(--line);
+        background: rgba(245, 247, 241, 0.92);
+        backdrop-filter: blur(18px);
+        padding: 28px 22px;
+      }
+
+      .brand-lockup {
+        display: grid;
+        gap: 14px;
+      }
+
+      .brand-lockup img {
+        width: 150px;
+        max-width: 100%;
+        height: auto;
+      }
+
+      .doc-label {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .rail nav {
+        display: grid;
+        gap: 6px;
+        margin-top: 32px;
+      }
+
+      .rail nav a {
+        border-left: 3px solid transparent;
+        padding: 7px 10px;
+        color: var(--muted);
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .rail nav a:hover {
+        border-left-color: var(--brand);
+        color: var(--ink);
+      }
+
+      .rail-card {
+        margin-top: 28px;
+        border: 1px solid var(--line);
+        background: var(--panel);
+        padding: 14px;
+      }
+
+      .rail-card strong {
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .rail-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .print-button {
+        width: 100%;
+        margin-top: 16px;
+        border: 0;
+        background: var(--ink);
+        color: #fff;
+        cursor: pointer;
+        padding: 11px 14px;
+        font: inherit;
+        font-weight: 800;
+      }
+
+      main {
+        min-width: 0;
+      }
+
+      .hero {
+        min-height: 88vh;
+        display: grid;
+        align-content: end;
+        padding: clamp(34px, 6vw, 80px);
+        background:
+          radial-gradient(circle at 85% 18%, rgba(255, 197, 13, 0.3), transparent 28%),
+          linear-gradient(145deg, rgba(47, 111, 78, 0.12), transparent 42%),
+          var(--paper);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .hero-inner {
+        max-width: 1120px;
+      }
+
+      .kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 24px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.7);
+        padding: 8px 12px;
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .kicker::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        background: var(--brand);
+        box-shadow: 16px 0 0 var(--green), 32px 0 0 var(--rust);
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        margin: 0;
+        line-height: 1.02;
+        font-family: Georgia, "Times New Roman", serif;
+        font-weight: 700;
+      }
+
+      h1 {
+        max-width: 980px;
+        font-size: clamp(3.2rem, 8vw, 7.9rem);
+        letter-spacing: -0.045em;
+      }
+
+      h2 {
+        font-size: clamp(2.1rem, 4vw, 4.7rem);
+        letter-spacing: -0.035em;
+      }
+
+      h3 {
+        font-size: clamp(1.45rem, 2.4vw, 2.2rem);
+        letter-spacing: -0.025em;
+      }
+
+      h4 {
+        font-size: 1.05rem;
+        letter-spacing: -0.01em;
+      }
+
+      .hero-copy {
+        max-width: 720px;
+        margin: 28px 0 0;
+        color: var(--muted);
+        font-size: clamp(1.08rem, 2vw, 1.35rem);
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1px;
+        max-width: 960px;
+        margin-top: 44px;
+        background: var(--ink);
+        border: 1px solid var(--ink);
+      }
+
+      .hero-tile {
+        min-height: 150px;
+        background: var(--panel);
+        padding: 18px;
+      }
+
+      .hero-tile span {
+        display: block;
+        color: var(--muted);
+        font-size: 0.72rem;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .hero-tile strong {
+        display: block;
+        margin-top: 38px;
+        font-size: clamp(1.35rem, 2.6vw, 2.1rem);
+        line-height: 0.98;
+      }
+
+      section {
+        padding: clamp(42px, 6vw, 86px) clamp(24px, 6vw, 80px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(0, 0.7fr) minmax(280px, 0.9fr);
+        gap: clamp(24px, 5vw, 70px);
+        align-items: end;
+        margin-bottom: 34px;
+      }
+
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      .panel {
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.82);
+        box-shadow: var(--shadow);
+      }
+
+      .panel-pad {
+        padding: clamp(18px, 3vw, 30px);
+      }
+
+      .thesis {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.65fr);
+        gap: 1px;
+        background: var(--line);
+      }
+
+      .thesis > div {
+        background: var(--panel);
+        padding: clamp(22px, 4vw, 38px);
+      }
+
+      .thesis p {
+        margin: 14px 0 0;
+        color: var(--muted);
+      }
+
+      .thesis ul,
+      .checklist {
+        margin: 18px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .thesis li,
+      .checklist li {
+        position: relative;
+        padding: 10px 0 10px 26px;
+        border-top: 1px solid var(--line);
+      }
+
+      .thesis li::before,
+      .checklist li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 18px;
+        width: 10px;
+        height: 10px;
+        background: var(--brand);
+      }
+
+      .offer-ladder {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 1px;
+        background: var(--line);
+        border: 1px solid var(--line);
+      }
+
+      .step-card {
+        background: var(--panel);
+        min-height: 220px;
+        padding: 20px;
+      }
+
+      .step-card .step {
+        display: inline-flex;
+        margin-bottom: 38px;
+        background: var(--coal);
+        color: #fff;
+        padding: 5px 8px;
+        font-size: 0.72rem;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+      }
+
+      .step-card p {
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      .niche-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .niche-card {
+        display: grid;
+        min-height: 100%;
+        border: 1px solid var(--line);
+        background: var(--panel);
+      }
+
+      .niche-card header {
+        padding: 22px;
+        color: #fff;
+      }
+
+      .niche-card:nth-child(1) header {
+        background: var(--green);
+      }
+
+      .niche-card:nth-child(2) header {
+        background: var(--blue);
+      }
+
+      .niche-card:nth-child(3) header {
+        background: var(--rust);
+      }
+
+      .niche-card:nth-child(4) header {
+        background: var(--coal);
+      }
+
+      .niche-card header p {
+        margin: 12px 0 0;
+        color: rgba(255, 255, 255, 0.78);
+      }
+
+      .niche-body {
+        display: grid;
+        gap: 18px;
+        padding: 22px;
+      }
+
+      .micro-label {
+        margin: 0 0 8px;
+        color: var(--muted);
+        font-size: 0.72rem;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .plain-list {
+        margin: 0;
+        padding-left: 1.15rem;
+      }
+
+      .plain-list li + li {
+        margin-top: 6px;
+      }
+
+      .channel-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .channel {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        padding: 20px;
+      }
+
+      .channel .cost {
+        display: inline-flex;
+        margin-bottom: 18px;
+        background: var(--wash);
+        padding: 5px 8px;
+        color: var(--muted);
+        font-size: 0.76rem;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 14px;
+      }
+
+      .phase {
+        display: grid;
+        grid-template-columns: minmax(160px, 0.35fr) minmax(0, 1fr);
+        border: 1px solid var(--line);
+        background: var(--panel);
+      }
+
+      .phase aside {
+        border-right: 1px solid var(--line);
+        background: var(--coal);
+        color: #fff;
+        padding: 22px;
+      }
+
+      .phase aside span {
+        display: block;
+        margin-bottom: 48px;
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 0.75rem;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .phase div {
+        padding: 22px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--panel);
+        font-size: 0.95rem;
+      }
+
+      th,
+      td {
+        vertical-align: top;
+        border: 1px solid var(--line);
+        padding: 14px;
+        text-align: left;
+      }
+
+      th {
+        background: var(--coal);
+        color: #fff;
+        font-size: 0.78rem;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+      }
+
+      .script-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      details {
+        border: 1px solid var(--line);
+        background: var(--panel);
+      }
+
+      summary {
+        cursor: pointer;
+        padding: 16px 18px;
+        font-weight: 900;
+      }
+
+      .script {
+        margin: 0;
+        border-top: 1px solid var(--line);
+        background: #fbfcf8;
+        padding: 18px;
+        color: var(--coal);
+        white-space: pre-wrap;
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        font-size: 0.88rem;
+        line-height: 1.55;
+      }
+
+      .score-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1px;
+        background: var(--line);
+        border: 1px solid var(--line);
+      }
+
+      .score {
+        background: var(--panel);
+        padding: 22px;
+      }
+
+      .score strong {
+        display: inline-flex;
+        margin-bottom: 20px;
+        padding: 7px 10px;
+        color: #fff;
+      }
+
+      .score:nth-child(1) strong {
+        background: var(--green);
+      }
+
+      .score:nth-child(2) strong {
+        background: var(--blue);
+      }
+
+      .score:nth-child(3) strong {
+        background: var(--rust);
+      }
+
+      .source-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .source-list a,
+      .source-list span {
+        display: block;
+        border: 1px solid var(--line);
+        background: var(--panel);
+        padding: 14px;
+      }
+
+      .note {
+        border-left: 6px solid var(--brand);
+        background: var(--panel);
+        padding: 18px 20px;
+        color: var(--muted);
+      }
+
+      .two-col {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .tag {
+        border: 1px solid var(--line);
+        background: var(--wash);
+        padding: 6px 9px;
+        color: var(--muted);
+        font-size: 0.8rem;
+        font-weight: 800;
+      }
+
+      .footer {
+        padding: 30px clamp(24px, 6vw, 80px);
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      @media (max-width: 1080px) {
+        .shell {
+          display: block;
+        }
+
+        .rail {
+          position: relative;
+          height: auto;
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .rail nav {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .offer-ladder,
+        .channel-grid,
+        .score-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 780px) {
+        .hero {
+          min-height: auto;
+        }
+
+        .hero-grid,
+        .section-head,
+        .thesis,
+        .niche-grid,
+        .phase,
+        .script-grid,
+        .source-list,
+        .two-col,
+        .offer-ladder,
+        .channel-grid,
+        .score-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .phase aside {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .phase aside span {
+          margin-bottom: 18px;
+        }
+
+        th,
+        td {
+          min-width: 160px;
+        }
+
+        .table-wrap {
+          overflow-x: auto;
+        }
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+
+        .shell {
+          display: block;
+        }
+
+        .rail,
+        .print-button {
+          display: none;
+        }
+
+        .hero {
+          min-height: auto;
+        }
+
+        section,
+        .hero,
+        .footer {
+          padding: 28px 0;
+          border-bottom: 1px solid #ddd;
+        }
+
+        .panel,
+        .hero-grid,
+        .niche-card,
+        .channel,
+        details,
+        .phase,
+        .score,
+        .source-list a,
+        .source-list span {
+          box-shadow: none;
+          break-inside: avoid;
+        }
+
+        a {
+          color: #000;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="rail" aria-label="Indice do plano">
+        <div class="brand-lockup">
+          <img src="../public/brand/bunniemonki-logo.svg" alt="Bunniemonki" />
+          <p class="doc-label">Plano de aquisicao</p>
+        </div>
+        <nav>
+          <a href="#tese">Tese</a>
+          <a href="#oferta">Oferta</a>
+          <a href="#nichos">Nichos</a>
+          <a href="#canais">Canais baratos</a>
+          <a href="#90-dias">90 dias</a>
+          <a href="#cadencia">Cadencia semanal</a>
+          <a href="#scripts">Scripts</a>
+          <a href="#qualificacao">Qualificacao</a>
+          <a href="#metricas">Metricas</a>
+          <a href="#guardrails">Guardrails</a>
+          <a href="#proxima-semana">Proxima semana</a>
+          <a href="#fontes">Fontes</a>
+        </nav>
+        <div class="rail-card">
+          <strong>Mercado inicial</strong>
+          <p>Portugal e Brasil como mercados iniciais. Europa fica como segunda frente quando houver prova, mensagens vencedoras e processo repetivel.</p>
+        </div>
+        <button class="print-button" type="button" onclick="window.print()">Imprimir ou guardar PDF</button>
+      </aside>
+
+      <main>
+        <header class="hero">
+          <div class="hero-inner">
+            <p class="kicker">Portugal + Brasil | 4 nichos | 90 dias</p>
+            <h1>Plano barato para transformar automacao em conversas comerciais.</h1>
+            <p class="hero-copy">
+              A Bunniemonki deve vender primeiro clareza operacional: encontrar uma dor real, mapear a jornada,
+              propor um Solution Blueprint pago e so depois implementar automacao modular com gestao recorrente.
+            </p>
+            <div class="hero-grid" aria-label="Resumo executivo">
+              <div class="hero-tile">
+                <span>Entrada</span>
+                <strong>Automation Scan</strong>
+              </div>
+              <div class="hero-tile">
+                <span>Oferta paga</span>
+                <strong>Solution Blueprint</strong>
+              </div>
+              <div class="hero-tile">
+                <span>Mercados iniciais</span>
+                <strong>PT + BR</strong>
+              </div>
+              <div class="hero-tile">
+                <span>Motor inicial</span>
+                <strong>ABM manual</strong>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <section id="tese">
+          <div class="section-head">
+            <h2>Tese comercial</h2>
+            <p>
+              O mercado nao precisa de mais promessas abstratas de IA. Precisa de alguem que veja onde a operacao perde
+              velocidade, desenhe o fluxo e assuma responsabilidade tecnica sem retirar controlo humano.
+              O recorte inicial e lusofono: Portugal oferece proximidade, reputacao e teste controlado; Brasil oferece
+              volume, urgencia operacional e muitas PMEs que ja vivem em WhatsApp, CRM, planilhas e ferramentas desconectadas.
+            </p>
+          </div>
+          <div class="thesis panel">
+            <div>
+              <h3>O que vender</h3>
+              <p>
+                Vender uma camada de Business Automation & AI Operations para empresas que ja tem clientes,
+                ferramentas e equipa, mas perdem tempo em retrabalho, chase, handoffs e sistemas desconectados.
+              </p>
+              <ul>
+                <li>Primeiro diagnostico leve: Automation Scan.</li>
+                <li>Depois decisao paga: Solution Blueprint.</li>
+                <li>So entao implementacao modular com quick wins controlados.</li>
+                <li>No final, recorrencia: automacao gerida, monitorizacao, excecoes e melhorias.</li>
+              </ul>
+            </div>
+            <div>
+              <h3>O que nao vender</h3>
+              <p>
+                Nao vender "IA que resolve tudo", projetos grandes sem diagnostico ou automacao em areas sensiveis sem
+                gate humano. A mensagem deve ser especifica, operacional e conservadora.
+              </p>
+              <ul>
+                <li>Nao prometer decisoes fiscais, clinicas, legais ou comerciais automaticas.</li>
+                <li>Nao competir como implementador barato de ferramentas.</li>
+                <li>Nao depender de cold email em massa.</li>
+                <li>Nao abrir Europa inteira antes de validar o eixo Portugal + Brasil.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="oferta">
+          <div class="section-head">
+            <h2>Escada de oferta</h2>
+            <p>
+              A aquisicao deve apontar sempre para o proximo passo certo. O objetivo do primeiro contacto nao e fechar
+              projeto: e qualificar dor e criar contexto para uma conversa.
+            </p>
+          </div>
+          <div class="offer-ladder">
+            <article class="step-card">
+              <span class="step">01</span>
+              <h3>Automation Scan</h3>
+              <p>Entrada leve para capturar lacuna operacional, ferramentas, frequencia da dor e sinais de fit.</p>
+            </article>
+            <article class="step-card">
+              <span class="step">02</span>
+              <h3>Discovery</h3>
+              <p>Call de 30 a 45 minutos para confirmar dor real, dono, urgencia, sistemas e capacidade de decidir.</p>
+            </article>
+            <article class="step-card">
+              <span class="step">03</span>
+              <h3>Solution Blueprint</h3>
+              <p>Diagnostico pago com mapa do processo, dados, riscos, quick wins e roadmap modular.</p>
+            </article>
+            <article class="step-card">
+              <span class="step">04</span>
+              <h3>Build modular</h3>
+              <p>Implementacao pequena, visivel e testavel: uma jornada, um dono, um conjunto claro de integracoes.</p>
+            </article>
+            <article class="step-card">
+              <span class="step">05</span>
+              <h3>Run gerido</h3>
+              <p>Monitorizacao, melhoria continua, alertas, excecoes e manutencao tecnica como receita recorrente.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="nichos">
+          <div class="section-head">
+            <h2>Quatro nichos iniciais</h2>
+            <p>
+              Todos os nichos foram escolhidos porque combinam volume recorrente, canais fragmentados, tarefas
+              repetidas e custo claro quando a operacao falha.
+            </p>
+          </div>
+
+          <div class="niche-grid">
+            <article class="niche-card">
+              <header>
+                <h3>Contabilidade e consultoria fiscal</h3>
+                <p>Gabinetes contabilisticos, consultores fiscais e pequenas equipas financeiras.</p>
+              </header>
+              <div class="niche-body">
+                <div>
+                  <p class="micro-label">Dor de entrada</p>
+                  <p>Documentos atrasados, pedidos recorrentes, prazos, faturacao e comunicacao dividida entre email, WhatsApp e folhas.</p>
+                </div>
+                <div>
+                  <p class="micro-label">Promessa</p>
+                  <p>Menos chase documental. Mais prazos, excecoes e tarefas com dono visivel.</p>
+                </div>
+                <div>
+                  <p class="micro-label">Alvos em Portugal e Brasil</p>
+                  <ul class="plain-list">
+                    <li>Escritorios com 5 a 40 pessoas.</li>
+                    <li>Gabinetes com muitos clientes PME e fecho mensal recorrente.</li>
+                    <li>Empresas que ja usam software contabilistico, email e WhatsApp intensivamente.</li>
+                    <li>Brasil: escritorios contabeis, BPO financeiro e assessorias fiscais em Sao Paulo, Rio, Belo Horizonte, Curitiba, Florianopolis, Goiania e Brasilia.</li>
+                  </ul>
+                </div>
+                <div>
+                  <p class="micro-label">Primeiro asset</p>
+                  <p>Teardown: "Onde um gabinete perde horas antes do fecho mensal".</p>
+                </div>
+                <div class="tag-row">
+                  <span class="tag">Quote-to-Cash</span>
+                  <span class="tag">Documentos</span>
+                  <span class="tag">Prazos</span>
+                  <span class="tag">Handoff</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="niche-card">
+              <header>
+                <h3>Turismo operacional</h3>
+                <p>Alojamento local, boutique hotels, tours, transfers e pequenos operadores.</p>
+              </header>
+              <div class="niche-body">
+                <div>
+                  <p class="micro-label">Dor de entrada</p>
+                  <p>Reservas, mensagens, check-in, limpeza, guias, transfers e reviews espalhados por canais diferentes.</p>
+                </div>
+                <div>
+                  <p class="micro-label">Promessa</p>
+                  <p>Menos mensagens perdidas. Mais pedidos de hospedes encaminhados antes de virarem urgencia.</p>
+                </div>
+                <div>
+                  <p class="micro-label">Alvos em Portugal e Brasil</p>
+                  <ul class="plain-list">
+                    <li>Portugal: operadores em Lisboa, Porto, Algarve, Madeira e Acores.</li>
+                    <li>Empresas com varias unidades, tours ou equipa sazonal.</li>
+                    <li>Negocios que dependem de WhatsApp, OTAs, email e task boards.</li>
+                    <li>Brasil: pousadas, hoteis boutique, receptivos, agencias de tours e operadores em Rio, Bahia, Santa Catarina, Gramado, Foz do Iguacu, Recife e litoral do Nordeste.</li>
+                  </ul>
+                </div>
+                <div>
+                  <p class="micro-label">Primeiro asset</p>
+                  <p>Checklist: "Preparar a operacao antes da proxima epoca alta".</p>
+                </div>
+                <div class="tag-row">
+                  <span class="tag">Customer Operations</span>
+                  <span class="tag">Guest inbox</span>
+                  <span class="tag">Reviews</span>
+                  <span class="tag">Tarefas</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="niche-card">
+              <header>
+                <h3>Clinicas privadas</h3>
+                <p>Estetica, fisioterapia, dentaria e saude-beleza com foco administrativo.</p>
+              </header>
+              <div class="niche-body">
+                <div>
+                  <p class="micro-label">Dor de entrada</p>
+                  <p>Rececao sobrecarregada, marcacoes repetidas, no-shows, remarcacoes e follow-up manual.</p>
+                </div>
+                <div>
+                  <p class="micro-label">Promessa</p>
+                  <p>Mais consultas confirmadas. Menos carga administrativa, mantendo decisoes clinicas com humanos.</p>
+                </div>
+                <div>
+                  <p class="micro-label">Alvos em Portugal e Brasil</p>
+                  <ul class="plain-list">
+                    <li>Clinicas com 3 a 20 profissionais e rececao ativa.</li>
+                    <li>Unidades com campanhas, leads, agenda cheia ou lista de espera.</li>
+                    <li>Negocios com repeticao clara em confirmacoes, lembretes e aftercare.</li>
+                    <li>Brasil: clinicas de estetica, odontologia, fisioterapia e saude-beleza em capitais com forte aquisicao por Instagram, WhatsApp e trafego pago.</li>
+                  </ul>
+                </div>
+                <div>
+                  <p class="micro-label">Primeiro asset</p>
+                  <p>Teardown: "O custo invisivel de uma rececao que vive no WhatsApp".</p>
+                </div>
+                <div class="tag-row">
+                  <span class="tag">Customer Operations</span>
+                  <span class="tag">Marcacoes</span>
+                  <span class="tag">No-shows</span>
+                  <span class="tag">Aftercare</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="niche-card">
+              <header>
+                <h3>Imobiliario e arrendamento</h3>
+                <p>Mediadoras, consultores e equipas de gestao de arrendamento.</p>
+              </header>
+              <div class="niche-body">
+                <div>
+                  <p class="micro-label">Dor de entrada</p>
+                  <p>Leads de portais arrefecem, visitas ficam sem follow-up e tarefas de proprietarios ou inquilinos somem no chat.</p>
+                </div>
+                <div>
+                  <p class="micro-label">Promessa</p>
+                  <p>Leads respondidos antes de arrefecerem, com proxima acao e dono claro.</p>
+                </div>
+                <div>
+                  <p class="micro-label">Alvos em Portugal e Brasil</p>
+                  <ul class="plain-list">
+                    <li>Agencias locais e equipas independentes com volume de leads.</li>
+                    <li>Gestoras de arrendamento com pedidos recorrentes de proprietarios e inquilinos.</li>
+                    <li>Negocios que usam portais, CRM, email, calendario e WhatsApp.</li>
+                    <li>Brasil: imobiliarias, administradoras de locacao e corretores com carteira ativa em Sao Paulo, Rio, Curitiba, Florianopolis, Belo Horizonte, Goiania e litoral de alto giro.</li>
+                  </ul>
+                </div>
+                <div>
+                  <p class="micro-label">Primeiro asset</p>
+                  <p>Mini-audit: "3 pontos onde leads imobiliarios perdem valor em 24 horas".</p>
+                </div>
+                <div class="tag-row">
+                  <span class="tag">Lead-to-Revenue</span>
+                  <span class="tag">Portais</span>
+                  <span class="tag">Visitas</span>
+                  <span class="tag">Follow-up</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="canais">
+          <div class="section-head">
+            <h2>Marketing barato</h2>
+            <p>
+              Prioridade: canais com custo baixo, alto contexto e baixa dependencia de volume. O foco e aprender rapido
+              sem parecer spam.
+            </p>
+          </div>
+          <div class="channel-grid">
+            <article class="channel">
+              <span class="cost">Custo baixo</span>
+              <h3>ABM manual</h3>
+              <p>Listas de 25 contas por nicho, pesquisa real, abordagem contextual e follow-up curto.</p>
+              <ul class="plain-list">
+                <li>LinkedIn, Google Maps, diretorios e sites.</li>
+                <li>1 insight operacional por empresa.</li>
+                <li>CTA: responder, pedir mini-audit ou fazer Automation Scan.</li>
+              </ul>
+            </article>
+            <article class="channel">
+              <span class="cost">Custo zero</span>
+              <h3>Conteudo LinkedIn</h3>
+              <p>Publicar 3 vezes por semana: dor, teardown, mapa de processo e opiniao operacional.</p>
+              <ul class="plain-list">
+                <li>Posts reaproveitados por nicho.</li>
+                <li>CTA suave para scan ou DM.</li>
+                <li>Comentarios em posts de gestores, consultores e associações.</li>
+              </ul>
+            </article>
+            <article class="channel">
+              <span class="cost">Custo baixo</span>
+              <h3>Parcerias</h3>
+              <p>Consultores, designers de websites, agencias de trafego, contabilistas tech-friendly e implementadores CRM.</p>
+              <ul class="plain-list">
+                <li>Proposta: revenue share ou troca de leads.</li>
+                <li>Oferta: audit operacional para clientes deles.</li>
+                <li>1 parceiro por nicho nas primeiras 8 semanas.</li>
+              </ul>
+            </article>
+            <article class="channel">
+              <span class="cost">Custo controlado</span>
+              <h3>Ads pequenos</h3>
+              <p>Usar so depois de validar copy em conversas. Testar 10 a 20 euros por dia por 7 dias.</p>
+              <ul class="plain-list">
+                <li>LinkedIn pode ser caro; testar com muita cautela.</li>
+                <li>Meta pode servir turismo, clinicas e imobiliario.</li>
+                <li>Google Search para termos muito especificos pode funcionar.</li>
+              </ul>
+            </article>
+            <article class="channel">
+              <span class="cost">Custo zero</span>
+              <h3>Diretorios e comunidades</h3>
+              <p>Entrar onde as empresas ja existem: associacoes, grupos de empreendedores, eventos locais e comunidades setoriais.</p>
+              <ul class="plain-list">
+                <li>Turismo: associacoes locais e grupos de alojamento.</li>
+                <li>Clinicas: comunidades de gestao e marketing de saude.</li>
+                <li>Imobiliario: redes locais, eventos e grupos de mediadores.</li>
+              </ul>
+            </article>
+            <article class="channel">
+              <span class="cost">Custo baixo</span>
+              <h3>Teardowns publicos</h3>
+              <p>Analisar fluxos anonimos ou simulados, mostrando como a Bunniemonki pensa sem inventar casos.</p>
+              <ul class="plain-list">
+                <li>1 teardown por semana.</li>
+                <li>Usar prints redesenhados, fluxos e listas.</li>
+                <li>CTA: "quer que eu mapeie o seu?".</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section id="90-dias">
+          <div class="section-head">
+            <h2>Plano de 90 dias</h2>
+            <p>
+              O objetivo dos primeiros 90 dias e transformar conversas em prova comercial: scans, discoveries,
+              blueprints pagos e os primeiros casos controlados.
+            </p>
+          </div>
+          <div class="timeline">
+            <article class="phase">
+              <aside>
+                <span>Semanas 1-2</span>
+                <h3>Preparar maquina pequena</h3>
+              </aside>
+              <div>
+                <ul class="checklist">
+                  <li>Criar lista inicial de 160 contas: 40 por nicho, com peso maior para Brasil: 60 Portugal e 100 Brasil.</li>
+                  <li>Definir campos do pipeline: nicho, dor provavel, canal, dono, proxima acao, etapa e fit.</li>
+                  <li>Criar 4 mini-assets: um teardown ou checklist por nicho.</li>
+                  <li>Ativar captação real do Automation Scan ou usar fallback manual com formulario e email.</li>
+                  <li>Preparar 2 scripts: DM LinkedIn e email curto com opt-out.</li>
+                </ul>
+              </div>
+            </article>
+            <article class="phase">
+              <aside>
+                <span>Semanas 3-6</span>
+                <h3>Validar mensagem</h3>
+              </aside>
+              <div>
+                <ul class="checklist">
+                  <li>Contactar 40 contas por semana com abordagem personalizada: cerca de 15 Portugal e 25 Brasil.</li>
+                  <li>Publicar 3 posts LinkedIn por semana e comentar em 20 posts/setor.</li>
+                  <li>Fazer 8 a 12 mini-audits gratuitos para abrir conversa.</li>
+                  <li>Registrar objeções por nicho: preco, urgencia, ferramentas, confiança e timing.</li>
+                  <li>Converter as melhores conversas em Automation Scan ou discovery.</li>
+                </ul>
+              </div>
+            </article>
+            <article class="phase">
+              <aside>
+                <span>Semanas 7-10</span>
+                <h3>Converter em Blueprint</h3>
+              </aside>
+              <div>
+                <ul class="checklist">
+                  <li>Escolher os 2 nichos com maior resposta e dobrar o volume neles.</li>
+                  <li>Oferecer Solution Blueprint para empresas com dor real, dono e urgencia.</li>
+                  <li>Criar 1 parceiro por nicho prioritario.</li>
+                  <li>Testar ads pequenos apenas para a landing com melhor resposta organica.</li>
+                  <li>Documentar 1 caso anonimo de aprendizado por semana.</li>
+                </ul>
+              </div>
+            </article>
+            <article class="phase">
+              <aside>
+                <span>Semanas 11-12</span>
+                <h3>Repetir o que funcionou</h3>
+              </aside>
+              <div>
+                <ul class="checklist">
+                  <li>Comparar nichos por resposta, calls, scans, blueprints e valor potencial.</li>
+                  <li>Transformar scripts vencedores em playbook.</li>
+                  <li>Preparar 2 ofertas modulares a partir dos Blueprints vendidos.</li>
+                  <li>Criar rotina de referral: cada conversa boa pede 1 introducao contextual.</li>
+                  <li>Definir se Europa entra como teste ou se Portugal + Brasil continuam foco total.</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="cadencia">
+          <div class="section-head">
+            <h2>Cadencia semanal</h2>
+            <p>
+              Esta e a agenda minima para manter vendas vivas sem virar caos. Se uma semana ficar pesada, preservar
+              pesquisa, follow-up e calls antes de aumentar conteudo.
+            </p>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Dia</th>
+                  <th>Movimento</th>
+                  <th>Entrega minima</th>
+                  <th>Metrica</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Segunda</td>
+                  <td>Escolher foco da semana e enriquecer contas</td>
+                  <td>20 contas pesquisadas com dor provavel e abordagem</td>
+                  <td>Contas prontas</td>
+                </tr>
+                <tr>
+                  <td>Terca</td>
+                  <td>Outbound contextual e comentarios LinkedIn</td>
+                  <td>20 abordagens + 10 comentarios relevantes</td>
+                  <td>Novos contactos</td>
+                </tr>
+                <tr>
+                  <td>Quarta</td>
+                  <td>Conteudo e follow-up</td>
+                  <td>1 post + follow-up de todos os contactos em aberto</td>
+                  <td>Respostas e reativacoes</td>
+                </tr>
+                <tr>
+                  <td>Quinta</td>
+                  <td>Discovery, mini-audit e parceiros</td>
+                  <td>2 a 4 conversas ou 3 abordagens a parceiros</td>
+                  <td>Calls marcadas</td>
+                </tr>
+                <tr>
+                  <td>Sexta</td>
+                  <td>Revisao de pipeline e aprendizagem</td>
+                  <td>Atualizar etapa, proxima acao, objeções e prioridade</td>
+                  <td>Scans, blueprints, propostas</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="scripts">
+          <div class="section-head">
+            <h2>Scripts praticos</h2>
+            <p>
+              Usar como base, nao como copia cega. Cada mensagem precisa de um sinal concreto da empresa: canal,
+              crescimento, vagas, reviews, unidades, equipa, ferramenta ou dor observavel.
+            </p>
+          </div>
+          <div class="script-grid">
+            <details open>
+              <summary>DM LinkedIn - primeiro contacto</summary>
+              <pre class="script">Olá [Nome], vi que a [Empresa] trabalha com [sinal concreto: varias unidades / muitos leads / equipa de rececao / fecho mensal].
+
+Tenho mapeado operacoes em que WhatsApp, CRM, email e tarefas ficam desalinhados e acabam por criar retrabalho.
+
+Posso enviar um mini-mapa com 2 ou 3 pontos onde eu procuraria perdas de tempo na vossa operacao?</pre>
+            </details>
+
+            <details>
+              <summary>Follow-up curto</summary>
+              <pre class="script">Olá [Nome], deixo só um exemplo concreto.
+
+Em empresas como a vossa, normalmente eu procuraria:
+1. onde o pedido entra;
+2. quem assume a próxima ação;
+3. onde a exceção fica visível;
+4. que parte ainda depende de memória manual.
+
+Se fizer sentido, envio um mini-audit em texto, sem compromisso.</pre>
+            </details>
+
+            <details>
+              <summary>Email contextual com opt-out</summary>
+              <pre class="script">Assunto: possível perda operacional em [fluxo]
+
+Olá [Nome],
+
+Sou o Alexandre, da Bunniemonki. Ajudo empresas a mapear e automatizar handoffs operacionais com IA, integrações e controlo humano.
+
+Vi [sinal concreto] na [Empresa] e suspeito que [dor específica] possa estar a consumir tempo da equipa.
+
+Posso enviar um mini-mapa de 3 pontos que eu validaria antes de qualquer automação?
+
+Se não fizer sentido, diga-me só "não" e não volto a contactar.</pre>
+            </details>
+
+            <details>
+              <summary>Mensagem para parceiro</summary>
+              <pre class="script">Olá [Nome], trabalho com automação de operações e IA para PMEs que já têm clientes e ferramentas, mas perdem velocidade em handoffs.
+
+Vejo sobreposição com o vosso trabalho em [websites / CRM / marketing / consultoria].
+
+Proposta simples: quando um cliente vosso tiver problema de follow-up, receção, documentos ou tarefas recorrentes, faço um mini-scan operacional. Se houver projeto, podemos estruturar referral ou colaboração.</pre>
+            </details>
+
+            <details>
+              <summary>CTA para post LinkedIn</summary>
+              <pre class="script">Se quiser, posso mapear este fluxo na sua empresa em 15 minutos e dizer onde eu começaria antes de automatizar.</pre>
+            </details>
+
+            <details>
+              <summary>Convite para Solution Blueprint</summary>
+              <pre class="script">Pelo que vimos, isto já não parece só uma automação isolada.
+
+O próximo passo que faz sentido é um Solution Blueprint: mapear processo atual, ferramentas, dados, riscos, quick wins e roadmap modular antes de construir.
+
+Assim evitamos automatizar confusão e saímos com uma decisão clara: o que vale implementar primeiro, o que deve ficar manual e quais pontos precisam de aprovação humana.</pre>
+            </details>
+          </div>
+        </section>
+
+        <section id="qualificacao">
+          <div class="section-head">
+            <h2>Qualificacao</h2>
+            <p>
+              A Bunniemonki deve proteger tempo e reputacao. Nem toda empresa com interesse em IA tem dor, urgencia ou
+              capacidade de comprar.
+            </p>
+          </div>
+          <div class="score-grid">
+            <article class="score">
+              <strong>Fit A</strong>
+              <h3>Prioridade alta</h3>
+              <ul class="plain-list">
+                <li>Tem equipa, clientes e volume recorrente.</li>
+                <li>Dor aparece semanalmente ou diariamente.</li>
+                <li>Usa 3 ou mais ferramentas desconectadas.</li>
+                <li>Existe dono operacional e budget provavel.</li>
+                <li>A pessoa quer mapear processo, nao so "meter IA".</li>
+              </ul>
+            </article>
+            <article class="score">
+              <strong>Fit B</strong>
+              <h3>Nutrir</h3>
+              <ul class="plain-list">
+                <li>Dor existe, mas urgencia e baixa.</li>
+                <li>Empresa pequena demais para blueprint imediato.</li>
+                <li>Falta clareza sobre decisor ou ferramentas.</li>
+                <li>Boa candidata para conteudo, newsletter e follow-up mensal.</li>
+              </ul>
+            </article>
+            <article class="score">
+              <strong>Fit C</strong>
+              <h3>Descartar</h3>
+              <ul class="plain-list">
+                <li>Quer apenas ferramenta barata ou setup pontual.</li>
+                <li>Nao tem processo repetido nem volume operacional.</li>
+                <li>Busca automacao para decisao sensivel sem controlo humano.</li>
+                <li>Nao existe dono, budget ou vontade de mudar processo.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section id="metricas">
+          <div class="section-head">
+            <h2>Metricas de gestao</h2>
+            <p>
+              Medir poucas coisas, toda semana. O objetivo nao e parecer ocupado, e saber qual nicho e mensagem estao a
+              criar conversas com possibilidade real de venda.
+            </p>
+          </div>
+          <div class="two-col">
+            <div class="panel panel-pad">
+              <h3>Indicadores de atividade</h3>
+              <ul class="checklist">
+                <li>Contas pesquisadas por nicho.</li>
+                <li>Abordagens personalizadas enviadas.</li>
+                <li>Follow-ups feitos dentro da cadencia.</li>
+                <li>Posts publicados e comentarios relevantes.</li>
+                <li>Parceiros contactados.</li>
+              </ul>
+            </div>
+            <div class="panel panel-pad">
+              <h3>Indicadores de resultado</h3>
+              <ul class="checklist">
+                <li>Taxa de resposta por nicho e canal.</li>
+                <li>Automation Scans iniciados ou pedidos.</li>
+                <li>Discovery calls marcadas.</li>
+                <li>Solution Blueprints propostos e vendidos.</li>
+                <li>Receita de implementacao e automacao gerida.</li>
+              </ul>
+            </div>
+          </div>
+          <p class="note">
+            Meta de arranque sugerida: 40 abordagens personalizadas por semana, 4 a 8 respostas, 2 a 4 conversas,
+            1 a 2 oportunidades de Blueprint. Ajustar depois de quatro semanas com dados reais.
+          </p>
+        </section>
+
+        <section id="guardrails">
+          <div class="section-head">
+            <h2>Guardrails</h2>
+            <p>
+              Marketing barato nao significa descuidado. Em Portugal, no Brasil e na UE, o plano deve respeitar
+              privacidade, base legal, opt-out e minimizacao de dados.
+            </p>
+          </div>
+          <div class="thesis panel">
+            <div>
+              <h3>Privacidade e outreach</h3>
+              <ul>
+                <li>Preferir contacto contextual em LinkedIn, eventos, referencias e formularios publicos de negocio.</li>
+                <li>Evitar bases compradas, scraping agressivo e sequencias massivas.</li>
+                <li>Em email frio, usar apenas contexto profissional relevante, mensagem curta e opt-out claro.</li>
+                <li>Guardar no pipeline apenas dados necessarios para follow-up comercial.</li>
+                <li>Remover contactos quando pedirem para nao ser contactados.</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Promessas e setores sensiveis</h3>
+              <ul>
+                <li>Contabilidade: sem decisoes fiscais automaticas.</li>
+                <li>Clinicas: sem diagnostico, tratamento ou aconselhamento clinico automatico.</li>
+                <li>Imobiliario: negociacao, preco, contratos e compliance com aprovacao humana.</li>
+                <li>Turismo: reclamacoes, seguranca e reembolsos com escalonamento humano.</li>
+                <li>Conteudo publico deve falar em arquiteturas de referencia, nao em casos de clientes inventados.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="proxima-semana">
+          <div class="section-head">
+            <h2>Proxima semana</h2>
+            <p>
+              A melhor versao deste plano comeca pequena. Uma semana disciplinada ja deve produzir respostas, objecoes e
+              sinais de qual nicho mexe primeiro.
+            </p>
+          </div>
+          <div class="panel panel-pad">
+            <ul class="checklist">
+              <li>Criar ou atualizar pipeline no Notion com etapas: Alvo, Contactado, Respondeu, Scan, Discovery, Blueprint, Proposta, Ganhou, Perdido.</li>
+              <li>Selecionar 25 contas de contabilidade e 25 de turismo para a primeira onda: 20 Portugal e 30 Brasil.</li>
+              <li>Escrever 1 post LinkedIn sobre "integracao antes de automacao".</li>
+              <li>Enviar 20 DMs personalizadas com pedido de permissao para mini-audit.</li>
+              <li>Preparar fallback do Automation Scan enquanto o backend/CRM nao esta ligado.</li>
+              <li>Rever sexta-feira: respostas, objeções, melhor gancho e proximo nicho a atacar.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="fontes">
+          <div class="section-head">
+            <h2>Fontes usadas</h2>
+            <p>
+              O plano combina documentacao local do projeto, paginas internas no Notion e referencias oficiais para
+              privacidade e contexto PME.
+            </p>
+          </div>
+          <div class="source-list">
+            <a href="./project-overview.md">Docs locais - Resumo do Projeto</a>
+            <a href="./landing-pages.md">Docs locais - Landing Pages</a>
+            <a href="./automation-scan.md">Docs locais - Automation Scan</a>
+            <a href="./analytics.md">Docs locais - Analytics</a>
+            <a href="https://app.notion.com/p/38bf3885336f811a98a7d22e5c99df1a">Notion - Bunniemonki HQ</a>
+            <a href="https://app.notion.com/p/38bf3885336f81cca94ddc363a6fe3a1">Notion - ICP handoff operacional</a>
+            <a href="https://app.notion.com/p/38bf3885336f81f7bb40d3331fa363d5">Notion - Automation Scan</a>
+            <a href="https://app.notion.com/p/38bf3885336f817b98dac463e4f5a60f">Notion - Solution Blueprint</a>
+            <a href="https://www.cnpd.pt/">CNPD - protecao de dados em Portugal</a>
+            <a href="https://eur-lex.europa.eu/eli/reg/2016/679/oj">Regulamento Geral sobre a Protecao de Dados</a>
+            <a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/L13709compilado.htm">Brasil - Lei Geral de Protecao de Dados Pessoais</a>
+            <a href="https://www.gov.br/anpd/pt-br">ANPD - Autoridade Nacional de Protecao de Dados</a>
+            <a href="https://agenciasebrae.com.br/dados/brasil-bate-recorde-historico-na-abertura-de-pequenos-negocios/">Sebrae - pequenos negocios no Brasil</a>
+            <a href="https://single-market-economy.ec.europa.eu/smes/sme-strategy-and-sme-friendly-business-conditions/sme-performance-review_en">European Commission - SME Performance Review</a>
+            <span>Data do plano: 30 de junho de 2026</span>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <p>
+            Bunniemonki - plano operacional de aquisicao. Este documento e uma ferramenta de trabalho: deve ser revisto
+            semanalmente com dados reais do pipeline.
+          </p>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>

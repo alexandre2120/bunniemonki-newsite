@@ -1,0 +1,1193 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bunniemonki - Empresa e metodologia</title>
+    <meta
+      name="description"
+      content="Documento institucional sobre a Bunniemonki, o que fazemos, metodologia de automacao, principios operacionais e modelo de entrega."
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #121410;
+        --muted: #5c6459;
+        --paper: #f5f7f1;
+        --panel: #ffffff;
+        --line: #d9dfd2;
+        --brand: #ffc50d;
+        --green: #2f6f4e;
+        --rust: #b85c38;
+        --blue: #44546a;
+        --coal: #23251f;
+        --wash: #e8eee2;
+        --focus: #0d6efd;
+        --shadow: 0 24px 80px rgba(18, 20, 16, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background:
+          linear-gradient(90deg, rgba(18, 20, 16, 0.045) 1px, transparent 1px),
+          linear-gradient(180deg, rgba(18, 20, 16, 0.04) 1px, transparent 1px),
+          var(--paper);
+        background-size: 44px 44px;
+        color: var(--ink);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        line-height: 1.5;
+      }
+
+      a {
+        color: inherit;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.22em;
+      }
+
+      a:focus-visible,
+      button:focus-visible {
+        outline: 3px solid var(--focus);
+        outline-offset: 3px;
+      }
+
+      .shell {
+        display: grid;
+        grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
+        min-height: 100vh;
+      }
+
+      .rail {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow: auto;
+        border-right: 1px solid var(--line);
+        background: rgba(245, 247, 241, 0.92);
+        backdrop-filter: blur(18px);
+        padding: 28px 22px;
+      }
+
+      .brand-lockup {
+        display: grid;
+        gap: 14px;
+      }
+
+      .brand-lockup img {
+        width: 150px;
+        max-width: 100%;
+        height: auto;
+      }
+
+      .doc-label {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.75rem;
+        font-weight: 850;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .rail nav {
+        display: grid;
+        gap: 6px;
+        margin-top: 32px;
+      }
+
+      .rail nav a {
+        border-left: 3px solid transparent;
+        padding: 7px 10px;
+        color: var(--muted);
+        font-size: 0.9rem;
+        font-weight: 750;
+        text-decoration: none;
+      }
+
+      .rail nav a:hover {
+        border-left-color: var(--brand);
+        color: var(--ink);
+      }
+
+      .rail-card {
+        margin-top: 28px;
+        border: 1px solid var(--line);
+        background: var(--panel);
+        padding: 14px;
+      }
+
+      .rail-card strong {
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .rail-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .print-button {
+        width: 100%;
+        margin-top: 16px;
+        border: 0;
+        background: var(--ink);
+        color: #fff;
+        cursor: pointer;
+        padding: 11px 14px;
+        font: inherit;
+        font-weight: 800;
+      }
+
+      main {
+        min-width: 0;
+      }
+
+      .hero {
+        min-height: 88vh;
+        display: grid;
+        align-content: end;
+        padding: clamp(34px, 6vw, 80px);
+        border-bottom: 1px solid var(--line);
+        background:
+          radial-gradient(circle at 84% 18%, rgba(255, 197, 13, 0.28), transparent 28%),
+          linear-gradient(135deg, rgba(47, 111, 78, 0.16), transparent 45%),
+          var(--paper);
+      }
+
+      .hero-inner {
+        max-width: 1160px;
+      }
+
+      .kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 24px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.74);
+        padding: 8px 12px;
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .kicker::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        background: var(--brand);
+        box-shadow: 16px 0 0 var(--green), 32px 0 0 var(--rust);
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        margin: 0;
+        line-height: 1.02;
+        font-family: Georgia, "Times New Roman", serif;
+        font-weight: 700;
+      }
+
+      h1 {
+        max-width: 980px;
+        font-size: clamp(3.2rem, 8vw, 7.9rem);
+        letter-spacing: -0.045em;
+      }
+
+      h2 {
+        font-size: clamp(2rem, 4vw, 4.6rem);
+        letter-spacing: -0.035em;
+      }
+
+      h3 {
+        font-size: clamp(1.35rem, 2.4vw, 2.15rem);
+        letter-spacing: -0.025em;
+      }
+
+      h4 {
+        font-size: 1.05rem;
+        letter-spacing: -0.01em;
+      }
+
+      .hero-copy {
+        max-width: 760px;
+        margin: 28px 0 0;
+        color: var(--muted);
+        font-size: clamp(1.08rem, 2vw, 1.35rem);
+      }
+
+      .operating-board {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 1px;
+        max-width: 1040px;
+        margin-top: 44px;
+        border: 1px solid var(--ink);
+        background: var(--ink);
+      }
+
+      .board-panel {
+        min-height: 280px;
+        background: var(--panel);
+        padding: clamp(18px, 3vw, 28px);
+      }
+
+      .board-panel.dark {
+        display: grid;
+        align-content: space-between;
+        background: var(--coal);
+        color: #fff;
+      }
+
+      .board-panel.dark p {
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .signal-row {
+        display: grid;
+        gap: 12px;
+      }
+
+      .signal {
+        display: grid;
+        grid-template-columns: 106px 1fr;
+        gap: 14px;
+        align-items: start;
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+        padding-top: 12px;
+      }
+
+      .signal span {
+        color: var(--brand);
+        font-size: 0.74rem;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .signal strong {
+        font-size: 1rem;
+      }
+
+      .board-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .board-chip {
+        min-height: 114px;
+        border: 1px solid var(--line);
+        background: var(--wash);
+        padding: 14px;
+      }
+
+      .board-chip span {
+        display: block;
+        margin-bottom: 28px;
+        color: var(--muted);
+        font-size: 0.72rem;
+        font-weight: 900;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+      }
+
+      section {
+        padding: clamp(42px, 6vw, 86px) clamp(24px, 6vw, 80px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(0, 0.7fr) minmax(280px, 0.9fr);
+        gap: clamp(24px, 5vw, 70px);
+        align-items: end;
+        margin-bottom: 34px;
+      }
+
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      .panel {
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.86);
+        box-shadow: var(--shadow);
+      }
+
+      .panel-pad {
+        padding: clamp(18px, 3vw, 30px);
+      }
+
+      .thesis {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(260px, 0.72fr);
+        gap: 1px;
+        background: var(--line);
+      }
+
+      .thesis > div {
+        background: var(--panel);
+        padding: clamp(22px, 4vw, 38px);
+      }
+
+      .thesis p {
+        margin: 14px 0 0;
+        color: var(--muted);
+      }
+
+      .plain-list,
+      .checklist {
+        margin: 16px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .plain-list li,
+      .checklist li {
+        position: relative;
+        padding: 10px 0 10px 26px;
+        border-top: 1px solid var(--line);
+      }
+
+      .plain-list li::before,
+      .checklist li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 18px;
+        width: 10px;
+        height: 10px;
+        background: var(--brand);
+      }
+
+      .method-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1px;
+        border: 1px solid var(--line);
+        background: var(--line);
+      }
+
+      .method-card {
+        min-height: 300px;
+        background: var(--panel);
+        padding: 22px;
+      }
+
+      .method-card .step {
+        display: inline-flex;
+        margin-bottom: 52px;
+        background: var(--coal);
+        color: #fff;
+        padding: 5px 8px;
+        font-size: 0.72rem;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .method-card p {
+        margin: 12px 0 0;
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      .method-card strong {
+        display: block;
+        margin-top: 16px;
+      }
+
+      .service-grid {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 1px;
+        border: 1px solid var(--line);
+        background: var(--line);
+      }
+
+      .service {
+        min-height: 210px;
+        background: var(--panel);
+        padding: 20px;
+      }
+
+      .service span,
+      .micro-label {
+        display: block;
+        margin: 0 0 14px;
+        color: var(--muted);
+        font-size: 0.72rem;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .service p {
+        color: var(--muted);
+      }
+
+      .journey-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .journey {
+        border: 1px solid var(--line);
+        background: var(--panel);
+      }
+
+      .journey header {
+        padding: 22px;
+        color: #fff;
+      }
+
+      .journey:nth-child(1) header {
+        background: var(--brand);
+        color: var(--ink);
+      }
+
+      .journey:nth-child(2) header {
+        background: var(--green);
+      }
+
+      .journey:nth-child(3) header {
+        background: var(--rust);
+      }
+
+      .journey:nth-child(4) header {
+        background: var(--blue);
+      }
+
+      .journey header p {
+        margin: 12px 0 0;
+        color: currentColor;
+        opacity: 0.78;
+      }
+
+      .journey-body {
+        display: grid;
+        gap: 18px;
+        padding: 22px;
+      }
+
+      .layers {
+        display: grid;
+        gap: 14px;
+      }
+
+      .layer {
+        display: grid;
+        grid-template-columns: minmax(150px, 0.28fr) minmax(0, 1fr);
+        border: 1px solid var(--line);
+        background: var(--panel);
+      }
+
+      .layer aside {
+        border-right: 1px solid var(--line);
+        background: var(--coal);
+        color: #fff;
+        padding: 22px;
+      }
+
+      .layer aside span {
+        display: block;
+        margin-bottom: 44px;
+        color: rgba(255, 255, 255, 0.64);
+        font-size: 0.75rem;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .layer div {
+        padding: 22px;
+      }
+
+      .principles-grid {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 1px;
+        border: 1px solid var(--line);
+        background: var(--line);
+      }
+
+      .principle {
+        min-height: 220px;
+        background: var(--panel);
+        padding: 20px;
+      }
+
+      .principle span {
+        display: inline-flex;
+        margin-bottom: 34px;
+        background: var(--wash);
+        padding: 5px 8px;
+        color: var(--muted);
+        font-size: 0.72rem;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .two-col {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .note {
+        border-left: 6px solid var(--brand);
+        background: var(--panel);
+        padding: 18px 20px;
+        color: var(--muted);
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--panel);
+        font-size: 0.95rem;
+      }
+
+      th,
+      td {
+        vertical-align: top;
+        border: 1px solid var(--line);
+        padding: 14px;
+        text-align: left;
+      }
+
+      th {
+        background: var(--coal);
+        color: #fff;
+        font-size: 0.78rem;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+      }
+
+      .source-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .source-list a,
+      .source-list span {
+        display: block;
+        border: 1px solid var(--line);
+        background: var(--panel);
+        padding: 14px;
+      }
+
+      .footer {
+        padding: 30px clamp(24px, 6vw, 80px);
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      @media (max-width: 1160px) {
+        .shell {
+          display: block;
+        }
+
+        .rail {
+          position: relative;
+          height: auto;
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .rail nav {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .method-grid,
+        .service-grid,
+        .principles-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 780px) {
+        .hero {
+          min-height: auto;
+        }
+
+        .operating-board,
+        .section-head,
+        .thesis,
+        .method-grid,
+        .service-grid,
+        .journey-grid,
+        .layer,
+        .principles-grid,
+        .two-col,
+        .source-list {
+          grid-template-columns: 1fr;
+        }
+
+        .layer aside {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .layer aside span {
+          margin-bottom: 18px;
+        }
+
+        .signal {
+          grid-template-columns: 1fr;
+        }
+
+        th,
+        td {
+          min-width: 160px;
+        }
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+
+        .shell {
+          display: block;
+        }
+
+        .rail,
+        .print-button {
+          display: none;
+        }
+
+        .hero {
+          min-height: auto;
+        }
+
+        section,
+        .hero,
+        .footer {
+          padding: 28px 0;
+          border-bottom: 1px solid #ddd;
+        }
+
+        .panel,
+        .operating-board,
+        .method-card,
+        .service,
+        .journey,
+        .layer,
+        .principle,
+        .source-list a,
+        .source-list span {
+          box-shadow: none;
+          break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="rail" aria-label="Indice do documento">
+        <div class="brand-lockup">
+          <img src="../public/brand/bunniemonki-logo.svg" alt="Bunniemonki" />
+          <p class="doc-label">Empresa e metodologia</p>
+        </div>
+        <nav>
+          <a href="#empresa">Empresa</a>
+          <a href="#fazemos">O que fazemos</a>
+          <a href="#metodologia">Metodologia</a>
+          <a href="#jornadas">Jornadas</a>
+          <a href="#principios">Principios</a>
+          <a href="#automacao-gerida">Automacao gerida</a>
+          <a href="#nichos">Nichos iniciais</a>
+          <a href="#fundador">Fundador</a>
+          <a href="#nao-fazemos">O que nao fazemos</a>
+          <a href="#fontes">Fontes</a>
+        </nav>
+        <div class="rail-card">
+          <strong>Categoria</strong>
+          <p>Automacao de Negocios & Operacoes com IA: consultoria operacional, arquitetura, integracoes, automacoes e gestao tecnica recorrente.</p>
+        </div>
+        <button class="print-button" type="button" onclick="window.print()">Imprimir ou guardar PDF</button>
+      </aside>
+
+      <main>
+        <header class="hero">
+          <div class="hero-inner">
+            <p class="kicker">Move fast. Operate smart.</p>
+            <h1>Velocidade com julgamento operacional.</h1>
+            <p class="hero-copy">
+              A Bunniemonki conecta ferramentas, pessoas e operacoes para que o trabalho avance com dono,
+              visibilidade e controlo. Nao vendemos IA solta. Desenhamos sistemas de automacao governados por humanos.
+            </p>
+            <div class="operating-board" aria-label="Resumo da empresa">
+              <div class="board-panel dark">
+                <div>
+                  <h3>O problema que atacamos</h3>
+                  <p>A lacuna cara raramente e a falta de mais uma ferramenta. Ela vive entre ferramentas: no handoff, na excecao, no dado copiado, no dono invisivel e na falha que ninguem viu.</p>
+                </div>
+                <div class="signal-row">
+                  <div class="signal">
+                    <span>Sinal 01</span>
+                    <strong>WhatsApp, CRM, email e planilhas nao conversam.</strong>
+                  </div>
+                  <div class="signal">
+                    <span>Sinal 02</span>
+                    <strong>Gestores ainda seguram trabalho manual para a operacao andar.</strong>
+                  </div>
+                  <div class="signal">
+                    <span>Sinal 03</span>
+                    <strong>Automacoes quebram em silencio ou ficam sem responsavel.</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="board-panel">
+                <div class="board-grid">
+                  <div class="board-chip">
+                    <span>Categoria</span>
+                    <strong>Business Automation & AI Operations</strong>
+                  </div>
+                  <div class="board-chip">
+                    <span>Entrada</span>
+                    <strong>Automation Scan</strong>
+                  </div>
+                  <div class="board-chip">
+                    <span>Decisao</span>
+                    <strong>Solution Blueprint</strong>
+                  </div>
+                  <div class="board-chip">
+                    <span>Recorrencia</span>
+                    <strong>Automacao gerida</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <section id="empresa">
+          <div class="section-head">
+            <h2>Quem somos</h2>
+            <p>
+              A Bunniemonki e uma empresa de automacao de negocios e operacoes com IA. Ajudamos empresas a mapear
+              lacunas operacionais, redesenhar jornadas, integrar ferramentas e operar automacoes com controlo humano.
+            </p>
+          </div>
+          <div class="thesis panel">
+            <div>
+              <h3>A tese</h3>
+              <p>
+                Empresas crescem e acumulam ferramentas. Depois, o trabalho real passa a viver entre elas: mensagens,
+                tarefas, aprovacoes, excecoes, prazos, dados duplicados e follow-ups. A Bunniemonki entra nessa camada.
+              </p>
+              <ul class="checklist">
+                <li>Redesenhamos jornadas criticas do negocio.</li>
+                <li>Integramos ferramentas existentes antes de propor automacao.</li>
+                <li>Definimos donos, gates humanos, logs, excecoes e metricas.</li>
+                <li>Operamos automacoes para que elas continuem confiaveis depois do lancamento.</li>
+              </ul>
+            </div>
+            <div>
+              <h3>O significado da marca</h3>
+              <p>
+                Bunniemonki representa movimento rapido com inteligencia operacional: velocidade sem caos e engenho sem
+                complicacao desnecessaria. O nome aponta para ritmo, leitura de ambiente e capacidade de resolver.
+              </p>
+              <ul class="checklist">
+                <li>Rapidez para encontrar a friccao real.</li>
+                <li>Astucia para simplificar sem quebrar controlo.</li>
+                <li>Disciplina para transformar automacao em operacao.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="fazemos">
+          <div class="section-head">
+            <h2>O que fazemos</h2>
+            <p>
+              A Bunniemonki combina cinco frentes. Elas podem aparecer juntas ou em etapas, mas a ordem importa:
+              primeiro entender a operacao, depois desenhar, construir e operar.
+            </p>
+          </div>
+          <div class="service-grid">
+            <article class="service">
+              <span>01</span>
+              <h3>Consultoria operacional</h3>
+              <p>Mapeamos como trabalho, dados e decisoes se movem entre equipas, canais e ferramentas.</p>
+            </article>
+            <article class="service">
+              <span>02</span>
+              <h3>Arquitetura de solucao</h3>
+              <p>Transformamos dor operacional em blueprint: processo, objetos de dados, riscos, quick wins e roadmap.</p>
+            </article>
+            <article class="service">
+              <span>03</span>
+              <h3>Integracoes</h3>
+              <p>Conectamos CRM, WhatsApp API, email, calendario, documentos, ERP, pagamentos, PMS e sistemas internos.</p>
+            </article>
+            <article class="service">
+              <span>04</span>
+              <h3>Automacoes com IA</h3>
+              <p>Usamos IA para classificar, rascunhar, resumir, estruturar e encaminhar trabalho com aprovacoes claras.</p>
+            </article>
+            <article class="service">
+              <span>05</span>
+              <h3>Gestao tecnica recorrente</h3>
+              <p>Monitorizamos execucoes, falhas, credenciais, incidentes e melhorias para manter a camada viva.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="metodologia">
+          <div class="section-head">
+            <h2>Metodologia</h2>
+            <p>
+              A metodologia evita automatizar confusao. Cada etapa deve gerar uma decisao melhor: se existe fit, o que
+              construir, como reduzir risco e como manter o sistema a funcionar.
+            </p>
+          </div>
+          <div class="method-grid">
+            <article class="method-card">
+              <span class="step">Scan</span>
+              <h3>Automation Scan</h3>
+              <p>Primeiro ponto de captura e qualificacao. Recebe contexto sobre empresa, lacuna operacional, ferramentas, frequencia, dono, timing e prontidao.</p>
+              <strong>Saida: fit para discovery ou descarte honesto.</strong>
+            </article>
+            <article class="method-card">
+              <span class="step">Blueprint</span>
+              <h3>Solution Blueprint</h3>
+              <p>Diagnostico pago que transforma dor operacional em arquitetura de solucao: processo atual, ferramentas, dados, riscos, quick wins e roadmap modular.</p>
+              <strong>Saida: decisao de implementacao com escopo claro.</strong>
+            </article>
+            <article class="method-card">
+              <span class="step">Build</span>
+              <h3>Implementacao modular</h3>
+              <p>Construcao por jornada e nao por ferramenta solta. Integramos objetos de dados, workflows, gates humanos, logs, alertas e filas de excecao.</p>
+              <strong>Saida: workflow testavel e operavel.</strong>
+            </article>
+            <article class="method-card">
+              <span class="step">Run</span>
+              <h3>Automacao gerida</h3>
+              <p>Operacao continua da camada de automacao: health checks, monitorizacao, incidentes, credenciais, execucoes e melhorias.</p>
+              <strong>Saida: confiabilidade recorrente.</strong>
+            </article>
+          </div>
+        </section>
+
+        <section id="jornadas">
+          <div class="section-head">
+            <h2>Jornadas de negocio</h2>
+            <p>
+              Organizamos automacao por jornadas, nao por ferramentas. Uma jornada conecta sistemas, pessoas e handoffs
+              em torno de um resultado operacional mensuravel.
+            </p>
+          </div>
+          <div class="journey-grid">
+            <article class="journey">
+              <header>
+                <h3>Lead-to-Revenue</h3>
+                <p>Transforma procura dispersa em oportunidade qualificada, encaminhada e acompanhada.</p>
+              </header>
+              <div class="journey-body">
+                <div>
+                  <p class="micro-label">Sinais</p>
+                  <p>Leads duplicados, resposta lenta, CRM incompleto, follow-up perdido e handoff comercial invisivel.</p>
+                </div>
+                <div>
+                  <p class="micro-label">Resultado</p>
+                  <p>Cada lead qualificado chega com contexto, dono e proxima acao.</p>
+                </div>
+              </div>
+            </article>
+            <article class="journey">
+              <header>
+                <h3>Customer Operations</h3>
+                <p>Coordena pedidos, tarefas, estados e excecoes para que o servico avance com dono.</p>
+              </header>
+              <div class="journey-body">
+                <div>
+                  <p class="micro-label">Sinais</p>
+                  <p>Pedidos em varios canais, casos reabertos, escalonamento incerto e atualizacoes manuais.</p>
+                </div>
+                <div>
+                  <p class="micro-label">Resultado</p>
+                  <p>Pedidos tornam-se trabalho visivel, com estado, responsabilidade e follow-up.</p>
+                </div>
+              </div>
+            </article>
+            <article class="journey">
+              <header>
+                <h3>Quote-to-Cash</h3>
+                <p>Liga proposta, aprovacao, faturacao, pagamento e reconciliacao.</p>
+              </header>
+              <div class="journey-body">
+                <div>
+                  <p class="micro-label">Sinais</p>
+                  <p>Aprovacoes perseguidas manualmente, faturas com excecao e estado de pagamento reconciliado a mao.</p>
+                </div>
+                <div>
+                  <p class="micro-label">Resultado</p>
+                  <p>Intencao comercial vira documento aprovado, fatura correta e estado de cobranca rastreavel.</p>
+                </div>
+              </div>
+            </article>
+            <article class="journey">
+              <header>
+                <h3>Hire-to-Productivity</h3>
+                <p>Organiza pessoas, acessos, documentos, equipamento e onboarding.</p>
+              </header>
+              <div class="journey-body">
+                <div>
+                  <p class="micro-label">Sinais</p>
+                  <p>Novos colaboradores esperando acessos, equipamento, documentos e plano de produtividade.</p>
+                </div>
+                <div>
+                  <p class="micro-label">Resultado</p>
+                  <p>Contratacao e onboarding continuam humanos, enquanto os passos operacionais ficam visiveis.</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="principios">
+          <div class="section-head">
+            <h2>Principios operacionais</h2>
+            <p>
+              Estes principios protegem a qualidade da entrega. Eles tambem ajudam a explicar por que a Bunniemonki nao
+              vende automacao como uma camada magica, mas como operacao governada.
+            </p>
+          </div>
+          <div class="principles-grid">
+            <article class="principle">
+              <span>01</span>
+              <h3>Jornada antes de ferramenta</h3>
+              <p>Comecamos pelo percurso real do trabalho: entrada, dono, dados, decisao, excecao e resultado.</p>
+            </article>
+            <article class="principle">
+              <span>02</span>
+              <h3>Fonte de verdade clara</h3>
+              <p>Integracoes precisam preservar onde o dado nasce, onde muda e quem pode aprovar alteracoes.</p>
+            </article>
+            <article class="principle">
+              <span>03</span>
+              <h3>IA assiste pessoas</h3>
+              <p>IA pode estruturar, classificar e rascunhar. Decisoes sensiveis continuam com humanos nomeados.</p>
+            </article>
+            <article class="principle">
+              <span>04</span>
+              <h3>Falhas precisam de dono</h3>
+              <p>Automacao sem logs, alertas e recuperacao cria risco silencioso. Cada excecao precisa de rota.</p>
+            </article>
+            <article class="principle">
+              <span>05</span>
+              <h3>Cliente mantem propriedade</h3>
+              <p>Dados, contas e licencas principais continuam sob propriedade do cliente. A Bunniemonki opera a camada.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="automacao-gerida">
+          <div class="section-head">
+            <h2>Automacao gerida</h2>
+            <p>
+              Construir o workflow e apenas uma parte. A camada que diferencia a Bunniemonki e operar, monitorizar e
+              melhorar automacoes depois que elas entram no dia a dia.
+            </p>
+          </div>
+          <div class="layers">
+            <article class="layer">
+              <aside>
+                <span>Ambiente</span>
+                <h3>Infra isolada por cliente</h3>
+              </aside>
+              <div>
+                <p>A Bunniemonki pode operar um ambiente de automacao isolado para cada cliente, enquanto dados, contas e licencas centrais permanecem com o cliente.</p>
+              </div>
+            </article>
+            <article class="layer">
+              <aside>
+                <span>Stack</span>
+                <h3>n8n, Python, Make, cloud/VPS</h3>
+              </aside>
+              <div>
+                <p>A stack e escolhida pelo problema, maturidade e risco. O importante e que o workflow seja observavel, versionavel, recuperavel e compreensivel.</p>
+              </div>
+            </article>
+            <article class="layer">
+              <aside>
+                <span>Health check</span>
+                <h3>Falhas, credenciais e incidentes</h3>
+              </aside>
+              <div>
+                <p>O runbook deve acompanhar falhas por workflow, tempo desde o ultimo sucesso, credenciais proximas de expirar, consumo de infra e incidentes abertos.</p>
+              </div>
+            </article>
+            <article class="layer">
+              <aside>
+                <span>Melhoria</span>
+                <h3>Aprender com excecoes</h3>
+              </aside>
+              <div>
+                <p>Excecoes repetidas viram backlog de melhoria. Automacao gerida nao e hospedagem barata: e responsabilidade operacional sobre a camada automatizada.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="nichos">
+          <div class="section-head">
+            <h2>Nichos iniciais</h2>
+            <p>
+              Os quatro nichos iniciais foram escolhidos porque tem volume recorrente, muitos canais, tarefas repetidas
+              e impacto claro quando o handoff quebra.
+            </p>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nicho</th>
+                  <th>Dor comum</th>
+                  <th>Primeira promessa</th>
+                  <th>Guardrail</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Contabilidade e consultoria fiscal</td>
+                  <td>Documentos, prazos, pedidos recorrentes e comunicacao fragmentada.</td>
+                  <td>Menos chase documental e mais prazos sob controlo.</td>
+                  <td>Sem decisoes fiscais automaticas.</td>
+                </tr>
+                <tr>
+                  <td>Turismo operacional</td>
+                  <td>Reservas, mensagens, check-in, limpeza, tours e reviews em canais diferentes.</td>
+                  <td>Menos mensagens perdidas e mais pedidos encaminhados.</td>
+                  <td>Reclamacoes, reembolsos e seguranca exigem humano.</td>
+                </tr>
+                <tr>
+                  <td>Clinicas privadas</td>
+                  <td>Marcacoes, lembretes, no-shows, rececao e aftercare manual.</td>
+                  <td>Mais consultas confirmadas e menos carga administrativa.</td>
+                  <td>Sem diagnostico, tratamento ou aconselhamento clinico automatico.</td>
+                </tr>
+                <tr>
+                  <td>Imobiliario e arrendamento</td>
+                  <td>Leads de portais, visitas, CRM, proprietarios e tarefas de arrendamento.</td>
+                  <td>Leads respondidos antes de arrefecerem.</td>
+                  <td>Preco, negociacao, legal e compliance com aprovacao humana.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="fundador">
+          <div class="section-head">
+            <h2>Como a empresa opera</h2>
+            <p>
+              A Bunniemonki e founder-led. Isso permite velocidade, proximidade e responsabilidade clara, com rede
+              especialista quando design, trafego pago ou profundidade tecnica exigirem apoio.
+            </p>
+          </div>
+          <div class="two-col">
+            <div class="panel panel-pad">
+              <h3>Experiencia founder/operator</h3>
+              <p>Alexandre Jaques tem mais de seis anos de experiencia em integracoes e automacao, fundou anteriormente a IntegraNinja, entregou projetos para mais de 15 clientes e tem experiencia de lideranca operacional na ChatGuru.</p>
+            </div>
+            <div class="panel panel-pad">
+              <h3>Modelo operacional</h3>
+              <p>Escopo, responsabilidade e qualidade permanecem com a Bunniemonki. Parceiros e especialistas entram quando aumentam a qualidade da entrega, sem diluir propriedade.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="nao-fazemos">
+          <div class="section-head">
+            <h2>O que nao fazemos</h2>
+            <p>
+              Bons limites tornam a proposta mais forte. A Bunniemonki nao deve ser percebida como "mais uma ferramenta
+              de IA" nem como implementadora barata sem responsabilidade de processo.
+            </p>
+          </div>
+          <div class="thesis panel">
+            <div>
+              <h3>Limites comerciais</h3>
+              <ul class="checklist">
+                <li>Nao vendemos automacao antes de entender a jornada.</li>
+                <li>Nao prometemos resultados garantidos sem diagnostico.</li>
+                <li>Nao substituimos sistemas principais quando integrar e governar basta.</li>
+                <li>Nao tratamos automacao gerida como simples hospedagem barata.</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Limites de responsabilidade</h3>
+              <ul class="checklist">
+                <li>Sem decisoes fiscais, clinicas, legais, financeiras ou laborais autonomas.</li>
+                <li>Sem pedir credenciais ou dados confidenciais em formularios publicos.</li>
+                <li>Sem automacoes invisiveis, sem logs ou sem rota de recuperacao.</li>
+                <li>Sem claims de cliente ou percentagens inventadas.</li>
+              </ul>
+            </div>
+          </div>
+          <p class="note">
+            Frase guia: automacao ruim acelera confusao; integracao bem desenhada acelera operacao.
+          </p>
+        </section>
+
+        <section id="fontes">
+          <div class="section-head">
+            <h2>Fontes usadas</h2>
+            <p>
+              Este documento sintetiza a documentacao local do site e paginas internas do Notion. As fontes abaixo
+              ajudam a manter a narrativa consistente com o produto real.
+            </p>
+          </div>
+          <div class="source-list">
+            <a href="./project-overview.md">Docs locais - Resumo do Projeto</a>
+            <a href="./design-system.md">Docs locais - Design System</a>
+            <a href="./automation-scan.md">Docs locais - Automation Scan</a>
+            <a href="./landing-pages.md">Docs locais - Landing Pages</a>
+            <a href="./implementation-history.md">Docs locais - Historico</a>
+            <a href="https://app.notion.com/p/38bf3885336f811a98a7d22e5c99df1a">Notion - Bunniemonki HQ</a>
+            <a href="https://app.notion.com/p/38bf3885336f81448326ca6ce4d4387c">Notion - Categoria</a>
+            <a href="https://app.notion.com/p/38bf3885336f819d9060de265f680247">Notion - Brand meaning</a>
+            <a href="https://app.notion.com/p/38bf3885336f81f7bb40d3331fa363d5">Notion - Automation Scan</a>
+            <a href="https://app.notion.com/p/38bf3885336f817b98dac463e4f5a60f">Notion - Solution Blueprint</a>
+            <a href="https://app.notion.com/p/38bf3885336f811c90c7efbb1109d001">Notion - Automacoes geridas</a>
+            <span>Data do documento: 30 de junho de 2026</span>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <p>
+            Bunniemonki - empresa e metodologia. Este documento serve como narrativa institucional e guia comercial para
+            explicar o que fazemos, como trabalhamos e onde mantemos controlo humano.
+          </p>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>

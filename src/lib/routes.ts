@@ -4,14 +4,17 @@ import {
   getBlueprint,
   getDepartment,
   getInsight,
+  getLandingPage,
   getPolicy,
   getSolution,
   insights,
+  landingPages,
   policies,
   solutions,
   type Blueprint,
   type Department,
   type Insight,
+  type LandingPage,
   type Policy,
   type Solution,
 } from "./content";
@@ -32,6 +35,7 @@ export type ResolvedRoute =
   | { kind: "blueprint"; locale: Locale; item: Blueprint }
   | { kind: "insights"; locale: Locale }
   | { kind: "insight"; locale: Locale; item: Insight }
+  | { kind: "landing"; locale: Locale; item: LandingPage }
   | { kind: "about"; locale: Locale }
   | { kind: "scan"; locale: Locale }
   | { kind: "policy"; locale: Locale; item: Policy }
@@ -43,6 +47,7 @@ const segmentMap = {
     departments: "departments",
     blueprints: "blueprints",
     insights: "insights",
+    landing: "landing",
     about: "about",
     scan: "automation-scan",
     privacy: "privacy",
@@ -56,6 +61,7 @@ const segmentMap = {
     departments: "departamentos",
     blueprints: "blueprints",
     insights: "insights",
+    landing: "landing",
     about: "sobre",
     scan: "automation-scan",
     privacy: "privacidade",
@@ -67,7 +73,7 @@ const segmentMap = {
 } as const satisfies Record<Locale, Record<string, string>>;
 
 export function resolveRoute(locale: Locale, segments: string[] = []): ResolvedRoute | null {
-  const [section, slug] = segments;
+  const [section, slug, ...extraSegments] = segments;
   const map = segmentMap[locale];
 
   if (!section) return { kind: "home", locale };
@@ -94,6 +100,12 @@ export function resolveRoute(locale: Locale, segments: string[] = []): ResolvedR
     if (!slug) return { kind: "insights", locale };
     const item = getInsight(locale, slug);
     return item ? { kind: "insight", locale, item } : null;
+  }
+
+  if (section === map.landing) {
+    if (!slug || extraSegments.length > 0) return null;
+    const item = getLandingPage(locale, slug);
+    return item ? { kind: "landing", locale, item } : null;
   }
 
   if (section === map.about) return { kind: "about", locale };
@@ -140,6 +152,10 @@ export function getStaticRouteParams(): Array<{ locale: Locale; segments?: strin
 
     for (const insight of insights[locale]) {
       params.push({ locale, segments: [map.insights, insight.slug] });
+    }
+
+    for (const page of landingPages[locale]) {
+      params.push({ locale, segments: [map.landing, page.slug] });
     }
 
     for (const policy of policies[locale]) {

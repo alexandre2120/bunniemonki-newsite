@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Inter, Space_Grotesk } from "next/font/google";
+import { AnalyticsEvents } from "@/components/site/analytics-events";
+import { VercelAnalytics } from "@/components/site/vercel-analytics";
 import "./globals.css";
 
 const inter = Inter({
@@ -41,7 +43,14 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${inter.variable} ${spaceGrotesk.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full w-full overflow-x-clip flex flex-col">{children}</body>
+      <body
+        suppressHydrationWarning
+        className="min-h-full w-full overflow-x-clip flex flex-col"
+      >
+        {children}
+        <AnalyticsEvents />
+        <VercelAnalytics />
+      </body>
     </html>
   );
 }

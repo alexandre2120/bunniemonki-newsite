@@ -11,6 +11,7 @@ import {
   HomeView,
   InsightDetailView,
   InsightsIndexView,
+  LandingPageView,
   PolicyView,
   ScanView,
   SolutionDetailView,
@@ -46,6 +47,7 @@ export async function generateMetadata({
           route?.kind === "department" ||
           route?.kind === "blueprint" ||
           route?.kind === "insight" ||
+          route?.kind === "landing" ||
           route?.kind === "policy"
         ? `${route.item.title} | Bunniemonki`
         : route
@@ -107,6 +109,8 @@ export default async function LocalizedPage({ params }: { params: Promise<RouteP
       return <InsightsIndexView locale={locale} />;
     case "insight":
       return <InsightDetailView locale={locale} insight={route.item} />;
+    case "landing":
+      return <LandingPageView locale={locale} landingPage={route.item} />;
     case "about":
       return <AboutView locale={locale} />;
     case "scan":
@@ -146,6 +150,8 @@ function descriptionForRoute(
       return route.item.scenario;
     case "insight":
       return route.item.deck;
+    case "landing":
+      return route.item.metaDescription;
     case "policy":
       return route.item.summary;
     default:

@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import { analyticsClickAttributes } from "@/lib/analytics";
 import { relatedSolutions, type Department, type Insight, type Solution } from "@/lib/content";
 import { getLocalizedPath, type Locale } from "@/lib/i18n";
 
@@ -42,6 +43,15 @@ export function SolutionCard({ solution, locale }: { solution: Solution; locale:
         <Link
           href={getLocalizedPath(locale, "solution", solution.slug)}
           className="mt-auto inline-flex items-center gap-2 text-sm font-semibold hover:underline"
+          {...analyticsClickAttributes({
+            name: "card_click",
+            location: "solution_card",
+            target: "solution_detail",
+            locale,
+            pageKind: "solutions",
+            itemId: solution.id,
+            itemSlug: solution.slug,
+          })}
         >
           {copy.explore}
           <ArrowUpRight className="size-4" aria-hidden="true" />
@@ -58,6 +68,15 @@ export function DepartmentCard({ department, locale }: { department: Department;
     <Link
       href={getLocalizedPath(locale, "department", department.slug)}
       className="group grid gap-4 border border-border bg-background p-5 transition-colors hover:bg-brand/15"
+      {...analyticsClickAttributes({
+        name: "card_click",
+        location: "department_card",
+        target: "department_detail",
+        locale,
+        pageKind: "departments",
+        itemId: department.id,
+        itemSlug: department.slug,
+      })}
     >
       <div className="flex items-start justify-between gap-4">
         <h3 className="font-heading text-xl font-semibold">{department.title}</h3>
@@ -80,6 +99,15 @@ export function InsightCard({ insight, locale }: { insight: Insight; locale: Loc
     <Link
       href={getLocalizedPath(locale, "insight", insight.slug)}
       className="grid gap-4 border-t border-border py-6 transition-colors hover:bg-muted/50 md:grid-cols-[180px_1fr_auto]"
+      {...analyticsClickAttributes({
+        name: "card_click",
+        location: "insight_card",
+        target: "insight_detail",
+        locale,
+        pageKind: "insights",
+        itemId: insight.id,
+        itemSlug: insight.slug,
+      })}
     >
       <div>
         <Badge className="rounded-none bg-brand text-brand-ink">{insight.category}</Badge>

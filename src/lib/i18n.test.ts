@@ -26,6 +26,12 @@ describe("i18n routing", () => {
     expect(getLocalizedPath("pt", "department", "operations-it")).toBe(
       "/pt/departamentos/operations-it",
     );
+    expect(
+      getLocalizedPath("pt", "landingPage", "contabilidade-consultoria-fiscal"),
+    ).toBe("/pt/landing/contabilidade-consultoria-fiscal");
+    expect(getLocalizedPath("en", "landingPage", "private-clinics")).toBe(
+      "/en/landing/private-clinics",
+    );
   });
 
   test("maps the current route to the equivalent alternate locale route", () => {
@@ -34,6 +40,12 @@ describe("i18n routing", () => {
     );
     expect(getAlternateLocalePath("/pt/sobre")).toBe("/en/about");
     expect(getAlternateLocalePath("/pt/privacidade")).toBe("/en/privacy");
+    expect(
+      getAlternateLocalePath("/pt/landing/clinicas-privadas?utm=ads"),
+    ).toBe("/en/landing/private-clinics?utm=ads");
+    expect(getAlternateLocalePath("/en/landing/tourism-operations#cta")).toBe(
+      "/pt/landing/turismo-operacional#cta",
+    );
   });
 
   test("identifies localized routes", () => {

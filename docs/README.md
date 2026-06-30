@@ -1,26 +1,27 @@
 # Bunniemonki Website Docs
 
-Documentação criada em 2026-06-27 para registar o que foi desenvolvido no projeto Next.js da Bunniemonki, como o site está organizado e o que ainda falta antes de produção.
+Documentação curta do site Bunniemonki em Next.js. Atualizada em 2026-06-29.
 
-## Documentos
+## Mapa
 
-- [Resumo do Projeto](./project-overview.md) - objetivo, stack, estado atual e mapa de funcionalidades.
-- [Arquitetura](./architecture.md) - estrutura de ficheiros, rotas, dados, componentes e renderização.
-- [Design System](./design-system.md) - direção visual, tokens, componentes e ajustes de UI feitos.
-- [Internacionalização e Rotas](./i18n-routing.md) - locales, slugs, alternância de idioma, metadata, sitemap e pontos pendentes.
-- [Automation Scan](./automation-scan.md) - formulário, validação, copy localizada e lacunas para produção.
-- [Histórico de Implementação](./implementation-history.md) - registo cronológico do trabalho feito.
-- [QA e Checklist de Lançamento](./qa-and-launch.md) - verificações executadas, estado técnico e itens bloqueantes.
+- [Resumo do Projeto](./project-overview.md): objetivo, stack e estado atual.
+- [Arquitetura](./architecture.md): ficheiros principais, dados, rotas e renderização.
+- [Landing Pages](./landing-pages.md): nichos, rotas, copy e estratégia de página.
+- [Analytics](./analytics.md): Vercel Analytics, eventos e regras de privacidade.
+- [Automation Scan](./automation-scan.md): formulário, validação e lacunas para produção.
+- [Internacionalização e Rotas](./i18n-routing.md): locales, slugs, metadata e sitemap.
+- [Design System](./design-system.md): direção visual e componentes de UI.
+- [QA e Lançamento](./qa-and-launch.md): comandos, estado técnico e bloqueantes.
+- [Histórico](./implementation-history.md): resumo cronológico do que foi feito.
 
 ## Estado Rápido
 
-O site está a compilar e a gerar páginas estáticas. A experiência visual principal, as páginas institucionais, as rotas PT/EN e o formulário local do Automation Scan estão implementados.
+O site compila, passa testes e gera páginas estáticas para PT/EN. Foram adicionadas landing pages por nicho, mapa de automações, Vercel Analytics e tracking seguro de CTAs/eventos.
 
-Para produção pública, os pontos mais importantes ainda são:
+Ainda falta para produção com captação real:
 
-1. Ligar o Automation Scan a backend, base de dados/CRM e notificações reais.
-2. Finalizar revisão legal das páginas de Privacidade, Termos, Cookies e Acessibilidade.
-3. Corrigir detalhes finais de SEO/i18n técnico, especialmente `html lang` dinâmico.
-4. Configurar domínio, ambiente de produção, monitorização e política de cookies/analytics.
-5. Remover artefactos do scaffold inicial e substituir o README template.
-
+1. Ligar o Automation Scan a backend/CRM/notificações.
+2. Rever legal, cookies, analytics e retenção de dados.
+3. Confirmar domínio final em metadata, sitemap e robots.
+4. Rever `html lang` dinâmico e 404 localizado.
+5. Limpar README/assets de scaffold antes do deploy final.

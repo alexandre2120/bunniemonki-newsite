@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { analyticsClickAttributes } from "@/lib/analytics";
 import { getLocalizedPath, type Locale } from "@/lib/i18n";
 import { getNavItems, legalEntity, siteCopy } from "@/lib/content";
 
@@ -33,15 +34,16 @@ export function SiteFooter({ locale }: { locale: Locale }) {
             {copy.category}
           </p>
         </div>
-        <FooterColumn title={copy.footer.explore} items={navItems.slice(0, 4)} />
+        <FooterColumn locale={locale} title={copy.footer.explore} items={navItems.slice(0, 4)} />
         <FooterColumn
+          locale={locale}
           title={copy.footer.company}
           items={[
             { label: copy.nav.about, href: getLocalizedPath(locale, "about") },
             { label: copy.cta.scan, href: getLocalizedPath(locale, "scan") },
           ]}
         />
-        <FooterColumn title={copy.footer.policies} items={policyItems} />
+        <FooterColumn locale={locale} title={copy.footer.policies} items={policyItems} />
       </div>
       <div className="mx-auto mt-10 max-w-7xl border-t border-border px-5 pt-6 text-xs leading-5 text-muted-foreground md:px-8">
         <p>{copy.footer.legalLine}</p>
@@ -54,9 +56,11 @@ export function SiteFooter({ locale }: { locale: Locale }) {
 }
 
 function FooterColumn({
+  locale,
   title,
   items,
 }: {
+  locale: Locale;
   title: string;
   items: Array<{ label: string; href: string }>;
 }) {
@@ -66,7 +70,17 @@ function FooterColumn({
       <ul className="mt-4 grid gap-3">
         {items.map((item) => (
           <li key={item.href}>
-            <Link href={item.href} className="text-sm text-foreground hover:underline">
+            <Link
+              href={item.href}
+              className="text-sm text-foreground hover:underline"
+              {...analyticsClickAttributes({
+                name: item.href.includes("automation-scan") ? "cta_click" : "navigation_click",
+                location: "footer",
+                target: item.href.includes("automation-scan") ? "automation_scan" : "footer_link",
+                locale,
+                pageKind: "global",
+              })}
+            >
               {item.label}
             </Link>
           </li>

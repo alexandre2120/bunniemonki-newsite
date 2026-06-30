@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
+import { track } from "@vercel/analytics";
 import { useState } from "react";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -16,6 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { analyticsClickAttributes, safeAnalyticsProperties } from "@/lib/analytics";
 import { siteCopy } from "@/lib/content";
 import type { Locale } from "@/lib/i18n";
 import { getScanFormCopy } from "@/lib/scan-copy";
@@ -44,14 +46,49 @@ export function ScanForm({ locale }: { locale: Locale }) {
   function goNext() {
     const result = validateScanStep(step, draft, locale);
     setErrors(result.errors);
-    if (!result.ok) return;
+    if (!result.ok) {
+      track("scan_form_validation_error", safeAnalyticsProperties({
+        locale,
+        location: "scan_form",
+        pageKind: "scan",
+        step,
+        target: "validation",
+      }));
+      return;
+    }
     if (step < 3) {
+      track("scan_form_step_continue", safeAnalyticsProperties({
+        locale,
+        location: "scan_form",
+        pageKind: "scan",
+        step,
+        target: "next_step",
+      }));
       setStep((step + 1) as ScanStep);
       requestAnimationFrame(() => document.getElementById("scan-step-heading")?.focus());
       return;
     }
+    track("scan_form_submit", safeAnalyticsProperties({
+      locale,
+      location: "scan_form",
+      marketingConsent: draft.marketingConsent,
+      pageKind: "scan",
+      step,
+      target: "request_submitted_local",
+    }));
     setReference(`BM-${Date.now().toString(36).toUpperCase()}`);
     setSubmitted(true);
+  }
+
+  function goBack() {
+    track("scan_form_back", safeAnalyticsProperties({
+      locale,
+      location: "scan_form",
+      pageKind: "scan",
+      step,
+      target: "previous_step",
+    }));
+    setStep((Math.max(1, step - 1) as ScanStep));
   }
 
   if (submitted) {
@@ -111,13 +148,32 @@ export function ScanForm({ locale }: { locale: Locale }) {
           <Button
             type="button"
             variant="outline"
-            onClick={() => setStep((Math.max(1, step - 1) as ScanStep))}
+            onClick={goBack}
             disabled={step === 1}
+            {...analyticsClickAttributes({
+              name: "scan_form_button_click",
+              location: "scan_form",
+              target: "back",
+              locale,
+              pageKind: "scan",
+              step,
+            })}
           >
             <ArrowLeft aria-hidden="true" />
             {locale === "en" ? "Back" : "Voltar"}
           </Button>
-          <Button type="submit" className="bg-brand text-brand-ink hover:bg-brand/85">
+          <Button
+            type="submit"
+            className="bg-brand text-brand-ink hover:bg-brand/85"
+            {...analyticsClickAttributes({
+              name: "scan_form_button_click",
+              location: "scan_form",
+              target: step === 3 ? "submit_request" : "continue",
+              locale,
+              pageKind: "scan",
+              step,
+            })}
+          >
             {step === 3 ? (locale === "en" ? "Submit request" : "Submeter pedido") : locale === "en" ? "Continue" : "Continuar"}
             <ArrowRight aria-hidden="true" />
           </Button>

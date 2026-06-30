@@ -100,6 +100,44 @@ export type Policy = {
   sections: Array<{ heading: string; body: string[] }>;
 };
 
+export type LandingPageId =
+  | "accounting-tax-consulting"
+  | "tourism-operations"
+  | "private-clinics"
+  | "real-estate-rentals";
+
+export type LandingPage = {
+  id: LandingPageId;
+  slug: string;
+  title: string;
+  audience: string;
+  eyebrow: string;
+  headline: string;
+  subheadline: string;
+  metaDescription: string;
+  cta: string;
+  secondaryCta: string;
+  trust: string[];
+  painTitle: string;
+  painPoints: string[];
+  journeyTitle: string;
+  journey: string[];
+  blueprint: {
+    label: string;
+    title: string;
+    body: string;
+    artifacts: string[];
+  };
+  modulesTitle: string;
+  modules: Array<{ title: string; body: string }>;
+  integrations: string[];
+  proof: string[];
+  guardrails: string[];
+  faq: Array<{ question: string; answer: string }>;
+  finalCta: string;
+  solutionId: SolutionId;
+};
+
 export type SiteCopy = {
   localeName: string;
   category: string;
@@ -957,6 +995,741 @@ blueprints.pt = [
   },
 ];
 
+export const landingPages: Record<Locale, LandingPage[]> = {
+  en: [
+    {
+      id: "accounting-tax-consulting",
+      slug: "accounting-tax-consulting",
+      title: "Accounting & Tax Consulting",
+      audience: "Accounting firms, tax consultants and small finance teams",
+      eyebrow: "AI-assisted operations for accounting",
+      headline: "Stop chasing documents. Keep tax work moving.",
+      subheadline:
+        "Automate document requests, reminders and handoffs while tax judgement stays with qualified people.",
+      metaDescription:
+        "AI-assisted automation for accounting and tax consulting firms: document collection, reminders, triage, task handoffs and governed human approval.",
+      cta: "Map accounting operations",
+      secondaryCta: "View reference blueprint",
+      trust: [
+        "No autonomous tax decisions",
+        "Designed around the tools you already use",
+        "Reference blueprint, not a client case claim",
+      ],
+      painTitle: "Where accounting work breaks",
+      painPoints: [
+        "Client documents arrive late, incomplete or split across channels.",
+        "Teams chase the same information through email, WhatsApp and spreadsheets.",
+        "Deadlines, exceptions and billing inputs depend on manual memory.",
+      ],
+      journeyTitle: "From client request to review-ready work",
+      journey: [
+        "Client request",
+        "Document checklist",
+        "Completeness triage",
+        "Task preparation",
+        "Human review",
+        "Delivery and follow-up",
+      ],
+      blueprint: {
+        label: "Reference blueprint",
+        title: "Document intake and deadline control",
+        body:
+          "A governed flow that collects client inputs, normalises requests, flags missing evidence, routes exceptions and prepares the work package before a qualified person approves the fiscal decision.",
+        artifacts: [
+          "Client checklist and reminder logic",
+          "Exception queue for missing or contradictory information",
+          "Task handoff to accounting software or internal workspace",
+          "Audit trail for approvals, overrides and follow-up",
+        ],
+      },
+      modulesTitle: "Automations to launch first",
+      modules: [
+        {
+          title: "Document intake desk",
+          body: "Turn scattered messages into structured client requests with ownership and status.",
+        },
+        {
+          title: "Deadline radar",
+          body: "Create reminders, escalation paths and review queues before work becomes urgent.",
+        },
+        {
+          title: "Billing signal",
+          body: "Surface completed work, missing inputs and billing triggers without manual reconciliation.",
+        },
+      ],
+      integrations: ["Email", "WhatsApp API", "Client forms", "CRM", "Accounting workspace", "Task management"],
+      proof: [
+        "Reference process map before build",
+        "Human approval gates for fiscal judgement",
+        "Monitoring, retry logic and exception ownership",
+      ],
+      guardrails: [
+        "Tax judgement and client advice stay with qualified humans.",
+        "The system should not request credentials or confidential records through public forms.",
+        "Data retention, processor agreements and access controls must match the production architecture.",
+      ],
+      faq: [
+        {
+          question: "Will this replace our accounting software?",
+          answer:
+            "No. The landing offer is about the operating layer around your existing tools: intake, reminders, routing, checks and visibility.",
+        },
+        {
+          question: "Can AI decide how a tax case should be handled?",
+          answer:
+            "No. AI can draft, classify or summarise. Fiscal decisions, advice and filings require human review and approval.",
+        },
+        {
+          question: "What do we need before a scan?",
+          answer:
+            "A short description of the workflow that creates the most chasing, rework or deadline pressure is enough to start.",
+        },
+      ],
+      finalCta: "Map the accounting workflow that costs your team the most attention.",
+      solutionId: "quote-to-cash",
+    },
+    {
+      id: "tourism-operations",
+      slug: "tourism-operations",
+      title: "Tourism Operations, Local Accommodation & Tours",
+      audience: "Local accommodation operators, tour companies and boutique hotels",
+      eyebrow: "AI-assisted guest operations",
+      headline: "Fewer missed messages. Smoother guest operations.",
+      subheadline:
+        "Connect guest messages, booking signals and operations tasks so fewer requests disappear between channels.",
+      metaDescription:
+        "Automation for tourism operations, local accommodation, tours and boutique hotels: guest messages, check-in tasks, routing, follow-up and operational visibility.",
+      cta: "Map guest operations",
+      secondaryCta: "View reference blueprint",
+      trust: [
+        "Human approval for sensitive guest issues",
+        "Works around booking and messaging channels",
+        "Reference blueprint, not a client case claim",
+      ],
+      painTitle: "Where guest operations break",
+      painPoints: [
+        "Bookings, messages and task updates arrive from different platforms.",
+        "Check-in, cleaning, transfers and tour capacity depend on manual coordination.",
+        "Guest questions repeat, but answers still require copy-paste work.",
+      ],
+      journeyTitle: "From booking signal to post-stay follow-up",
+      journey: [
+        "Booking or inquiry",
+        "Guest profile",
+        "Pre-arrival checklist",
+        "Operational handoff",
+        "Human escalation",
+        "Review and next offer",
+      ],
+      blueprint: {
+        label: "Reference blueprint",
+        title: "Guest message and task orchestration",
+        body:
+          "A controlled flow that classifies guest needs, prepares approved responses, creates operational tasks and keeps exceptions visible for the person responsible for the stay, tour or property.",
+        artifacts: [
+          "Guest message triage by intent and urgency",
+          "Check-in, cleaning, transfer and tour task routing",
+          "Approved response library with human review",
+          "Post-stay follow-up and review request flow",
+        ],
+      },
+      modulesTitle: "Automations to launch first",
+      modules: [
+        {
+          title: "Guest inbox triage",
+          body: "Classify messages, prepare replies and route anything sensitive to a human owner.",
+        },
+        {
+          title: "Operations board",
+          body: "Turn booking changes into visible tasks for cleaning, check-in, guides and transfers.",
+        },
+        {
+          title: "Follow-up engine",
+          body: "Send approved post-stay messages, review prompts and next-offer sequences.",
+        },
+      ],
+      integrations: ["Booking platforms", "WhatsApp API", "Email", "Calendar", "Task boards", "CRM"],
+      proof: [
+        "Reference operating map before build",
+        "Exception queue for guest-impacting cases",
+        "Monitoring for silent automation failures",
+      ],
+      guardrails: [
+        "Human approval is required for complaints, refunds, safety issues and non-standard guest decisions.",
+        "Guest data should be minimised and retained only for defined operational purposes.",
+        "Automation should support the guest experience, not hide operational responsibility.",
+      ],
+      faq: [
+        {
+          question: "Can this work if we use several booking channels?",
+          answer:
+            "Yes. The scan starts by mapping where signals enter today, then defines what should be connected, watched or left manual.",
+        },
+        {
+          question: "Will guests know they are speaking with AI?",
+          answer:
+            "The safest approach is approved messaging, clear escalation and human ownership for sensitive or unusual cases.",
+        },
+        {
+          question: "Is this only for hotels?",
+          answer:
+            "No. The same operating pattern fits local accommodation, tours, small hospitality teams and boutique guest operations.",
+        },
+      ],
+      finalCta: "Map the guest operation before the next busy season exposes the gaps.",
+      solutionId: "customer-operations",
+    },
+    {
+      id: "private-clinics",
+      slug: "private-clinics",
+      title: "Private Clinics, Aesthetics, Physiotherapy & Health-Beauty",
+      audience: "Private clinics, aesthetics studios, physiotherapy practices and health-beauty teams",
+      eyebrow: "AI-assisted clinic operations",
+      headline: "More confirmed appointments. Less reception work.",
+      subheadline:
+        "Automate bookings, reminders and aftercare handoffs while clinical decisions stay with qualified professionals.",
+      metaDescription:
+        "Automation for private clinics, aesthetics, physiotherapy and health-beauty teams: appointment intake, reminders, front-desk tasks and governed follow-up.",
+      cta: "Map clinic operations",
+      secondaryCta: "View reference blueprint",
+      trust: [
+        "No autonomous diagnosis or treatment decisions",
+        "Designed for consent and sensitive-data discipline",
+        "Reference blueprint, not a client case claim",
+      ],
+      painTitle: "Where clinic operations break",
+      painPoints: [
+        "Reception repeats the same appointment, reminder and follow-up tasks every day.",
+        "No-shows and late cancellations are handled after the schedule is already damaged.",
+        "Patient questions arrive through channels that do not connect to the appointment workflow.",
+      ],
+      journeyTitle: "From first request to confirmed follow-up",
+      journey: [
+        "Inquiry or booking",
+        "Intake and consent",
+        "Appointment confirmation",
+        "Reception task",
+        "Human clinical gate",
+        "Aftercare follow-up",
+      ],
+      blueprint: {
+        label: "Reference blueprint",
+        title: "Appointment intake and aftercare control",
+        body:
+          "A governed workflow that structures inquiries, confirms appointments, prepares front-desk tasks and routes clinical or sensitive issues to qualified humans before any advice is given.",
+        artifacts: [
+          "Appointment request and confirmation flow",
+          "Reminder and no-show recovery sequence",
+          "Aftercare communication with approved templates",
+          "Exception queue for clinical or sensitive requests",
+        ],
+      },
+      modulesTitle: "Automations to launch first",
+      modules: [
+        {
+          title: "Reception command queue",
+          body: "Convert messages and forms into visible booking, confirmation and follow-up tasks.",
+        },
+        {
+          title: "No-show recovery",
+          body: "Prepare reminder, reschedule and waitlist flows without pushing clinical judgement into automation.",
+        },
+        {
+          title: "Aftercare assistant",
+          body: "Send approved care instructions and route anything outside protocol to the right person.",
+        },
+      ],
+      integrations: ["Booking system", "WhatsApp API", "Email", "Forms", "CRM", "Calendar"],
+      proof: [
+        "Reference process map before build",
+        "Human gate for clinical or sensitive decisions",
+        "Clear distinction between admin automation and clinical responsibility",
+      ],
+      guardrails: [
+        "Clinical judgement, diagnosis and treatment advice require qualified human approval.",
+        "Health-related data needs strict minimisation, access control and processor review.",
+        "Marketing follow-up should respect consent, opt-outs and the clinic's approved language.",
+      ],
+      faq: [
+        {
+          question: "Can AI answer patient medical questions?",
+          answer:
+            "No. AI can structure intake or prepare approved admin messages. Clinical advice and treatment decisions stay with qualified humans.",
+        },
+        {
+          question: "What is the quickest operational win?",
+          answer:
+            "Usually appointment confirmations, reminders, rescheduling and clear reception task ownership.",
+        },
+        {
+          question: "Does this fit aesthetics and physiotherapy?",
+          answer:
+            "Yes, as long as the workflow separates admin automation from clinical judgement and sensitive-data handling.",
+        },
+      ],
+      finalCta: "Map the clinic workflow your reception team repeats every day.",
+      solutionId: "customer-operations",
+    },
+    {
+      id: "real-estate-rentals",
+      slug: "real-estate-rentals",
+      title: "Real Estate, Brokerage & Rental Management",
+      audience: "Estate agencies, property managers and rental-management teams",
+      eyebrow: "AI-assisted real estate operations",
+      headline: "Respond before property leads go cold.",
+      subheadline:
+        "Capture, qualify and follow up property leads before they disappear across portals, CRM and WhatsApp.",
+      metaDescription:
+        "Automation for real estate, brokerage and rental management: lead response, qualification, visit scheduling, owner updates and operational follow-up.",
+      cta: "Map real estate operations",
+      secondaryCta: "View reference blueprint",
+      trust: [
+        "Human approval for commercial and legal decisions",
+        "Designed around CRM and portal workflows",
+        "Reference blueprint, not a client case claim",
+      ],
+      painTitle: "Where real estate operations break",
+      painPoints: [
+        "Portal leads arrive fast, but response and qualification depend on manual follow-up.",
+        "Visit scheduling, owner updates and rental tasks live in separate places.",
+        "Agents cannot see which leads need attention without searching across channels.",
+      ],
+      journeyTitle: "From property lead to visible next action",
+      journey: [
+        "Portal or referral lead",
+        "Qualification",
+        "CRM update",
+        "Visit scheduling",
+        "Human commercial gate",
+        "Owner or tenant follow-up",
+      ],
+      blueprint: {
+        label: "Reference blueprint",
+        title: "Lead qualification and rental-management visibility",
+        body:
+          "A controlled flow that captures property inquiries, normalises contact data, proposes next actions, creates CRM records and keeps commercial, legal and property-management exceptions in a human-owned queue.",
+        artifacts: [
+          "Lead capture and duplicate detection",
+          "Qualification questions and CRM routing",
+          "Visit scheduling and owner update tasks",
+          "Rental-management exception queue",
+        ],
+      },
+      modulesTitle: "Automations to launch first",
+      modules: [
+        {
+          title: "Lead response desk",
+          body: "Capture portal, form and message leads into a structured queue with owner and next action.",
+        },
+        {
+          title: "Visit scheduler",
+          body: "Coordinate availability, confirmations and reminders with clear handoff to the assigned agent.",
+        },
+        {
+          title: "Rental operations tracker",
+          body: "Surface tenant, owner and maintenance follow-ups before they disappear into chat history.",
+        },
+      ],
+      integrations: ["Property portals", "WhatsApp API", "CRM", "Calendar", "Email", "Task boards"],
+      proof: [
+        "Reference lead-to-follow-up map before build",
+        "Human approval for negotiation and compliance decisions",
+        "Visible owner for every lead, visit and rental exception",
+      ],
+      guardrails: [
+        "Pricing, negotiation, legal and compliance decisions require human approval.",
+        "Lead data and tenant information should be minimised and access-controlled.",
+        "Automation should log source, consent context and follow-up actions for review.",
+      ],
+      faq: [
+        {
+          question: "Can this replace our CRM?",
+          answer:
+            "No. It should strengthen the CRM by improving capture, routing, reminders and task visibility.",
+        },
+        {
+          question: "Can it qualify leads automatically?",
+          answer:
+            "It can collect and structure qualification signals. Commercial judgement and next-step approval stay with humans.",
+        },
+        {
+          question: "Does this include rental management?",
+          answer:
+            "Yes. The scan can include tenant requests, owner updates, maintenance handoffs and recurring follow-up tasks.",
+        },
+      ],
+      finalCta: "Map the real estate workflow where leads and rental tasks go quiet.",
+      solutionId: "lead-to-revenue",
+    },
+  ],
+  pt: [
+    {
+      id: "accounting-tax-consulting",
+      slug: "contabilidade-consultoria-fiscal",
+      title: "Contabilidade & Consultoria Fiscal",
+      audience: "Gabinetes contabilísticos, consultores fiscais e pequenas equipas financeiras",
+      eyebrow: "Operações com IA para contabilidade",
+      headline: "Menos chase. Mais prazos e documentos sob controlo.",
+      subheadline:
+        "Automatize pedidos de documentos, lembretes e handoffs enquanto o julgamento fiscal continua humano.",
+      metaDescription:
+        "Automação gerida para contabilidade e consultoria fiscal: recolha documental, lembretes, triagem, handoffs e validação humana governada.",
+      cta: "Mapear operação contabilística",
+      secondaryCta: "Ver blueprint de referência",
+      trust: [
+        "Sem decisões fiscais automáticas",
+        "Desenhado em torno das ferramentas que já usa",
+        "Blueprint de referência, não um caso de cliente",
+      ],
+      painTitle: "Onde o trabalho fiscal quebra",
+      painPoints: [
+        "Documentos de clientes chegam tarde, incompletos ou divididos por canais.",
+        "A equipa persegue a mesma informação por email, WhatsApp e folhas de cálculo.",
+        "Prazos, exceções e inputs de faturação dependem de memória manual.",
+      ],
+      journeyTitle: "Do pedido do cliente ao trabalho pronto para revisão",
+      journey: [
+        "Pedido do cliente",
+        "Checklist documental",
+        "Triagem de completude",
+        "Preparação da tarefa",
+        "Revisão humana",
+        "Entrega e follow-up",
+      ],
+      blueprint: {
+        label: "Blueprint de referência",
+        title: "Intake documental e controlo de prazos",
+        body:
+          "Um fluxo governado que recolhe inputs de clientes, normaliza pedidos, sinaliza evidência em falta, encaminha exceções e prepara o dossier antes de uma pessoa qualificada aprovar a decisão fiscal.",
+        artifacts: [
+          "Checklist de cliente e lógica de lembretes",
+          "Fila de exceções para informação em falta ou contraditória",
+          "Handoff para software contabilístico ou workspace interno",
+          "Auditoria de aprovações, overrides e follow-up",
+        ],
+      },
+      modulesTitle: "Automações para lançar primeiro",
+      modules: [
+        {
+          title: "Mesa de intake documental",
+          body: "Transforma mensagens dispersas em pedidos estruturados com dono e estado.",
+        },
+        {
+          title: "Radar de prazos",
+          body: "Cria lembretes, escalonamentos e filas de revisão antes de o trabalho ficar urgente.",
+        },
+        {
+          title: "Sinal de faturação",
+          body: "Mostra trabalho concluído, inputs em falta e gatilhos de cobrança sem reconciliação manual.",
+        },
+      ],
+      integrations: ["Email", "WhatsApp API", "Formulários", "CRM", "Workspace contabilístico", "Gestão de tarefas"],
+      proof: [
+        "Mapa de processo de referência antes da implementação",
+        "Pontos de validação humana para julgamento fiscal",
+        "Monitorização, retries e dono para exceções",
+      ],
+      guardrails: [
+        "Julgamento fiscal e aconselhamento ao cliente continuam com validação humana qualificada.",
+        "O sistema não deve pedir credenciais ou registos confidenciais em formulários públicos.",
+        "Retenção de dados, subprocessadores e acessos têm de refletir a arquitetura de produção.",
+      ],
+      faq: [
+        {
+          question: "Isto substitui o software de contabilidade?",
+          answer:
+            "Não. A oferta atua na camada operacional à volta das ferramentas existentes: intake, lembretes, encaminhamento, checks e visibilidade.",
+        },
+        {
+          question: "A IA pode decidir como tratar um caso fiscal?",
+          answer:
+            "Não. A IA pode rascunhar, classificar ou resumir. Decisões fiscais, aconselhamento e submissões exigem revisão e aprovação humana.",
+        },
+        {
+          question: "O que precisamos antes do scan?",
+          answer:
+            "Basta uma descrição curta do fluxo que hoje cria mais chase, retrabalho ou pressão de prazos.",
+        },
+      ],
+      finalCta: "Mapeie o workflow contabilístico que mais consome atenção da equipa.",
+      solutionId: "quote-to-cash",
+    },
+    {
+      id: "tourism-operations",
+      slug: "turismo-operacional",
+      title: "Turismo Operacional, Alojamento Local & Tours",
+      audience: "Operadores de alojamento local, tours e boutique hotels",
+      eyebrow: "Operações de hóspedes com IA",
+      headline: "Menos mensagens perdidas. Mais hóspedes acompanhados.",
+      subheadline:
+        "Ligue mensagens, reservas e tarefas para que menos pedidos desapareçam entre canais.",
+      metaDescription:
+        "Automação para turismo operacional, alojamento local, tours e boutique hotels: mensagens de hóspedes, check-in, routing, follow-up e visibilidade operacional.",
+      cta: "Mapear a operação de hóspedes",
+      secondaryCta: "Ver blueprint de referência",
+      trust: [
+        "Validação humana para temas sensíveis de hóspedes",
+        "Funciona à volta de canais de reserva e mensagens",
+        "Blueprint de referência, não um caso de cliente",
+      ],
+      painTitle: "Onde a operação de hóspedes quebra",
+      painPoints: [
+        "Reservas, mensagens e updates de tarefas chegam de plataformas diferentes.",
+        "Check-in, limpeza, transfers e capacidade de tours dependem de coordenação manual.",
+        "Perguntas de hóspedes repetem-se, mas as respostas continuam em copy-paste.",
+      ],
+      journeyTitle: "Do sinal de reserva ao follow-up pós-estadia",
+      journey: [
+        "Reserva ou pedido",
+        "Perfil do hóspede",
+        "Checklist pré-chegada",
+        "Handoff operacional",
+        "Escalonamento humano",
+        "Review e próxima oferta",
+      ],
+      blueprint: {
+        label: "Blueprint de referência",
+        title: "Orquestração de mensagens e tarefas de hóspedes",
+        body:
+          "Um fluxo controlado que classifica necessidades de hóspedes, prepara respostas aprovadas, cria tarefas operacionais e mantém exceções visíveis para a pessoa responsável pela estadia, tour ou propriedade.",
+        artifacts: [
+          "Triagem de mensagens por intenção e urgência",
+          "Routing de check-in, limpeza, transfers e tours",
+          "Biblioteca de respostas aprovadas com revisão humana",
+          "Follow-up pós-estadia e pedido de review",
+        ],
+      },
+      modulesTitle: "Automações para lançar primeiro",
+      modules: [
+        {
+          title: "Triagem da inbox de hóspedes",
+          body: "Classifica mensagens, prepara respostas e encaminha temas sensíveis para um dono humano.",
+        },
+        {
+          title: "Quadro operacional",
+          body: "Transforma alterações de reservas em tarefas visíveis para limpeza, check-in, guias e transfers.",
+        },
+        {
+          title: "Motor de follow-up",
+          body: "Envia mensagens aprovadas pós-estadia, pedidos de review e sequências de próxima oferta.",
+        },
+      ],
+      integrations: ["Plataformas de reserva", "WhatsApp API", "Email", "Calendário", "Task boards", "CRM"],
+      proof: [
+        "Mapa operacional de referência antes da implementação",
+        "Fila de exceções para casos com impacto no hóspede",
+        "Monitorização para falhas silenciosas de automação",
+      ],
+      guardrails: [
+        "Reclamações, reembolsos, segurança e decisões fora do padrão exigem validação humana.",
+        "Dados de hóspedes devem ser minimizados e retidos apenas para fins operacionais definidos.",
+        "A automação deve suportar a experiência do hóspede, não esconder responsabilidade operacional.",
+      ],
+      faq: [
+        {
+          question: "Funciona se usamos vários canais de reserva?",
+          answer:
+            "Sim. O scan começa por mapear onde os sinais entram hoje e depois define o que deve ser conectado, monitorizado ou mantido manual.",
+        },
+        {
+          question: "Os hóspedes vão falar com IA?",
+          answer:
+            "A abordagem mais segura é usar mensagens aprovadas, escalonamento claro e dono humano para casos sensíveis ou fora do padrão.",
+        },
+        {
+          question: "Isto é só para hotéis?",
+          answer:
+            "Não. O mesmo padrão serve alojamento local, tours, pequenas equipas de hospitalidade e boutique guest operations.",
+        },
+      ],
+      finalCta: "Mapeie a operação de hóspedes antes de a próxima época alta expor as falhas.",
+      solutionId: "customer-operations",
+    },
+    {
+      id: "private-clinics",
+      slug: "clinicas-privadas",
+      title: "Clínicas Privadas, Estética, Fisioterapia & Saúde-Beleza",
+      audience: "Clínicas privadas, estética, fisioterapia e equipas de saúde-beleza",
+      eyebrow: "Operações clínicas com IA assistida",
+      headline: "Mais consultas confirmadas. Menos carga na receção.",
+      subheadline:
+        "Automatize marcações, lembretes e aftercare enquanto decisões clínicas continuam humanas.",
+      metaDescription:
+        "Automação para clínicas privadas, estética, fisioterapia e saúde-beleza: marcações, lembretes, tarefas de receção e follow-up governado.",
+      cta: "Mapear operação clínica",
+      secondaryCta: "Ver blueprint de referência",
+      trust: [
+        "Sem diagnóstico ou tratamento automático",
+        "Desenhado para consentimento e disciplina de dados sensíveis",
+        "Blueprint de referência, não um caso de cliente",
+      ],
+      painTitle: "Onde a operação clínica quebra",
+      painPoints: [
+        "A receção repete as mesmas marcações, lembretes e follow-ups todos os dias.",
+        "No-shows e cancelamentos tardios são tratados quando a agenda já foi afetada.",
+        "Perguntas de pacientes chegam por canais que não ligam ao workflow de marcação.",
+      ],
+      journeyTitle: "Do primeiro pedido ao follow-up confirmado",
+      journey: [
+        "Pedido ou marcação",
+        "Intake e consentimento",
+        "Confirmação",
+        "Tarefa de receção",
+        "Gate clínico humano",
+        "Follow-up aftercare",
+      ],
+      blueprint: {
+        label: "Blueprint de referência",
+        title: "Intake de marcações e controlo de aftercare",
+        body:
+          "Um workflow governado que estrutura pedidos, confirma marcações, prepara tarefas de receção e encaminha temas clínicos ou sensíveis para humanos qualificados antes de qualquer aconselhamento.",
+        artifacts: [
+          "Fluxo de pedido e confirmação de marcação",
+          "Sequência de lembrete e recuperação de no-show",
+          "Comunicação de aftercare com templates aprovados",
+          "Fila de exceções para pedidos clínicos ou sensíveis",
+        ],
+      },
+      modulesTitle: "Automações para lançar primeiro",
+      modules: [
+        {
+          title: "Fila de comando da receção",
+          body: "Converte mensagens e formulários em tarefas visíveis de marcação, confirmação e follow-up.",
+        },
+        {
+          title: "Recuperação de no-shows",
+          body: "Prepara lembretes, remarcações e lista de espera sem empurrar julgamento clínico para automação.",
+        },
+        {
+          title: "Assistente de aftercare",
+          body: "Envia instruções aprovadas e encaminha tudo o que sai do protocolo para a pessoa certa.",
+        },
+      ],
+      integrations: ["Sistema de marcações", "WhatsApp API", "Email", "Formulários", "CRM", "Calendário"],
+      proof: [
+        "Mapa de processo de referência antes da implementação",
+        "Gate humano para decisões clínicas ou sensíveis",
+        "Separação clara entre automação administrativa e responsabilidade clínica",
+      ],
+      guardrails: [
+        "Julgamento clínico, diagnóstico e aconselhamento de tratamento exigem validação humana qualificada.",
+        "Dados de saúde exigem minimização, controlo de acessos e revisão de subprocessadores.",
+        "Follow-up de marketing deve respeitar consentimento, opt-outs e linguagem aprovada pela clínica.",
+      ],
+      faq: [
+        {
+          question: "A IA pode responder a perguntas médicas de pacientes?",
+          answer:
+            "Não. A IA pode estruturar intake ou preparar mensagens administrativas aprovadas. Aconselhamento clínico e tratamento ficam com humanos qualificados.",
+        },
+        {
+          question: "Qual é o ganho operacional mais rápido?",
+          answer:
+            "Normalmente confirmações, lembretes, remarcações e propriedade clara das tarefas de receção.",
+        },
+        {
+          question: "Serve estética e fisioterapia?",
+          answer:
+            "Sim, desde que o workflow separe automação administrativa de julgamento clínico e tratamento de dados sensíveis.",
+        },
+      ],
+      finalCta: "Mapeie o workflow clínico que a receção repete todos os dias.",
+      solutionId: "customer-operations",
+    },
+    {
+      id: "real-estate-rentals",
+      slug: "imobiliario-arrendamento",
+      title: "Imobiliário, Mediação & Gestão de Arrendamento",
+      audience: "Mediadoras, consultores imobiliários e equipas de gestão de arrendamento",
+      eyebrow: "Operações imobiliárias com IA assistida",
+      headline: "Leads respondidos antes de arrefecerem.",
+      subheadline:
+        "Capture, qualifique e acompanhe leads antes que desapareçam entre portais, CRM e WhatsApp.",
+      metaDescription:
+        "Automação para imobiliário, mediação e gestão de arrendamento: resposta a leads, qualificação, visitas, updates a proprietários e follow-up operacional.",
+      cta: "Mapear operação imobiliária",
+      secondaryCta: "Ver blueprint de referência",
+      trust: [
+        "Validação humana para decisões comerciais e legais",
+        "Desenhado em torno de CRM e portais",
+        "Blueprint de referência, não um caso de cliente",
+      ],
+      painTitle: "Onde a operação imobiliária quebra",
+      painPoints: [
+        "Leads de portais chegam rápido, mas resposta e qualificação dependem de follow-up manual.",
+        "Agendamento de visitas, updates a proprietários e tarefas de arrendamento vivem em lugares diferentes.",
+        "Consultores não veem quais leads exigem atenção sem procurar em vários canais.",
+      ],
+      journeyTitle: "Do lead imobiliário à próxima ação visível",
+      journey: [
+        "Lead de portal ou referência",
+        "Qualificação",
+        "Atualização de CRM",
+        "Agendamento de visita",
+        "Gate comercial humano",
+        "Follow-up proprietário ou inquilino",
+      ],
+      blueprint: {
+        label: "Blueprint de referência",
+        title: "Qualificação de leads e visibilidade no arrendamento",
+        body:
+          "Um fluxo controlado que captura pedidos sobre imóveis, normaliza contactos, propõe próximas ações, cria registos no CRM e mantém exceções comerciais, legais e de gestão em fila com dono humano.",
+        artifacts: [
+          "Captura de lead e deteção de duplicados",
+          "Perguntas de qualificação e routing para CRM",
+          "Agendamento de visitas e tarefas de update a proprietários",
+          "Fila de exceções de gestão de arrendamento",
+        ],
+      },
+      modulesTitle: "Automações para lançar primeiro",
+      modules: [
+        {
+          title: "Mesa de resposta a leads",
+          body: "Captura leads de portais, formulários e mensagens numa fila estruturada com dono e próxima ação.",
+        },
+        {
+          title: "Agendador de visitas",
+          body: "Coordena disponibilidade, confirmações e lembretes com handoff claro para o consultor atribuído.",
+        },
+        {
+          title: "Tracker de arrendamento",
+          body: "Mostra follow-ups de inquilinos, proprietários e manutenção antes de desaparecerem no histórico de chat.",
+        },
+      ],
+      integrations: ["Portais imobiliários", "WhatsApp API", "CRM", "Calendário", "Email", "Task boards"],
+      proof: [
+        "Mapa de referência lead-to-follow-up antes da implementação",
+        "Validação humana para negociação e decisões de compliance",
+        "Dono visível para cada lead, visita e exceção de arrendamento",
+      ],
+      guardrails: [
+        "Preço, negociação, decisões legais e compliance exigem validação humana.",
+        "Dados de leads, proprietários e inquilinos devem ser minimizados e controlados por acessos.",
+        "A automação deve registar origem, contexto de consentimento e ações de follow-up para revisão.",
+      ],
+      faq: [
+        {
+          question: "Isto substitui o CRM imobiliário?",
+          answer:
+            "Não. Deve reforçar o CRM com melhor captura, routing, lembretes e visibilidade de tarefas.",
+        },
+        {
+          question: "Pode qualificar leads automaticamente?",
+          answer:
+            "Pode recolher e estruturar sinais de qualificação. Julgamento comercial e aprovação da próxima ação ficam com humanos.",
+        },
+        {
+          question: "Inclui gestão de arrendamento?",
+          answer:
+            "Sim. O scan pode incluir pedidos de inquilinos, updates a proprietários, handoffs de manutenção e follow-ups recorrentes.",
+        },
+      ],
+      finalCta: "Mapeie o workflow imobiliário onde leads e tarefas de arrendamento ficam em silêncio.",
+      solutionId: "lead-to-revenue",
+    },
+  ],
+};
+
 export const insights: Record<Locale, Insight[]> = {
   en: [
     {
@@ -1222,6 +1995,14 @@ export function getInsight(locale: Locale, slug: string) {
 
 export function getPolicy(locale: Locale, key: Policy["key"]) {
   return policies[locale].find((policy) => policy.key === key);
+}
+
+export function getLandingPage(locale: Locale, slug: string) {
+  return landingPages[locale].find((page) => page.slug === slug);
+}
+
+export function getLandingPageById(locale: Locale, id: LandingPageId) {
+  return landingPages[locale].find((page) => page.id === id);
 }
 
 export function relatedSolutions(locale: Locale, ids: SolutionId[]) {

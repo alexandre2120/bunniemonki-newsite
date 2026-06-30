@@ -12,6 +12,8 @@ export type RouteKey =
   | "blueprint"
   | "insights"
   | "insight"
+  | "landing"
+  | "landingPage"
   | "about"
   | "scan"
   | "privacy"
@@ -30,6 +32,8 @@ const routeSegments: Record<Locale, Record<RouteKey, string>> = {
     blueprint: "blueprints",
     insights: "insights",
     insight: "insights",
+    landing: "landing",
+    landingPage: "landing",
     about: "about",
     scan: "automation-scan",
     privacy: "privacy",
@@ -47,6 +51,8 @@ const routeSegments: Record<Locale, Record<RouteKey, string>> = {
     blueprint: "blueprints",
     insights: "insights",
     insight: "insights",
+    landing: "landing",
+    landingPage: "landing",
     about: "sobre",
     scan: "automation-scan",
     privacy: "privacidade",
@@ -62,6 +68,7 @@ const indexRouteBySegment: Record<Locale, Record<string, RouteKey>> = {
     departments: "departments",
     blueprints: "blueprints",
     insights: "insights",
+    landing: "landing",
     about: "about",
     "automation-scan": "scan",
     privacy: "privacy",
@@ -74,6 +81,7 @@ const indexRouteBySegment: Record<Locale, Record<string, RouteKey>> = {
     departamentos: "departments",
     blueprints: "blueprints",
     insights: "insights",
+    landing: "landing",
     sobre: "about",
     "automation-scan": "scan",
     privacidade: "privacy",
@@ -89,14 +97,42 @@ const detailRouteBySegment: Record<Locale, Record<string, RouteKey>> = {
     departments: "department",
     blueprints: "blueprint",
     insights: "insight",
+    landing: "landingPage",
   },
   pt: {
     solucoes: "solution",
     departamentos: "department",
     blueprints: "blueprint",
     insights: "insight",
+    landing: "landingPage",
   },
 };
+
+const landingSlugById = {
+  "accounting-tax-consulting": {
+    en: "accounting-tax-consulting",
+    pt: "contabilidade-consultoria-fiscal",
+  },
+  "tourism-operations": {
+    en: "tourism-operations",
+    pt: "turismo-operacional",
+  },
+  "private-clinics": {
+    en: "private-clinics",
+    pt: "clinicas-privadas",
+  },
+  "real-estate-rentals": {
+    en: "real-estate-rentals",
+    pt: "imobiliario-arrendamento",
+  },
+} as const satisfies Record<string, Record<Locale, string>>;
+
+function getAlternateLandingSlug(locale: Locale, slug: string) {
+  const nextLocale: Locale = locale === "en" ? "pt" : "en";
+  const match = Object.values(landingSlugById).find((entry) => entry[locale] === slug);
+
+  return match ? match[nextLocale] : slug;
+}
 
 export function hasLocale(value: string): value is Locale {
   return (locales as readonly string[]).includes(value);
@@ -106,7 +142,10 @@ export function getLocalizedPath(locale: Locale, route: RouteKey, slug?: string)
   const segment = routeSegments[locale][route];
   const base = segment ? `/${locale}/${segment}` : `/${locale}`;
 
-  if (slug && ["solution", "department", "blueprint", "insight"].includes(route)) {
+  if (
+    slug &&
+    ["solution", "department", "blueprint", "insight", "landingPage"].includes(route)
+  ) {
     return `${base}/${slug}`;
   }
 
@@ -136,7 +175,10 @@ export function getAlternateLocalePath(path: string) {
         ? detailRouteBySegment[locale][firstSegment]
         : indexRouteBySegment[locale][firstSegment];
 
-    nextPath = route ? getLocalizedPath(nextLocale, route, slug) : nextPath;
+    const nextSlug =
+      route === "landingPage" && slug ? getAlternateLandingSlug(locale, slug) : slug;
+
+    nextPath = route ? getLocalizedPath(nextLocale, route, nextSlug) : nextPath;
   }
 
   return `${nextPath}${url.search}${url.hash}`;

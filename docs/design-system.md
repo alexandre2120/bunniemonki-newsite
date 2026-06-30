@@ -1,76 +1,49 @@
 # Design System
 
-## Direção Visual
+## Direção
 
-A direção visual construída para a Bunniemonki é operacional, clara e orientada a sistemas. A interface deve parecer uma camada de trabalho que mostra fluxos, responsabilidades e handoffs, não uma landing page decorativa.
+Visual operacional, com cara de sistema de trabalho. Menos decoração, mais fluxo, estado e responsabilidade.
 
-Princípios usados:
+Princípios:
 
-- Handoffs e jornadas devem ser representados como fluxo visual.
-- Ícones aparecem quando ajudam a reconhecer ação, estado ou estrutura.
-- Cards são usados para entidades repetidas ou blocos claramente enquadrados.
-- Secções mantêm largura controlada e ritmo editorial.
-- O amarelo da marca é usado como sinal de ação e destaque operacional.
-- Motion é discreto, com reveals e pequenas interações, sem competir com o conteúdo.
+- Amarelo da marca para ação.
+- Preto/ink para áreas de decisão e landing hero.
+- Grids, linhas e labels mono para linguagem operacional.
+- Cards apenas para entidades repetidas ou blocos com função clara.
+- Motion discreto via `Reveal`.
+- Landing pages com copy curta e CTAs evidentes.
 
-## Tokens e Base Visual
+## Tokens
 
-Tokens principais em [src/app/globals.css](../src/app/globals.css):
+Definidos em [globals.css](../src/app/globals.css):
 
-- `--background`: fundo claro quente.
-- `--foreground`: texto quase preto.
-- `--surface`: plano secundário.
-- `--brand`: amarelo Bunniemonki.
-- `--brand-ink`: texto sobre amarelo.
-- `--ink`: área escura.
-- `--rule`: linhas e bordas.
+- `--background`, `--foreground`, `--surface`.
+- `--brand`, `--brand-ink`.
+- `--ink`.
+- `--border`, `--muted`.
 
 Tipografia:
 
-- Inter para texto base.
-- Space Grotesk para headings.
-- Geist Mono para labels, números e informação utilitária.
+- Inter: corpo.
+- Space Grotesk: headings.
+- Geist Mono: labels, números e dados.
 
-## Componentes Visuais Criados ou Ajustados
+## Componentes Visuais
 
-### Flow
+- [flow.tsx](../src/components/site/flow.tsx): processos, handoffs, tabelas e diagrama.
+- [journey-automation-map.tsx](../src/components/site/journey-automation-map.tsx): mapa vivo de automações por nicho.
+- [entity-cards.tsx](../src/components/site/entity-cards.tsx): cards de soluções, departamentos e insights.
+- [page-views.tsx](../src/components/site/page-views.tsx): layouts de página e landings.
 
-[src/components/site/flow.tsx](../src/components/site/flow.tsx) concentra os elementos de fluxo:
+## Mudanças Feitas
 
-- `ProcessLine`: lista visual de passos, responsiva e com números.
-- `HandoffFlow`: substitui textos como `Marketing -> Sales -> Operations` por nós, conectores, ícones e contagem de equipas.
-- `StageTable`: tabela de etapas com cabeçalhos localizados.
-- `ArchitectureDiagram`: diagrama da camada de automação, localizado em PT/EN.
+- Landing pages reduzidas para leitura rápida.
+- Hero das landings com grid escuro, CTA forte e cockpit visual.
+- Blocos de pitch limitados a 3 itens.
+- Removidas FAQs e listas longas das landings.
+- Handoff textuais substituídos por UI de fluxo.
+- Header, nav mobile e badges ajustados para PT/EN e mobile.
 
-### Cards
+## Cuidado
 
-[src/components/site/entity-cards.tsx](../src/components/site/entity-cards.tsx) foi ajustado para:
-
-- Localizar labels como `Problem` e `Outcome`.
-- Usar títulos das jornadas nos badges de departamento, evitando ids técnicos como `lead-to-revenue`.
-- Garantir que badges longos quebram bem no mobile.
-
-### Header
-
-[src/components/site/site-header.tsx](../src/components/site/site-header.tsx) foi ajustado para:
-
-- Usar copy localizada no skip link.
-- Localizar labels acessíveis de navegação e menu mobile.
-- Preservar troca de idioma por rota equivalente.
-
-## Correções de Design Feitas
-
-- Remoção de setas textuais `->` em secções de handoff.
-- Substituição por UI de fluxo com ícones e conectores.
-- Ajuste do `ProcessLine` para suportar 5 e 7 passos sem grid rígido.
-- Correção de overflow e quebras em mobile.
-- Correção de logo/crop e legibilidade em header.
-- Correção de labels e etapas PT que ainda vinham do conteúdo EN.
-- Substituição de texto bruto por estruturas visuais quando o conteúdo representa processo ou relação.
-
-## Cuidados Pendentes
-
-- Fazer mais uma revisão visual completa em deploy preview, especialmente em Safari e mobile real.
-- Remover assets padrão do scaffold que não são usados.
-- Validar contrastes finais caso sejam adicionados analytics/cookie banner ou novos CTAs.
-
+Antes de produção, validar em deploy preview, Safari e mobile real.

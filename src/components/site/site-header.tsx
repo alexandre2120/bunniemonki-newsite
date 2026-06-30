@@ -15,6 +15,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { analyticsClickAttributes } from "@/lib/analytics";
 import { getNavItems, siteCopy } from "@/lib/content";
 import { getAlternateLocalePath, getLocalizedPath, type Locale } from "@/lib/i18n";
 
@@ -34,7 +35,17 @@ export function SiteHeader({ locale }: { locale: Locale }) {
         {copy.ui.skipToContent}
       </a>
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:px-8">
-        <Link href={getLocalizedPath(locale, "home")} className="flex items-center gap-3">
+        <Link
+          href={getLocalizedPath(locale, "home")}
+          className="flex items-center gap-3"
+          {...analyticsClickAttributes({
+            name: "navigation_click",
+            location: "header_logo",
+            target: "home",
+            locale,
+            pageKind: "global",
+          })}
+        >
           <Image
             src="/brand/bunniemonki-logo.svg"
             width={526}
@@ -52,17 +63,48 @@ export function SiteHeader({ locale }: { locale: Locale }) {
         <nav aria-label={copy.ui.primaryNav} className="hidden items-center gap-1 lg:flex">
           {navItems.map((item) => (
             <Button key={item.href} asChild variant="ghost" className="px-3">
-              <Link href={item.href}>{item.label}</Link>
+              <Link
+                href={item.href}
+                {...analyticsClickAttributes({
+                  name: "navigation_click",
+                  location: "header_nav",
+                  target: "primary_nav",
+                  locale,
+                  pageKind: "global",
+                })}
+              >
+                {item.label}
+              </Link>
             </Button>
           ))}
         </nav>
 
         <div className="hidden items-center gap-2 lg:flex">
           <Button asChild variant="outline" className="font-mono">
-            <Link href={alternate}>{altLocale}</Link>
+            <Link
+              href={alternate}
+              {...analyticsClickAttributes({
+                name: "navigation_click",
+                location: "header_locale_switcher",
+                target: "alternate_locale",
+                locale,
+                pageKind: "global",
+              })}
+            >
+              {altLocale}
+            </Link>
           </Button>
           <Button asChild className="bg-brand text-brand-ink hover:bg-brand/85">
-            <Link href={getLocalizedPath(locale, "scan")}>
+            <Link
+              href={getLocalizedPath(locale, "scan")}
+              {...analyticsClickAttributes({
+                name: "cta_click",
+                location: "header_desktop",
+                target: "automation_scan",
+                locale,
+                pageKind: "global",
+              })}
+            >
               {copy.cta.scan}
               <ArrowUpRight aria-hidden="true" />
             </Link>
@@ -71,7 +113,19 @@ export function SiteHeader({ locale }: { locale: Locale }) {
 
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="outline" size="icon-lg" className="lg:hidden" aria-label={copy.ui.openMenu}>
+            <Button
+              variant="outline"
+              size="icon-lg"
+              className="lg:hidden"
+              aria-label={copy.ui.openMenu}
+              {...analyticsClickAttributes({
+                name: "navigation_click",
+                location: "mobile_header",
+                target: "open_menu",
+                locale,
+                pageKind: "global",
+              })}
+            >
               <Menu aria-hidden="true" />
             </Button>
           </SheetTrigger>
@@ -86,6 +140,13 @@ export function SiteHeader({ locale }: { locale: Locale }) {
                   <Link
                     href={item.href}
                     className="border-b border-border py-4 font-heading text-2xl font-semibold"
+                    {...analyticsClickAttributes({
+                      name: "navigation_click",
+                      location: "mobile_nav",
+                      target: "primary_nav",
+                      locale,
+                      pageKind: "global",
+                    })}
                   >
                     {item.label}
                   </Link>
@@ -95,12 +156,34 @@ export function SiteHeader({ locale }: { locale: Locale }) {
             <div className="mt-auto grid gap-2 p-4">
               <SheetClose asChild>
                 <Button asChild className="bg-brand text-brand-ink hover:bg-brand/85">
-                  <Link href={getLocalizedPath(locale, "scan")}>{copy.cta.scan}</Link>
+                  <Link
+                    href={getLocalizedPath(locale, "scan")}
+                    {...analyticsClickAttributes({
+                      name: "cta_click",
+                      location: "mobile_menu",
+                      target: "automation_scan",
+                      locale,
+                      pageKind: "global",
+                    })}
+                  >
+                    {copy.cta.scan}
+                  </Link>
                 </Button>
               </SheetClose>
               <SheetClose asChild>
                 <Button asChild variant="outline">
-                  <Link href={alternate}>{locale === "en" ? "Português" : "English"}</Link>
+                  <Link
+                    href={alternate}
+                    {...analyticsClickAttributes({
+                      name: "navigation_click",
+                      location: "mobile_locale_switcher",
+                      target: "alternate_locale",
+                      locale,
+                      pageKind: "global",
+                    })}
+                  >
+                    {locale === "en" ? "Português" : "English"}
+                  </Link>
                 </Button>
               </SheetClose>
             </div>

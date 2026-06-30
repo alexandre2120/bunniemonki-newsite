@@ -1,12 +1,12 @@
 # Arquitetura
 
-## Estrutura Principal
+## Estrutura
 
 ```txt
 src/
   app/
-    page.tsx
     layout.tsx
+    page.tsx
     robots.ts
     sitemap.ts
     [locale]/
@@ -15,8 +15,17 @@ src/
       [[...segments]]/page.tsx
   components/
     site/
+      analytics-events.tsx
+      vercel-analytics.tsx
+      journey-automation-map.tsx
+      page-views.tsx
+      scan-form.tsx
+      site-header.tsx
+      site-footer.tsx
     ui/
   lib/
+    analytics.ts
+    automation-map.ts
     content.ts
     i18n.ts
     routes.ts
@@ -24,75 +33,39 @@ src/
     scan-validation.ts
 ```
 
-## App Router
+## Rotas
 
-A raiz `/` redireciona para `/en` em [src/app/page.tsx](../src/app/page.tsx). As páginas públicas vivem sob `/:locale/...`, com `locale` limitado a `en` e `pt`.
+A raiz `/` redireciona para `/en`. As páginas públicas vivem em `/:locale/...`, com `locale` limitado a `en` e `pt`.
 
-A rota catch-all [src/app/[locale]/[[...segments]]/page.tsx](../src/app/%5Blocale%5D/%5B%5B...segments%5D%5D/page.tsx) resolve o tipo de página via `resolveRoute` e renderiza a view correta:
+A catch-all [page.tsx](../src/app/%5Blocale%5D/%5B%5B...segments%5D%5D/page.tsx) chama `resolveRoute` e renderiza a view certa em [page-views.tsx](../src/components/site/page-views.tsx).
 
-- `HomeView`
-- `SolutionsIndexView`
-- `SolutionDetailView`
-- `DepartmentsIndexView`
-- `DepartmentDetailView`
-- `BlueprintsIndexView`
-- `BlueprintDetailView`
-- `InsightsIndexView`
-- `InsightDetailView`
-- `AboutView`
-- `ScanView`
-- `PolicyView`
-- `FormUnavailableView`
+Tipos de rota atuais:
 
-## Dados e Rotas
+- home, soluções, detalhe de solução.
+- departamentos, detalhe de departamento.
+- blueprints, detalhe de blueprint.
+- insights, detalhe de insight.
+- landing pages.
+- about, scan, policies, form unavailable.
 
-As rotas estão centralizadas em [src/lib/routes.ts](../src/lib/routes.ts). O ficheiro:
+## Dados
 
-- Define o mapa de segmentos por idioma.
-- Resolve rotas index e detalhe.
-- Gera os parâmetros estáticos para build.
-- Inclui rotas legais e de sistema.
+- [content.ts](../src/lib/content.ts): copy, entidades, políticas e landings.
+- [automation-map.ts](../src/lib/automation-map.ts): nichos, jornadas, sistemas e automações do mapa.
+- [routes.ts](../src/lib/routes.ts): resolução de rotas e `generateStaticParams`.
+- [i18n.ts](../src/lib/i18n.ts): locale, slugs e alternância de idioma.
 
-As regras de idioma e paths localizados ficam em [src/lib/i18n.ts](../src/lib/i18n.ts):
+## Componentes
 
-- `locales`.
-- `getLocalizedPath`.
-- `getAlternateLocalePath`.
-- `hasLocale`.
-- `isLocalizedRoute`.
-
-## Componentes de Site
-
-Componentes principais em `src/components/site`:
-
-- `site-header.tsx`: header, navegação, troca de idioma e menu mobile.
-- `site-footer.tsx`: footer localizado.
-- `page-views.tsx`: composição das páginas.
-- `entity-cards.tsx`: cards de soluções, departamentos e insights.
-- `flow.tsx`: diagramas, processos, tabelas de jornada e handoff flows.
-- `scan-form.tsx`: formulário multi-step do Automation Scan.
-- `section.tsx`: primitives de secção, eyebrow e intro.
-- `reveal.tsx`: animação Motion com respeito a reduced motion.
-
-## Componentes UI
-
-Os componentes shadcn/ui ficam em `src/components/ui`. Foram usados principalmente:
-
-- Button.
-- Card.
-- Badge.
-- Alert.
-- Select.
-- Checkbox.
-- Input.
-- Textarea.
-- Sheet.
-- Tooltip.
-- Separator.
+- [site-header.tsx](../src/components/site/site-header.tsx): nav, idioma, menu mobile e CTA.
+- [site-footer.tsx](../src/components/site/site-footer.tsx): links institucionais e legais.
+- [page-views.tsx](../src/components/site/page-views.tsx): composição das páginas.
+- [journey-automation-map.tsx](../src/components/site/journey-automation-map.tsx): mapa interativo de nicho/jornada.
+- [entity-cards.tsx](../src/components/site/entity-cards.tsx): cards de soluções, departamentos e insights.
+- [scan-form.tsx](../src/components/site/scan-form.tsx): formulário multi-step.
+- [analytics-events.tsx](../src/components/site/analytics-events.tsx): delegação global de cliques trackados.
+- [vercel-analytics.tsx](../src/components/site/vercel-analytics.tsx): wrapper client para `<Analytics />`.
 
 ## Renderização
 
-O build atual gera páginas estáticas via `generateStaticParams`. Isto é adequado para a camada editorial e institucional do site.
-
-Quando o Automation Scan passar a enviar dados reais, será necessário adicionar uma ação server-side ou route handler para receber e processar submissões.
-
+O site é gerado estaticamente via `generateStaticParams`. O build atual gera 65 páginas estáticas. O Automation Scan ainda não tem route handler/server action.

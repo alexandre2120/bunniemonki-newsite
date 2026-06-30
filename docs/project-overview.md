@@ -2,61 +2,38 @@
 
 ## Objetivo
 
-Construir o website da Bunniemonki como uma aplicação Next.js em TypeScript, com Tailwind, shadcn/ui e animações via Motion. O site apresenta a Bunniemonki como uma marca de Business Automation & AI Operations focada em jornadas operacionais, integrações, handoffs e automação gerida.
+Site PT/EN da Bunniemonki para vender Business Automation & AI Operations. A proposta é mostrar jornadas, handoffs, automação gerida e capturar leads para um Automation Scan.
 
 ## Stack
 
-- Next.js App Router.
-- TypeScript.
-- React.
+- Next.js 16 App Router.
+- React 19 e TypeScript.
 - Tailwind CSS v4.
-- shadcn/ui com componentes Radix.
-- Lucide React para ícones.
-- Motion para animações de entrada e microinterações.
-- Vitest para testes unitários de rotas, copy e validação do formulário.
-- ESLint e `next build` para verificação técnica.
+- shadcn/ui e Radix.
+- Lucide React.
+- Motion.
+- Vitest, ESLint e `next build`.
+- Vercel Analytics.
 
-## Superfície Implementada
+## O Que Existe
 
-O site tem rotas localizadas em inglês e português:
+- Site institucional PT/EN.
+- Home, soluções, departamentos, blueprints, insights, sobre e páginas legais.
+- Landing pages separadas para 4 nichos em PT/EN.
+- Mapa interativo de automações por nicho/jornada.
+- Automation Scan em 3 passos, ainda client-side.
+- Metadata, canonicals, alternates, sitemap e robots.
+- Analytics de page context, CTAs, cards, mapa e formulário.
 
-- Home.
-- Soluções.
-- Detalhe de solução.
-- Departamentos.
-- Detalhe de departamento.
-- Blueprints.
-- Detalhe de blueprint.
-- Insights.
-- Artigos de insight.
-- Sobre.
-- Automation Scan.
-- Páginas legais: Privacidade, Termos, Cookies, Acessibilidade.
-- Páginas de sistema: 404 e formulário indisponível.
-- `robots.txt`.
-- `sitemap.xml`.
+## Fonte de Conteúdo
 
-## Conteúdo
+O conteúdo vive principalmente em [src/lib/content.ts](../src/lib/content.ts):
 
-O conteúdo principal foi estruturado em [src/lib/content.ts](../src/lib/content.ts). Ele contém:
-
-- Copy global por idioma.
-- Entidade legal da empresa.
-- Soluções.
-- Departamentos.
-- Blueprint de referência.
-- Insights.
-- Políticas.
-- Funções auxiliares para relacionar soluções, departamentos e conteúdos.
+- `siteCopy`: copy global por locale.
+- `solutions`, `departments`, `blueprints`, `insights`, `policies`.
+- `landingPages`: landings por nicho.
+- helpers de relação e lookup.
 
 ## Estado Atual
 
-O projeto está funcional como site estático com experiência local completa. O Automation Scan funciona como protótipo validado no cliente, mas ainda não envia dados para um backend.
-
-Verificações recentes executadas durante o trabalho:
-
-- `npm test`.
-- `npm run lint`.
-- `npm run build`.
-- QA visual com Playwright em páginas PT/EN e desktop/mobile.
-
+Pronto para deploy preview. Para produção pública com captação real, o ponto principal ainda é ligar o Automation Scan a backend/CRM e fechar revisão legal/privacidade.

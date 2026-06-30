@@ -1,8 +1,8 @@
-# QA e Checklist de Lançamento
+# QA e Lançamento
 
-## Estado Técnico Verificado
+## Última Verificação
 
-Última leitura técnica feita em 2026-06-27:
+Executada em 2026-06-29:
 
 ```bash
 npm test
@@ -10,76 +10,36 @@ npm run lint
 npm run build
 ```
 
-Resultado observado:
+Resultado:
 
-- Testes Vitest passaram.
+- 15 test files passaram.
+- 40 testes passaram.
 - ESLint passou.
-- Build Next.js passou.
-- O build gera 56 páginas estáticas.
+- `next build` passou.
+- Build gerou 65 páginas estáticas.
 
-## QA Visual Realizado
+## QA Feito
 
-Foram feitas verificações com browser/Playwright em desktop e mobile, incluindo:
+- Landing de contabilidade verificada por HTTP em `localhost:3000`.
+- HTML contém `data-analytics-*` em header, hero, final CTA e footer.
+- Desktop/mobile das landings foram revistos durante o redesign.
+- Build capturou e foi corrigido o problema de passar `beforeSend` do server layout para client component.
 
-- Header e navegação.
-- Troca de idioma.
-- Automation Scan PT/EN.
-- Mensagens de validação PT.
-- Handoff flow em desktop e mobile.
-- Tabelas de jornada PT.
-- Blueprint PT.
-- Console sem erros nas rotas verificadas.
+## Pronto Para Preview
 
-## Pronto Para Preview?
+Sim. Pode ir para deploy preview.
 
-Sim. O projeto está pronto para deploy preview e revisão visual em ambiente hospedado.
+## Antes de Produção Pública
 
-## Pronto Para Produção Pública?
+1. Ativar Web Analytics no dashboard Vercel.
+2. Confirmar se custom events estão disponíveis no plano usado.
+3. Ligar Automation Scan a backend/CRM.
+4. Rever legal, privacidade, cookies e analytics.
+5. Corrigir `html lang` dinâmico e 404 localizado.
+6. Confirmar domínio final em metadata, sitemap e robots.
+7. Limpar README/assets de scaffold.
 
-Ainda não completamente. O site institucional pode ser publicado como preview, mas produção pública com captação de leads exige fechar os pontos abaixo.
-
-## Bloqueantes Recomendados Para Produção
-
-### 1. Automation Scan Real
-
-- Criar backend de submissão.
-- Validar dados no servidor.
-- Armazenar pedidos.
-- Notificar equipa.
-- Definir fluxo de erro.
-- Atualizar mensagem de sucesso final.
-- Proteger contra spam e abuso.
-
-### 2. Legal
-
-- Aprovar textos finais de Privacidade, Termos, Cookies e Acessibilidade.
-- Definir contacto de acessibilidade.
-- Confirmar processadores, retenção e base legal de tratamento.
-- Confirmar se haverá analytics/cookies não essenciais.
-
-### 3. SEO/i18n Técnico
-
-- Tornar `html lang` compatível com a rota atual.
-- Corrigir 404 localizado para usar locale correto.
-- Confirmar canonical e alternates em deploy real.
-- Confirmar domínio final em `metadataBase`, sitemap e robots.
-
-### 4. Deploy e Operação
-
-- Configurar projeto na Vercel.
-- Definir domínio principal.
-- Configurar variáveis de ambiente, se houver integrações.
-- Definir monitorização de erros e logs.
-- Criar procedimento de rollback.
-
-### 5. Limpeza de Projeto
-
-- Substituir README template.
-- Remover assets padrão não usados em `public/`.
-- Confirmar favicon final.
-- Confirmar que imagens de marca finais estão otimizadas.
-
-## Comandos de Verificação Antes de Cada Deploy
+## Comandos Antes de Deploy
 
 ```bash
 npm test
@@ -87,17 +47,11 @@ npm run lint
 npm run build
 ```
 
-## Nota Sobre Vercel CLI
+## Notas
 
-A Vercel CLI local reportada na sessão está desatualizada. Antes de deploy real, atualizar:
+- `npm i @vercel/analytics` reportou 2 vulnerabilidades moderadas na árvore; não foi usado `npm audit fix --force`.
+- A Vercel CLI local está desatualizada. Atualizar antes de deploy real:
 
 ```bash
 npm i -g vercel@latest
 ```
-
-ou:
-
-```bash
-pnpm add -g vercel@latest
-```
-

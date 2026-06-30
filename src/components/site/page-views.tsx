@@ -1,16 +1,20 @@
 import {
+  Activity,
   ArrowUpRight,
   CheckCircle2,
   CircleAlert,
   CircleDot,
   LockKeyhole,
   Mail,
+  MessageSquare,
   ShieldCheck,
+  Workflow,
 } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { ArchitectureDiagram, HandoffFlow, ProcessLine, StageTable } from "@/components/site/flow";
+import { JourneyAutomationMap } from "@/components/site/journey-automation-map";
 import { DepartmentCard, InsightCard, SolutionCard } from "@/components/site/entity-cards";
 import { Reveal } from "@/components/site/reveal";
 import { Eyebrow, PageBand, SectionIntro } from "@/components/site/section";
@@ -19,6 +23,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { analyticsClickAttributes } from "@/lib/analytics";
 import {
   blueprints,
   departments,
@@ -31,6 +36,7 @@ import {
   type Blueprint,
   type Department,
   type Insight,
+  type LandingPage,
   type Policy,
   type Solution,
 } from "@/lib/content";
@@ -54,13 +60,33 @@ export function HomeView({ locale }: { locale: Locale }) {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild className="h-11 bg-brand px-5 text-brand-ink hover:bg-brand/85">
-                <Link href={getLocalizedPath(locale, "scan")}>
+                <Link
+                  href={getLocalizedPath(locale, "scan")}
+                  {...analyticsClickAttributes({
+                    name: "cta_click",
+                    location: "home_hero",
+                    target: "automation_scan",
+                    locale,
+                    pageKind: "home",
+                  })}
+                >
                   {copy.cta.scan}
                   <ArrowUpRight aria-hidden="true" />
                 </Link>
               </Button>
               <Button asChild variant="outline" className="h-11 px-5">
-                <Link href={getLocalizedPath(locale, "solutions")}>{copy.cta.exploreSolutions}</Link>
+                <Link
+                  href={getLocalizedPath(locale, "solutions")}
+                  {...analyticsClickAttributes({
+                    name: "cta_click",
+                    location: "home_hero",
+                    target: "solutions_index",
+                    locale,
+                    pageKind: "home",
+                  })}
+                >
+                  {copy.cta.exploreSolutions}
+                </Link>
               </Button>
             </div>
           </Reveal>
@@ -162,7 +188,16 @@ export function HomeView({ locale }: { locale: Locale }) {
         <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
           <SectionIntro title={copy.home.insightsHeading} />
           <Button asChild variant="outline">
-            <Link href={getLocalizedPath(locale, "insights")}>
+            <Link
+              href={getLocalizedPath(locale, "insights")}
+              {...analyticsClickAttributes({
+                name: "navigation_click",
+                location: "home_insights",
+                target: "insights_index",
+                locale,
+                pageKind: "home",
+              })}
+            >
               {locale === "en" ? "All insights" : "Todos os insights"}
             </Link>
           </Button>
@@ -189,6 +224,7 @@ export function SolutionsIndexView({ locale }: { locale: Locale }) {
         title={copy.index.solutionsTitle}
         body={copy.index.solutionsBody}
       />
+      <JourneyAutomationMap locale={locale} />
       <PageBand className="bg-surface">
         <div className="grid gap-5 md:grid-cols-2">
           {solutions[locale].map((solution) => (
@@ -214,6 +250,295 @@ export function SolutionsIndexView({ locale }: { locale: Locale }) {
         </div>
       </PageBand>
       <FinalCta locale={locale} title={locale === "en" ? "Map the journey before automating it." : "Mapeie a jornada antes de a automatizar."} />
+    </>
+  );
+}
+
+export function LandingPageView({
+  locale,
+  landingPage,
+}: {
+  locale: Locale;
+  landingPage: LandingPage;
+}) {
+  const copy = siteCopy[locale];
+  const sourceLabels = {
+    cockpit: "Operational signal cockpit",
+    breaks: "Where work breaks",
+    blueprint: "Reference blueprint",
+    automation: "Human-governed automation",
+  };
+  const pitchRule = "No pitch view renders more than three bullets per block";
+  const visiblePainPoints = landingPage.painPoints.slice(0, 3);
+  const visibleJourney = landingPage.journey.slice(0, 3);
+  const visibleModules = landingPage.modules.slice(0, 3);
+  const visibleProof = landingPage.proof.slice(0, 3);
+  const visibleGuardrails = landingPage.guardrails.slice(0, 2);
+  const labels =
+    locale === "en"
+      ? {
+          proof: "Why it is safe",
+          modules: "What gets automated first",
+          final: "Automation Scan",
+          cockpit: sourceLabels.cockpit,
+          breaks: sourceLabels.breaks,
+          automation: sourceLabels.automation,
+          cockpitSignals: [
+            { label: "INTAKE", icon: MessageSquare },
+            { label: "TRIAGE", icon: Activity },
+            { label: "HUMAN GATE", icon: ShieldCheck },
+          ],
+          blueprintLine:
+            "A reference blueprint is prepared before implementation, so scope, human gates and first workflows are clear.",
+        }
+      : {
+          proof: "Porque é seguro",
+          modules: "O que automatizamos primeiro",
+          final: "Automation Scan",
+          cockpit: "Painel de sinais operacionais",
+          breaks: "Onde o trabalho quebra",
+          automation: "Automação governada por humanos",
+          cockpitSignals: [
+            { label: "ENTRADA", icon: MessageSquare },
+            { label: "TRIAGEM", icon: Activity },
+            { label: "GATE HUMANO", icon: ShieldCheck },
+          ],
+          blueprintLine:
+            "Preparamos um blueprint de referência antes da implementação, com escopo, gates humanos e primeiros workflows claros.",
+        };
+
+  return (
+    <>
+      <section className="relative isolate overflow-hidden bg-ink text-white" data-rule={pitchRule}>
+        <div
+          className="absolute inset-0 opacity-35"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,.11) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.11) 1px, transparent 1px)",
+            backgroundSize: "30px 30px",
+          }}
+        />
+        <div className="absolute left-1/2 top-0 h-64 w-[42rem] -translate-x-1/2 bg-brand/20 blur-3xl" />
+        <div className="relative mx-auto grid min-h-[calc(100vh-4rem)] max-w-7xl items-center gap-10 px-5 py-12 md:px-8 md:py-16 xl:grid-cols-[1.08fr_0.92fr]">
+          <Reveal>
+            <Eyebrow className="text-brand">{landingPage.eyebrow}</Eyebrow>
+            <p className="mb-4 max-w-2xl font-mono text-xs uppercase tracking-[0.2em] text-white/55">
+              {landingPage.audience}
+            </p>
+            <h1 className="max-w-4xl font-heading text-4xl font-semibold leading-[0.96] text-white sm:text-5xl md:text-6xl">
+              {landingPage.headline}
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/72">
+              {landingPage.subheadline}
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button asChild className="h-12 bg-brand px-5 text-brand-ink hover:bg-brand/85">
+                <Link
+                  href={getLocalizedPath(locale, "scan")}
+                  {...analyticsClickAttributes({
+                    name: "cta_click",
+                    location: "landing_hero",
+                    target: "automation_scan",
+                    locale,
+                    pageKind: "landing",
+                    itemId: landingPage.id,
+                    itemSlug: landingPage.slug,
+                  })}
+                >
+                  {landingPage.cta}
+                  <ArrowUpRight aria-hidden="true" />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                className="h-12 border-white/30 bg-white/5 px-5 text-white hover:bg-white/10 hover:text-white"
+              >
+                <Link
+                  href="#blueprint"
+                  {...analyticsClickAttributes({
+                    name: "cta_click",
+                    location: "landing_hero",
+                    target: "reference_blueprint",
+                    locale,
+                    pageKind: "landing",
+                    itemId: landingPage.id,
+                    itemSlug: landingPage.slug,
+                  })}
+                >
+                  {landingPage.secondaryCta}
+                </Link>
+              </Button>
+            </div>
+            <div className="mt-7 flex flex-wrap gap-2">
+              {landingPage.trust.map((item) => (
+                <div key={item} className="inline-flex items-center gap-2 border border-white/15 bg-white/[0.03] px-3 py-2 text-sm text-white/75">
+                  <CheckCircle2 className="size-4 text-brand" aria-hidden="true" />
+                  {item}
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.12}>
+            <div
+              aria-label={labels.cockpit}
+              data-section={sourceLabels.cockpit}
+              className="relative overflow-hidden border border-white/18 bg-black/35 p-4 shadow-2xl shadow-black/40 backdrop-blur md:p-5"
+            >
+              <div className="mb-5 flex flex-col justify-between gap-3 border-b border-white/15 pb-4 sm:flex-row sm:items-center">
+                <div>
+                  <p className="font-mono text-xs uppercase tracking-[0.24em] text-brand">
+                    {labels.cockpit}
+                  </p>
+                  <h2 className="mt-2 max-w-sm font-heading text-2xl font-semibold text-white">
+                    {landingPage.title}
+                  </h2>
+                </div>
+                <Badge className="w-fit rounded-none bg-brand text-brand-ink hover:bg-brand">
+                  {copy.cta.scanShort}
+                </Badge>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-3">
+                {labels.cockpitSignals.map(({ label, icon: Icon }) => (
+                  <div key={label} className="border border-white/14 bg-white/[0.04] p-3">
+                    <Icon className="mb-4 size-5 text-brand" aria-hidden="true" />
+                    <p className="font-mono text-[0.68rem] uppercase tracking-[0.18em] text-white/50">
+                      {label}
+                    </p>
+                    <div className="mt-3 h-1.5 bg-white/10">
+                      <div className="h-full w-3/4 bg-brand" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-5 grid gap-2">
+                {visibleJourney.map((step, index) => (
+                  <div
+                    key={step}
+                    className="grid grid-cols-[2.5rem_1fr_auto] items-center gap-3 border border-white/12 bg-white/[0.03] p-3"
+                  >
+                    <span className="grid size-8 place-items-center bg-white/10 font-mono text-xs text-white">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-sm font-medium text-white/82">{step}</span>
+                    <span className="size-2 animate-pulse rounded-full bg-brand" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <PageBand className="py-12 md:py-16">
+        <div data-section={sourceLabels.breaks} className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr]">
+          <SectionIntro
+            eyebrow={labels.breaks}
+            title={landingPage.painTitle}
+            body={locale === "en" ? "The first screen should already make the problem obvious." : "O primeiro ecrã deve tornar o problema óbvio sem esforço."}
+          />
+          <div className="grid gap-3 md:grid-cols-3">
+            {visiblePainPoints.map((item, index) => (
+              <Reveal key={item} delay={index * 0.03}>
+                <div className="h-full border border-border p-5">
+                  <span className="font-mono text-sm text-muted-foreground">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <p className="mt-5 text-base font-medium leading-7">{item}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </PageBand>
+
+      <PageBand className="bg-surface py-12 md:py-16">
+        <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr]">
+          <SectionIntro eyebrow={labels.modules} title={landingPage.modulesTitle} />
+          <div className="grid gap-4 md:grid-cols-3">
+            {visibleModules.map((module, index) => (
+              <div key={module.title} className="border border-border bg-background p-5">
+                <Workflow className="mb-6 size-5 text-brand-ink" aria-hidden="true" />
+                <span className="font-mono text-xs text-muted-foreground">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-4 font-heading text-2xl font-semibold leading-tight">{module.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">{module.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </PageBand>
+
+      <PageBand id="blueprint" className="bg-ink py-12 text-white md:py-16">
+        <div data-section={sourceLabels.blueprint} className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <Eyebrow className="text-brand">{landingPage.blueprint.label}</Eyebrow>
+            <h2 className="max-w-3xl font-heading text-4xl font-semibold leading-tight text-white md:text-5xl">
+              {landingPage.blueprint.title}
+            </h2>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/70">
+              {labels.blueprintLine}
+            </p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="border border-white/15 bg-white/[0.03] p-5">
+              <h3 className="font-heading text-2xl font-semibold text-white">{labels.proof}</h3>
+              <ul className="mt-5 grid gap-3">
+                {visibleProof.map((item) => (
+                  <li key={item} className="flex gap-3 text-sm leading-6 text-white/70">
+                    <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-brand" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div data-section={sourceLabels.automation} className="border border-white/15 bg-white/[0.03] p-5">
+              <h3 className="font-heading text-2xl font-semibold text-white">{labels.automation}</h3>
+              <ul className="grid gap-3">
+                {visibleGuardrails.map((item) => (
+                  <li key={item} className="flex gap-3 text-sm leading-6 text-white/70">
+                    <ShieldCheck className="mt-0.5 size-4 shrink-0 text-brand" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </PageBand>
+
+      <PageBand className="bg-brand py-12 text-brand-ink md:py-16">
+        <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
+          <div>
+            <Eyebrow className="text-brand-ink/70">{labels.final}</Eyebrow>
+            <h2 className="max-w-4xl font-heading text-4xl font-semibold leading-tight md:text-6xl">
+              {landingPage.finalCta}
+            </h2>
+          </div>
+          <Button asChild className="h-12 bg-foreground px-5 text-background hover:bg-foreground/85">
+            <Link
+              href={getLocalizedPath(locale, "scan")}
+              {...analyticsClickAttributes({
+                name: "cta_click",
+                location: "landing_final",
+                target: "automation_scan",
+                locale,
+                pageKind: "landing",
+                itemId: landingPage.id,
+                itemSlug: landingPage.slug,
+              })}
+            >
+              {landingPage.cta}
+              <ArrowUpRight aria-hidden="true" />
+            </Link>
+          </Button>
+        </div>
+      </PageBand>
     </>
   );
 }
@@ -669,13 +994,46 @@ export function NotFoundView({ locale }: { locale: Locale }) {
         <p className="mt-5 text-lg leading-8 text-muted-foreground">{copy.system.notFoundBody}</p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Button asChild className="bg-brand text-brand-ink hover:bg-brand/85">
-            <Link href={getLocalizedPath(locale, "home")}>{copy.cta.home}</Link>
+            <Link
+              href={getLocalizedPath(locale, "home")}
+              {...analyticsClickAttributes({
+                name: "navigation_click",
+                location: "not_found",
+                target: "home",
+                locale,
+                pageKind: "not_found",
+              })}
+            >
+              {copy.cta.home}
+            </Link>
           </Button>
           <Button asChild variant="outline">
-            <Link href={getLocalizedPath(locale, "solutions")}>{copy.nav.solutions}</Link>
+            <Link
+              href={getLocalizedPath(locale, "solutions")}
+              {...analyticsClickAttributes({
+                name: "navigation_click",
+                location: "not_found",
+                target: "solutions_index",
+                locale,
+                pageKind: "not_found",
+              })}
+            >
+              {copy.nav.solutions}
+            </Link>
           </Button>
           <Button asChild variant="outline">
-            <Link href={getLocalizedPath(locale, "scan")}>{copy.cta.scanShort}</Link>
+            <Link
+              href={getLocalizedPath(locale, "scan")}
+              {...analyticsClickAttributes({
+                name: "cta_click",
+                location: "not_found",
+                target: "automation_scan",
+                locale,
+                pageKind: "not_found",
+              })}
+            >
+              {copy.cta.scanShort}
+            </Link>
           </Button>
         </div>
       </div>
@@ -703,7 +1061,18 @@ function FeaturedBlueprint({ locale, blueprint }: { locale: Locale; blueprint: B
             ))}
           </div>
           <Button asChild className="mt-6 bg-foreground text-background hover:bg-foreground/85">
-            <Link href={getLocalizedPath(locale, "blueprint", blueprint.slug)}>
+            <Link
+              href={getLocalizedPath(locale, "blueprint", blueprint.slug)}
+              {...analyticsClickAttributes({
+                name: "cta_click",
+                location: "featured_blueprint",
+                target: "blueprint_detail",
+                locale,
+                pageKind: "home",
+                itemId: blueprint.id,
+                itemSlug: blueprint.slug,
+              })}
+            >
               {copy.cta.viewBlueprint}
               <ArrowUpRight aria-hidden="true" />
             </Link>
@@ -737,10 +1106,32 @@ function IndexHero({
           <p className="mt-6 max-w-3xl text-lg leading-8 text-muted-foreground">{body}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild className="bg-brand text-brand-ink hover:bg-brand/85">
-              <Link href={getLocalizedPath(locale, "scan")}>{copy.cta.scan}</Link>
+              <Link
+                href={getLocalizedPath(locale, "scan")}
+                {...analyticsClickAttributes({
+                  name: "cta_click",
+                  location: "index_hero",
+                  target: "automation_scan",
+                  locale,
+                  pageKind: "index",
+                })}
+              >
+                {copy.cta.scan}
+              </Link>
             </Button>
             <Button asChild variant="outline">
-              <Link href={getLocalizedPath(locale, "solutions")}>{copy.cta.exploreSolutions}</Link>
+              <Link
+                href={getLocalizedPath(locale, "solutions")}
+                {...analyticsClickAttributes({
+                  name: "cta_click",
+                  location: "index_hero",
+                  target: "solutions_index",
+                  locale,
+                  pageKind: "index",
+                })}
+              >
+                {copy.cta.exploreSolutions}
+              </Link>
             </Button>
           </div>
         </Reveal>
@@ -777,7 +1168,16 @@ function DetailHero({
           ))}
         </div>
         <Button asChild className="mt-8 bg-brand text-brand-ink hover:bg-brand/85">
-          <Link href={getLocalizedPath(locale, "scan")}>
+          <Link
+            href={getLocalizedPath(locale, "scan")}
+            {...analyticsClickAttributes({
+              name: "cta_click",
+              location: "detail_hero",
+              target: "automation_scan",
+              locale,
+              pageKind: "detail",
+            })}
+          >
             {copy.cta.scan}
             <ArrowUpRight aria-hidden="true" />
           </Link>
@@ -840,7 +1240,18 @@ function RelatedBlock({
       <div className="grid gap-4 md:grid-cols-2">{children}</div>
       <div className="mt-8">
         <Button asChild variant="outline">
-          <Link href={getLocalizedPath(locale, "scan")}>{siteCopy[locale].cta.scan}</Link>
+          <Link
+            href={getLocalizedPath(locale, "scan")}
+            {...analyticsClickAttributes({
+              name: "cta_click",
+              location: "related_block",
+              target: "automation_scan",
+              locale,
+              pageKind: "detail",
+            })}
+          >
+            {siteCopy[locale].cta.scan}
+          </Link>
         </Button>
       </div>
     </PageBand>
@@ -860,7 +1271,16 @@ function FinalCta({ locale, title, body }: { locale: Locale; title: string; body
           {body ? <p className="mt-5 max-w-2xl text-base leading-7 text-brand-ink/75">{body}</p> : null}
         </div>
         <Button asChild className="h-11 bg-foreground px-5 text-background hover:bg-foreground/85">
-          <Link href={getLocalizedPath(locale, "scan")}>
+          <Link
+            href={getLocalizedPath(locale, "scan")}
+            {...analyticsClickAttributes({
+              name: "cta_click",
+              location: "final_cta",
+              target: "automation_scan",
+              locale,
+              pageKind: "global",
+            })}
+          >
             {copy.cta.scan}
             <ArrowUpRight aria-hidden="true" />
           </Link>
